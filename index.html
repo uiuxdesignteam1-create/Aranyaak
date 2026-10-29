@@ -1713,6 +1713,97 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
   .mx-stack .rs-card{position:sticky;top:calc(178px + var(--k,0)*16px);transform-origin:50% 0;will-change:scale}
   .mx-stack .rs-cards{padding-bottom:40px}
 }
+
+/* ===== v4 pages: gallery, payment options, contact ===== */
+.xpg .evp-body h2{font-size:clamp(26px,2.6vw,34px)}
+.xpg section.pg-sec{margin-top:64px;padding:0;background:none}
+.pg-sec>.label{display:block;margin-bottom:6px}
+.pg-sub{color:var(--muted);margin-top:8px;max-width:640px;line-height:1.7}
+.pg-note{margin-top:40px;font-size:12.5px;color:var(--muted)}
+/* gallery */
+.gl-filt{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;padding:4px 0}
+.gl-filt button{border:1px solid #D9D2C3;background:#fff;color:#1B4025;border-radius:999px;padding:9px 16px;font:inherit;font-size:14px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.gl-filt button[aria-pressed="true"]{background:#1B4025;border-color:#1B4025;color:#fff}
+.gl-filt small{opacity:.6;margin-left:4px}
+.gl-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:220px;grid-auto-flow:dense;gap:12px;margin-top:18px}
+.gl-item{position:relative;border:0;padding:0;margin:0;border-radius:10px;overflow:hidden;cursor:zoom-in;background:var(--leaf)}
+.gl-item.w{grid-column:span 2}.gl-item.t{grid-row:span 2}
+.gl-item img{width:100%;height:100%;object-fit:cover;display:block}
+.gl-item span{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:13px;color:#fff;text-align:left;background:linear-gradient(transparent,rgba(0,0,0,.55));opacity:0;transition:opacity .3s}
+.gl-item:hover span,.gl-item:focus-visible span{opacity:1}
+@media (max-width:900px){.gl-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:160px;gap:8px}.gl-item span{opacity:1;font-size:12px}.gl-filt{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-16px;margin-right:-16px;padding:10px 16px}.gl-filt button{flex:none}}
+.glb{position:fixed;inset:0;z-index:320;background:rgba(10,16,12,.94);display:grid;grid-template-rows:auto 1fr auto;color:#fff}
+.glb[hidden]{display:none}
+.glb-top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-size:14px}
+.glb-x,.glb-nav{background:rgba(255,255,255,.12);border:0;color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:18px}
+.glb-x:hover,.glb-nav:hover{background:rgba(255,255,255,.22)}
+.glb-stage{position:relative;display:grid;place-items:center;min-height:0;padding:0 70px}
+.glb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px}
+.glb-nav{position:absolute;top:50%;translate:0 -50%}.glb-nav.prev{left:14px}.glb-nav.next{right:14px}
+.glb-cap{text-align:center;padding:14px 18px 22px;font-size:14px;color:rgba(255,255,255,.8)}
+@media (max-width:600px){.glb-stage{padding:0 8px}.glb-nav{top:auto;bottom:-56px;translate:none}}
+/* payment */
+.pay-hero{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.pay-hero div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.pay-hero b{display:block;font-family:var(--f-display);font-weight:400;font-size:26px;color:#1B4025}
+.pay-hero small{display:block;margin-top:4px;color:var(--muted);font-size:14px;line-height:1.5}
+.pay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.pay-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.pay-card h3{font-size:22px;display:flex;align-items:center;gap:10px}
+.pay-card h3 svg{color:#2F6B44;flex:none}
+.pay-card p{color:var(--muted);margin-top:8px;line-height:1.6;font-size:15px}
+.pay-card ol{margin:12px 0 0;padding-left:20px;line-height:1.7;font-size:14.5px;color:#3c4a40}
+.pay-card .ps-list{margin-top:14px}
+.bank-tbl{width:100%;border-collapse:collapse;margin-top:14px;font-size:14.5px}
+.bank-tbl th{text-align:left;font-weight:500;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--line);width:42%}
+.bank-tbl td{padding:9px 0;border-bottom:1px solid var(--line);color:#1B4025;font-weight:600}
+.bank-tbl td em{font-style:normal;font-weight:500;color:#9A8F7A}
+.pol{margin-top:22px;border-top:1px solid var(--line)}
+.pol details{border-bottom:1px solid var(--line)}
+.pol summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font-size:17px;color:#1B4025;font-weight:600}
+.pol summary::-webkit-details-marker{display:none}
+.pol summary::after{content:"+";font-size:22px;line-height:1;color:#2F6B44}
+.pol details[open] summary::after{content:"–"}
+.pol details p,.pol details ul{margin:0 0 18px;color:#3c4a40;line-height:1.7;font-size:15px}
+.pol details ul{padding-left:20px}
+@media (max-width:900px){.pay-hero,.pay-grid{grid-template-columns:1fr}}
+/* contact */
+.ct-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;margin-top:28px;align-items:start}
+.ct-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px;color:inherit;text-decoration:none;transition:border-color .2s,box-shadow .2s}
+a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,.5)}
+.ct-card.wide{grid-column:1/-1}
+.ct-card svg{color:#2F6B44}
+.ct-card small{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.ct-card b{font-size:16px;color:#1B4025;font-weight:600;overflow-wrap:anywhere}
+.ct-card span{font-size:13.5px;color:var(--muted)}
+.ct-map{border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--leaf)}
+.ct-map iframe{width:100%;height:100%;border:0;display:block}
+.ct-form{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ct-form .full{grid-column:1/-1}
+.ct-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#1B4025}
+.ct-form input,.ct-form select,.ct-form textarea{font:inherit;font-size:15px;font-weight:400;padding:12px 14px;border:1px solid #D9D2C3;border-radius:8px;background:#FDFBF7;color:var(--charcoal)}
+.ct-form textarea{min-height:120px;resize:vertical}
+.ct-form .btn{justify-self:start}
+.ct-form .ct-err{grid-column:1/-1;color:#A63D2B;font-size:13.5px;margin:0}
+.ct-done{grid-column:1/-1;background:#EEF4EF;border-radius:10px;padding:16px;color:#1B4025;line-height:1.6}
+.here{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.here div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
+.here h3{font-size:19px}.here p{color:var(--muted);margin-top:6px;line-height:1.6;font-size:14.5px}
+@media (max-width:900px){.ct-grid,.here{grid-template-columns:1fr}.ct-form{grid-template-columns:1fr}}
+@media (max-width:420px){.ct-cards{grid-template-columns:1fr}}
+/* footer payment strip */
+.paystrip{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:34px;padding:18px 0;border-top:1px solid var(--line)}
+.ps-lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.ps-list{display:flex;flex-wrap:wrap;gap:8px}
+.pb{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 11px;border-radius:6px;background:#fff;font:700 12px/1 system-ui,sans-serif;letter-spacing:.02em;color:#1B4025;white-space:nowrap}
+.pb.visa{color:#1A1F71;font-style:italic;font-size:14px;letter-spacing:.04em}
+.pb.mc i{width:12px;height:12px;border-radius:50%;background:#EB001B;display:inline-block}.pb.mc i+i{background:#F79E1B;margin-left:-7px;margin-right:3px;opacity:.9}
+.pb.amex{background:#2E77BC;color:#fff}
+.pb.bkash{color:#D12053}.pb.nagad{color:#EC1C24}.pb.rocket{color:#8C3494}.pb.nexus{color:#1F6E43}
+.ps-more{font-size:14px;color:inherit;opacity:.85}
+.ps-by{flex-basis:100%;font-size:12px;opacity:.6}
+@media (min-width:901px){.ps-by{flex-basis:auto;margin-left:auto}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1755,7 +1846,7 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
       <span class="wordmark"><b>ARANYAAK</b><span>LUXURY RESORT</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
-      <span class="nav-ind" aria-hidden="true"></span><a href="#rooms" data-spy="rooms"><span>Pool cottages</span></a><a href="#offers" data-spy="offers"><span>Offers</span></a><a href="#dining" data-spy="dining"><span>Dining</span></a><a href="#events" data-spy="events"><span>Events</span></a><a href="#stories" data-spy="stories"><span>Stories</span></a>
+      <span class="nav-ind" aria-hidden="true"></span><a href="#rooms" data-spy="rooms"><span>Pool cottages</span></a><a href="#offers" data-spy="offers"><span>Offers</span></a><a href="#dining" data-spy="dining"><span>Dining</span></a><a href="#gallery" data-page="gallery"><span>Gallery</span></a><a href="#events" data-spy="events"><span>Events</span></a><a href="#stories" data-spy="stories"><span>Stories</span></a>
     </nav>
     <div class="nav-right">
       <button class="nav-close" id="closeBook" aria-label="Close booking"><span class="navtext">Close</span>
@@ -1780,6 +1871,9 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
         <a role="menuitem" href="#reviews">Guest reviews</a>
         <a role="menuitem" href="#estate">Explore the resort</a>
         <a role="menuitem" href="#founders">About Aranyaak</a>
+        <a role="menuitem" href="#gallery" data-page="gallery">Gallery</a>
+        <a role="menuitem" href="#payment" data-page="payment">Payment options</a>
+        <a role="menuitem" href="#contact" data-page="contact">Contact</a>
         <hr>
         <button type="button" role="menuitem" data-um="mybooking">My booking</button>
         <a role="menuitem" href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp us</a>
@@ -2106,7 +2200,7 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
         </div>
       </div>
       <div><h4>Stay</h4><ul><li><a href="#rooms">Pool cottages</a></li><li><a href="#offers">Special offers</a></li><li><a href="#top" data-book>Book direct</a></li></ul></div>
-      <div><h4>Discover</h4><ul><li><a href="#events">Events</a></li><li><a href="#dining">Dining</a></li><li><a href="#stories">Stories</a></li><li><a href="#reviews">Guest reviews</a></li><li><a href="#reviews" data-review>Rate your stay</a></li></ul></div>
+      <div><h4>Discover</h4><ul><li><a href="#events">Events</a></li><li><a href="#dining">Dining</a></li><li><a href="#stories">Stories</a></li><li><a href="#reviews">Guest reviews</a></li><li><a href="#reviews" data-review>Rate your stay</a></li><li><a href="#gallery" data-page="gallery">Gallery</a></li><li><a href="#contact" data-page="contact">Contact us</a></li><li><a href="#payment" data-page="payment">Payment options</a></li></ul></div>
       <div class="foot-touch"><h4>Get in touch</h4><ul>
           <li><a href="tel:+8801332546712"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+880 1332-546712</a></li>
           <li><a href="https://wa.me/8801332546712" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M16 3.5C9 3.5 3.5 8.9 3.5 15.6c0 2.4.7 4.7 1.9 6.6L4 28.5l6.6-1.7c1.7.9 3.6 1.4 5.4 1.4 7 0 12.5-5.4 12.5-12.1S23 3.5 16 3.5z" stroke-linejoin="round"/></svg>WhatsApp us</a></li>
@@ -2114,7 +2208,8 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
           <li><span class="foot-hours"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Reservations &amp; front desk 24/7</span></li>
         </ul></div>
     </div>
-    <div class="legal"><span>© 2026 Aranyaak Luxury Resort. All rights reserved.</span><span><a href="#footer">Privacy policy</a> · <a href="#footer">Booking &amp; cancellation policy</a> · <a href="#estate">Getting here</a></span></div>
+    <div class="paystrip" aria-label="Payment methods we accept"><span class="ps-lbl">Pay securely with</span><span class="ps-list"><b class="pb visa">VISA</b><b class="pb mc"><i></i><i></i>Mastercard</b><b class="pb amex">AMEX</b><b class="pb nexus">DBBL Nexus</b><b class="pb bkash">bKash</b><b class="pb nagad">Nagad</b><b class="pb rocket">Rocket</b><b class="pb bank">Internet banking</b></span><a class="ps-more" href="#payment" data-page="payment">Payment options →</a><span class="ps-by">Online payments processed by SSLCOMMERZ</span></div>
+    <div class="legal"><span>© 2026 Aranyaak Luxury Resort. All rights reserved.</span><span><a href="#footer">Privacy policy</a> · <a href="#payment" data-page="payment" data-sec="policy">Booking &amp; cancellation policy</a> · <a href="#contact" data-page="contact" data-sec="here">Getting here</a></span></div>
   </div>
 </footer>
 
@@ -2157,6 +2252,8 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
     <p class="vt-note">Sample video for the design preview. It will be replaced with the resort's own film after the photoshoot.</p>
   </div>
 </div>
+<div class="evp xpg" id="xpg" hidden role="dialog" aria-modal="true" aria-labelledby="xpgTitle"><div class="evp-in" id="xpgIn"></div></div>
+<div class="glb" id="glb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer"></div>
 <div class="evp rvp" id="rvp" hidden role="dialog" aria-modal="true" aria-labelledby="rvpTitle"><div class="evp-in" id="rvpIn"></div></div>
 <div class="evp stp" id="stp" hidden role="dialog" aria-modal="true" aria-labelledby="stpTitle"><div class="evp-in" id="stpIn"></div></div>
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true" aria-label="360° tour of Aranyaak">
@@ -2606,6 +2703,108 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     if(e.target.closest('[data-stx]')){ closeSt(); $('#stories').scrollIntoView(); return; }
     if(e.target.closest('[data-stbook]')){ closeSt(); $('#stay').value=ALL; startBooking(); } });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#stp').hidden) closeSt(); });
+
+  /* ===== v4 pages: Gallery, Payment options, Contact ===== */
+  const GAL=[
+    ['img/room-villa-1.jpg','Cottages','Private pool at sunset'],['img/room-tea-3.jpg','Cottages','Camellia Cottage, tea garden view'],
+    ['img/pano-pool.jpg','Pools & views','Infinity pool over the hills'],['img/room-hill-1.jpg','Cottages','Morning in the hills'],
+    ['img/pano-teawalk.jpg','Tea garden','Walking through the tea rows'],['img/room-villa-2.jpg','Cottages','Terrace and private pool'],
+    ['img/dining.jpg','Food','Breakfast on the veranda'],['img/estate-aerial.jpg','Resort','The estate from above'],
+    ['img/story-spring.jpg','Tea garden','First-flush leaves'],['img/pano-villa.jpg','Cottages','A cottage among the trees'],
+    ['img/room-tea-1.jpg','Pools & views','Green all around'],['img/pano-restaurant.jpg','Food','RASOI, our restaurant'],
+    ['img/story-winter.jpg','Pools & views','Fog lifting over the hills'],['img/events/wedding-2.jpg','Events','A wedding evening'],
+    ['img/room-hill-2.jpg','Pools & views','Sunrise from the terrace'],['img/extra-dinner.jpg','Food','Candlelight dinner'],
+    ['img/pano-entrance.jpg','Resort','Arriving at Aranyaak'],['img/story-monsoon.jpg','Tea garden','Tea hills in the monsoon'],
+    ['img/room-villa-3.jpg','Cottages','Pool deck'],['img/events/conference-1.jpg','Events','Conference set-up'],
+    ['img/pano-orchard.jpg','Resort','The orchard'],['img/offer-honeymoon.jpg','Food','Dinner for two'],
+    ['img/room-tea-2.jpg','Cottages','Room interior'],['img/events/wedding-1.jpg','Events','Holud night'],
+    ['img/extra-walk.jpg','Tea garden','Tea Garden Tour'],['img/room-hill-3.jpg','Pools & views','Evening light'],
+    ['img/events/seminar-1.jpg','Events','Seminar hall'],['img/offer-monsoon.jpg','Tea garden','Rain over the tea rows'],
+    ['img/event-celebration.jpg','Events','A private celebration'],['img/menu.jpg','Food','From the RASOI kitchen']
+  ];
+  const GCATS=['All','Cottages','Pools & views','Tea garden','Food','Events','Resort'];
+  const SHAPE=['w t','','t','','','w','','t','',''];
+  let gCat='All', gList=[], gK=0, pgLast=null;
+  const ico={pin:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+    tel:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>',
+    wa:'<svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M16 3.5C9 3.5 3.5 8.9 3.5 15.6c0 2.4.7 4.7 1.9 6.6L4 28.5l6.6-1.7c1.7.9 3.6 1.4 5.4 1.4 7 0 12.5-5.4 12.5-12.1S23 3.5 16 3.5z"/></svg>',
+    mail:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+    card:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9.5h19M6 15h4"/></svg>',
+    bank:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3 20h18"/></svg>',
+    desk:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 11h18v9H3zM7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+    clock:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'};
+  const PB='<span class="ps-list"><b class="pb visa">VISA</b><b class="pb mc"><i></i><i></i>Mastercard</b><b class="pb amex">AMEX</b><b class="pb nexus">DBBL Nexus</b><b class="pb bkash">bKash</b><b class="pb nagad">Nagad</b><b class="pb rocket">Rocket</b><b class="pb bank">Internet banking</b></span>';
+  const crumbs=t=>`<nav class="evp-top" aria-label="Breadcrumb"><ol class="evp-crumb"><li><button type="button" data-pghome>Home</button></li><li aria-current="page">${t}</li></ol></nav>`;
+  const galGrid=()=>{ gList=GAL.filter(g=>gCat==='All'||g[1]===gCat); return gList.map((g,i)=>`<button type="button" class="gl-item ${gCat==='All'?SHAPE[i%SHAPE.length]:(i%5===0?'w':'')}" data-gk="${i}" aria-label="Open photo: ${g[2]}"><img src="${g[0]}" alt="${g[2]}" loading="lazy"><span>${g[2]}</span></button>`).join(''); };
+  const PAGES={
+    gallery:()=>`${crumbs('Gallery')}<div class="wrap evp-body"><span class="label">Gallery</span><h1 id="xpgTitle">A glimpse of Aranyaak</h1><p class="evp-lead">Cottages, pools, tea gardens, food and celebrations.</p>
+      <div class="gl-filt" role="group" aria-label="Filter photos">${GCATS.map(c=>`<button type="button" data-gcat="${c}" aria-pressed="${c===gCat}">${c}<small>${c==='All'?GAL.length:GAL.filter(g=>g[1]===c).length}</small></button>`).join('')}</div>
+      <div class="gl-grid" id="glGrid">${galGrid()}</div><p class="pg-note">Sample photos · to be replaced with Aranyaak's own photography.</p></div>`,
+    payment:()=>`${crumbs('Payment options')}<div class="wrap evp-body"><span class="label">Payment options</span><h1 id="xpgTitle">How to pay</h1><p class="evp-lead">Pay a 50% advance to confirm your booking. Pay the rest when you check in.</p>
+      <div class="pay-hero"><div><b>50%</b><small>advance to confirm your booking</small></div><div><b>50%</b><small>balance at check-in</small></div><div><b>14 days</b><small>free cancellation before arrival</small></div></div>
+      <section class="pg-sec" id="pg-online"><span class="label">Pay online</span><h2>Card, mobile banking or internet banking</h2>
+        <div class="pay-grid"><div class="pay-card"><h3>${ico.card}Pay online</h3><p>Complete your booking on this website, then pay the advance on the secure SSLCOMMERZ page.</p>${PB}
+          <ol><li>Choose your cottage and dates, then <b>Complete booking</b>.</li><li>Pick card, bKash, Nagad, Rocket or internet banking.</li><li>Enter your details on the secure payment page (never on our website).</li><li>Your booking is confirmed at once by email and SMS.</li></ol></div>
+        <div class="pay-card"><h3>${ico.bank}Bank transfer</h3><p>Prefer to transfer? Use these details, then email the receipt with your name, booking number and check-in date.</p>
+          <table class="bank-tbl"><tr><th>Account name</th><td>Aranyaak Luxury Resort</td></tr><tr><th>Bank</th><td><em>To be added</em></td></tr><tr><th>Branch</th><td><em>To be added</em></td></tr><tr><th>Account number</th><td><em>To be added</em></td></tr><tr><th>Routing number</th><td><em>To be added</em></td></tr></table>
+          <p>Send the receipt to <a href="mailto:reservations@aranyaakresort.com">reservations@aranyaakresort.com</a> or on <a href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp</a>.</p></div>
+        <div class="pay-card"><h3>${ico.desk}At the resort</h3><p>Pay the balance at the front desk when you check in, by cash, card or mobile banking.</p></div>
+        <div class="pay-card"><h3>${ico.tel}Need help paying?</h3><p>Our reservations team is available 24/7.</p><p><a href="tel:+8801332546712">+880 1332-546712</a> · <a href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp</a></p></div></div></section>
+      <section class="pg-sec" id="pg-policy"><span class="label">Policies</span><h2>Booking &amp; cancellation</h2><div class="pol">
+        <details open><summary>Advance and balance</summary><p>A 50% advance confirms your booking. The balance is paid at check-in.</p></details>
+        <details><summary>Cancellation</summary><p>Free cancellation 14 or more days before arrival. After that, the advance is non-refundable.</p></details>
+        <details><summary>Check-in and check-out</summary><p>Check-in from 2:00 PM, check-out until 12:00 PM. Please bring an NID or passport. Ask us about early check-in or late check-out.</p></details>
+        <details><summary>Children and extra guests</summary><p>Each cottage sleeps up to 4 guests: 4 adults, or 2 adults and 2 children.</p></details></div>
+        <p class="pg-note">Draft · bank details and policy times to be confirmed by Aranyaak management.</p></section></div>`,
+    contact:()=>`${crumbs('Contact')}<div class="wrap evp-body"><span class="label">Contact</span><h1 id="xpgTitle">We're here 24/7</h1><p class="evp-lead">Call, WhatsApp or send us a message. We usually reply within an hour.</p>
+      <div class="ct-grid"><div><div class="ct-cards">
+        <a class="ct-card" href="tel:+8801332546712">${ico.tel}<small>Reservations · 24/7</small><b>+880 1332-546712</b><span>Tap to call</span></a>
+        <a class="ct-card" href="https://wa.me/8801332546712" target="_blank" rel="noopener">${ico.wa}<small>WhatsApp</small><b>+880 1332-546712</b><span>Chat with us</span></a>
+        <a class="ct-card" href="mailto:reservations@aranyaakresort.com">${ico.mail}<small>Bookings</small><b>reservations@aranyaakresort.com</b></a>
+        <a class="ct-card" href="mailto:admin@aranyaakresort.com">${ico.mail}<small>Events &amp; general</small><b>admin@aranyaakresort.com</b></a>
+        <div class="ct-card wide">${ico.pin}<small>Resort</small><b>Doluchora, Lawachara Road, Sreemangal, Moulvibazar 3210, Bangladesh</b><span>${ico.clock.replace('width="20" height="20"','width="14" height="14"')} Front desk open 24 hours</span></div></div>
+        <form class="ct-form" id="ctForm" novalidate>
+          <label>Your name<input id="ct_n" autocomplete="name" required></label>
+          <label>Phone or email<input id="ct_c" autocomplete="tel" required></label>
+          <label class="full">About<select id="ct_s"><option>A stay</option><option>An event or wedding</option><option>RASOI restaurant</option><option>Something else</option></select></label>
+          <label class="full">Message<textarea id="ct_m" required></textarea></label>
+          <p class="ct-err" id="ctErr" hidden></p>
+          <button class="btn btn-gold" type="submit">Send on WhatsApp</button></form></div>
+        <div class="ct-map"><iframe title="Map: Aranyaak Luxury Resort, Lawachara Road, Sreemangal" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Lawachara+Road,+Sreemangal,+Moulvibazar&z=13&output=embed"></iframe></div></div>
+      <section class="pg-sec" id="pg-here"><span class="label">Getting here</span><h2>How to reach Aranyaak</h2><div class="here">
+        <div><h3>By road</h3><p>From Dhaka, take the Dhaka–Sylhet highway to Sreemangal, then Lawachara Road. About 4–5 hours.</p></div>
+        <div><h3>By train</h3><p>Intercity trains run from Dhaka and Sylhet to Sreemangal station. We can pick you up from the station.</p></div>
+        <div><h3>Airport transfer</h3><p>Flying in? We arrange pick-up and drop-off. Add it when you book, or ask us on WhatsApp.</p></div></div></section></div>`
+  };
+  const xpg=$('#xpg'), glb=$('#glb');
+  const pgPlace=()=>{ xpg.style.top=nav.querySelector('.nav-bar').getBoundingClientRect().bottom+'px'; };
+  const openPage=(k,sec)=>{ if(!PAGES[k]) return; if(document.body.classList.contains('booking')) exitBooking();
+    if(xpg.hidden) pgLast=document.activeElement; ['#stp','#evp'].forEach(q=>{ const el=$(q); if(el&&!el.hidden) el.hidden=true; });
+    $('#xpgIn').innerHTML=PAGES[k](); xpg.dataset.pg=k; nav.classList.remove('expanded','open');
+    const um=$('#umenu'); if(um&&!um.hidden){ um.hidden=true; $('#openMenu').setAttribute('aria-expanded','false'); }
+    xpg.hidden=false; pgPlace(); document.body.style.overflow='hidden'; document.body.classList.add('ev-open');
+    xpg.scrollTop=0; if(sec){ const t=$('#pg-'+sec); if(t) setTimeout(()=>xpg.scrollTo({top:t.offsetTop-70,behavior:'smooth'}),60); }
+    $('#xpg .evp-crumb button').focus({preventScroll:true}); if(typeof setLang==='function'&&document.documentElement.lang==='bn') setLang('bn'); };
+  const closePage=()=>{ xpg.hidden=true; document.body.style.overflow=''; document.body.classList.remove('ev-open'); pgLast&&pgLast.focus&&pgLast.focus({preventScroll:true}); };
+  const glDraw=()=>{ const g=gList[gK]; glb.innerHTML=`<div class="glb-top"><span>${gK+1} / ${gList.length} · ${g[1]}</span><button type="button" class="glb-x" data-glx aria-label="Close">✕</button></div><div class="glb-stage"><button type="button" class="glb-nav prev" data-gln="-1" aria-label="Previous photo">‹</button><img src="${g[0]}" alt="${g[2]}"><button type="button" class="glb-nav next" data-gln="1" aria-label="Next photo">›</button></div><p class="glb-cap">${g[2]}</p>`; };
+  addEventListener('resize',()=>{ if(!xpg.hidden) pgPlace(); });
+  nav.addEventListener('click',e=>{ if(xpg.hidden) return; const a=e.target.closest('a[href^="#"]'); if(a&&!a.dataset.page) closePage(); },true);
+  document.addEventListener('click',e=>{
+    const pl=e.target.closest('[data-page]'); if(pl){ e.preventDefault(); e.stopPropagation(); openPage(pl.dataset.page,pl.dataset.sec); return; }
+    if(!glb.hidden){ if(e.target.closest('[data-glx]')||e.target===glb){ glb.hidden=true; return; } const n=e.target.closest('[data-gln]'); if(n){ gK=(gK+ +n.dataset.gln+gList.length)%gList.length; glDraw(); } return; }
+    if(xpg.hidden) return;
+    if(e.target.closest('[data-pghome]')){ closePage(); scrollTo({top:0}); return; }
+    const c=e.target.closest('[data-gcat]'); if(c){ gCat=c.dataset.gcat; $$('#xpg [data-gcat]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.gcat===gCat)); $('#glGrid').innerHTML=galGrid(); return; }
+    const it=e.target.closest('[data-gk]'); if(it){ gK=+it.dataset.gk; glDraw(); glb.hidden=false; glb.querySelector('.glb-x').focus(); return; }
+  },true);
+  document.addEventListener('submit',e=>{ if(e.target.id!=='ctForm') return; e.preventDefault();
+    const n=$('#ct_n').value.trim(), c=$('#ct_c').value.trim(), m=$('#ct_m').value.trim(), er=$('#ctErr');
+    if(!n||!c||m.length<5){ er.textContent='Please add your name, a phone number or email, and a short message.'; er.hidden=false; return; }
+    const txt=`Hello Aranyaak, I'm ${n} (${c}). About: ${$('#ct_s').value}.\n${m}`;
+    window.open('https://wa.me/8801332546712?text='+encodeURIComponent(txt),'_blank','noopener');
+    e.target.innerHTML=`<div class="ct-done"><b>Thank you, ${n.replace(/[<>&]/g,'')}.</b> WhatsApp has opened with your message ready to send. Prefer email? Write to <a href="mailto:reservations@aranyaakresort.com">reservations@aranyaakresort.com</a>.</div>`; });
+  document.addEventListener('keydown',e=>{ if(!glb.hidden){ if(e.key==='Escape') glb.hidden=true; else if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ gK=(gK+(e.key==='ArrowRight'?1:-1)+gList.length)%gList.length; glDraw(); } return; }
+    if(e.key==='Escape'&&!xpg.hidden) closePage(); });
   /* ---- Restaurant menu + table request ---- */
   const MENU={
     'Breakfast':[['Sylheti khichuri','Rice and lentils with a soft egg bhuna and pickles',450,'🌶'],['Paratha, dal & bhaji','Flaky parathas, yellow dal and garden vegetables',380,'🌿'],['Orchard fruit bowl','Fruit picked on the estate this morning, with yoghurt and honey',320,'🌿'],['Masala omelette','Three eggs, onion, chilli and coriander, with toast',350,'🌶'],['Estate tea pot','Our own black tea, brewed fresh',150,'🌿']],
