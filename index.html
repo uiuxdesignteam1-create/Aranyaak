@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>Aranyaak Resort v3</title>
+<title>Aranyaak Resort v4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1699,6 +1699,20 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
 .rcard.is-booked .rc-pic img{filter:grayscale(.65) brightness(.9)}
 .rcard.is-booked .rate .amt{opacity:.55}
 .rcard.is-booked .btn-sel[disabled]{background:#E7E2D9!important;color:#7a7368!important;border-color:#E7E2D9!important;cursor:not-allowed;opacity:1}
+
+/* ===== v4 motion: parallax photos, mask reveals, heading reveals, stacked cottages ===== */
+@media (prefers-reduced-motion:no-preference){
+  .mx-frame{overflow:hidden}
+  .mx-img{scale:var(--mxs,1.14);translate:0 var(--mxy,0px);will-change:translate}
+  .mx-clip{--mxs:1.32;clip-path:inset(100% 0 0 0);transition:clip-path 1.3s cubic-bezier(.77,0,.18,1),scale 1.8s cubic-bezier(.2,.7,.2,1)}
+  .mx-clip.mx-in{--mxs:1.14;clip-path:inset(0 0 0 0)}
+  .mx-h{clip-path:inset(-.25em -.25em 100% -.25em);translate:0 .6em;opacity:.001;transition:clip-path 1.1s cubic-bezier(.2,.7,.2,1),translate 1.1s cubic-bezier(.2,.7,.2,1),opacity .7s ease}
+  .mx-h.mx-in{clip-path:inset(-.25em -.25em -.35em -.25em);translate:0 0;opacity:1}
+}
+@media (min-width:901px) and (prefers-reduced-motion:no-preference){
+  .mx-stack .rs-card{position:sticky;top:calc(178px + var(--k,0)*16px);transform-origin:50% 0;will-change:scale}
+  .mx-stack .rs-cards{padding-bottom:40px}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -3202,7 +3216,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
         <p class="rs-price"><small>From</small> ${money(from)} <small>/ night · breakfast included</small></p>
         <div class="rs-btns"><button type="button" class="btn btn-gold" data-rsgo="${r.id}" data-to="avail">Book now</button><button type="button" class="btn btn-outline" data-rsgo="${r.id}">View details</button></div>
       </div></article>`; }).join('');
-  const rsSet=id=>{ $$('#rsNav [data-rs]').forEach(b=>b.toggleAttribute('aria-current',b.dataset.rs===id)); if(matchMedia('(max-width:900px)').matches){ const ol=$('#rsNav'), b=ol.querySelector(`[data-rs="${id}"]`); if(b) ol.scrollTo({left:b.parentNode.offsetLeft-ol.clientWidth/2+b.parentNode.offsetWidth/2,behavior:'smooth'}); } const i=ROOMS.findIndex(r=>r.id===id); $('#rsCount').textContent=`${pad(i+1)} / ${pad(ROOMS.length)}`; };
+  const rsSet=window.__rsSet=id=>{ $$('#rsNav [data-rs]').forEach(b=>b.toggleAttribute('aria-current',b.dataset.rs===id)); if(matchMedia('(max-width:900px)').matches){ const ol=$('#rsNav'), b=ol.querySelector(`[data-rs="${id}"]`); if(b) ol.scrollTo({left:b.parentNode.offsetLeft-ol.clientWidth/2+b.parentNode.offsetWidth/2,behavior:'smooth'}); } const i=ROOMS.findIndex(r=>r.id===id); $('#rsCount').textContent=`${pad(i+1)} / ${pad(ROOMS.length)}`; };
   const rsIO=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) rsSet(e.target.id.slice(3)); }),{rootMargin:'-45% 0px -45% 0px'});
   $$('.rs-card').forEach(c=>rsIO.observe(c));
   $('#rsNav').addEventListener('click',e=>{ const b=e.target.closest('[data-rs]'); if(!b) return; const c=$('#rs-'+b.dataset.rs); const off=innerHeight/2-c.offsetHeight/2; scrollTo({top:c.getBoundingClientRect().top+scrollY-Math.max(170,off),behavior:'smooth'}); rsSet(b.dataset.rs); });
@@ -3322,10 +3336,70 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     const hero=document.querySelector('.hero-art'), band=document.querySelector('.foot-band'), fnd=document.querySelector('.founders');
     let tick=false;
     const upd=()=>{ tick=false; const y=scrollY, vh=innerHeight;
-      if(hero&&y<vh*1.2) hero.style.transform=`translate3d(0,${y*0.35}px,0) scale(1.06)`;
+      if(hero&&y<vh*1.2){ const k=Math.min(y/vh,1); hero.style.transform=`translate3d(0,${y*0.35}px,0) scale(${(1.06+k*0.14).toFixed(4)})`; const hi=document.querySelector('.hero-inner'); if(hi){ hi.style.translate=`0 ${(-y*0.18).toFixed(1)}px`; hi.style.opacity=Math.max(0,1-k*1.25).toFixed(3); } }
       [band,fnd].forEach(el=>{ if(!el) return; const r=el.getBoundingClientRect(); if(r.bottom<0||r.top>vh) return; const p=(r.top+r.height/2-vh/2)/vh; el.style.backgroundPosition=el===fnd?`right ${50+p*18}%`:`center ${50+p*30}%`; }); };
     addEventListener('scroll',()=>{ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true}); upd();
   }
+})();
+
+
+/* ===== v4 motion engine: parallax inside every photo frame, mask reveals, heading reveals, stacked cottage cards ===== */
+(()=>{
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const SKIP='#bk, #payov, .nav, .mm, .mbar, .lb, [data-nomotion]';
+  const IMG_SCOPE='section img, .evp img';
+  const H_SCOPE='section h2, .evp h1, .evp h2, .founders blockquote';
+  const live=new Set();
+  const vis=new IntersectionObserver(es=>es.forEach(e=>{ e.isIntersecting?live.add(e.target):live.delete(e.target); }),{rootMargin:'15% 0px 15% 0px'});
+  const RV=new Map(); const rev=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ (RV.get(e.target)||[]).forEach(t=>t.classList.add('mx-in')); RV.delete(e.target); rev.unobserve(e.target); } }),{rootMargin:'0px 0px -10% 0px',threshold:0});
+  const watch=(el,proxy)=>{ if(!RV.has(proxy)) RV.set(proxy,[]); RV.get(proxy).push(el); rev.observe(proxy); };
+  const prep=()=>{
+    document.querySelectorAll(IMG_SCOPE).forEach(img=>{
+      if(img.dataset.mx||img.closest(SKIP)) return;
+      const fr=img.parentElement; if(!fr) return;
+      const fh=fr.getBoundingClientRect().height; if(fh<1) return;             // hidden for now: try again later
+      img.dataset.mx='1';
+      const cs=getComputedStyle(img), pcs=getComputedStyle(fr);
+      if(cs.objectFit!=='cover'||fh<110||/(auto|scroll)/.test(pcs.overflowX+pcs.overflowY)) return;   // lightbox / thumbnails / swipe tracks
+      if(pcs.overflow==='visible') fr.classList.add('mx-frame');
+      img.classList.add('mx-img','mx-clip'); vis.observe(img); watch(img,fr);
+    });
+    document.querySelectorAll(H_SCOPE).forEach(h=>{
+      if(h.dataset.mx||h.closest(SKIP)||h.closest('.hero')) return;
+      if(h.getBoundingClientRect().height<1) return;
+      h.dataset.mx='1'; h.classList.add('mx-h'); watch(h,h.parentElement);
+    });
+  };
+  /* stacked cottage cards (desktop) */
+  const show=document.getElementById('rsShow'), wide=matchMedia('(min-width:901px)');
+  let cards=[], curRs=null;
+  const setupStack=()=>{ cards=[...document.querySelectorAll('#rsCards .rs-card')]; cards.forEach((c,k)=>c.style.setProperty('--k',k));
+    if(show) show.classList.toggle('mx-stack',wide.matches); if(!wide.matches) cards.forEach(c=>{c.style.scale='';c.style.filter='';}); };
+  const natTop=i=>{ const box=document.getElementById('rsCards'); const gap=parseFloat(getComputedStyle(box).rowGap)||36; let y=box.getBoundingClientRect().top+scrollY; for(let j=0;j<i;j++) y+=cards[j].offsetHeight+gap; return y; };
+  document.addEventListener('click',e=>{ const b=e.target.closest('#rsNav [data-rs]'); if(!b||!wide.matches||!show||!show.classList.contains('mx-stack')) return;
+    const i=cards.findIndex(c=>c.id==='rs-'+b.dataset.rs); if(i<0) return; e.preventDefault(); e.stopPropagation();
+    scrollTo({top:natTop(i)-(178+i*16)+2,behavior:'smooth'}); window.__rsSet&&window.__rsSet(b.dataset.rs); curRs=b.dataset.rs; },true);
+  /* per-frame update */
+  let tick=false;
+  const upd=()=>{ tick=false; const vh=innerHeight;
+    live.forEach(img=>{ const r=img.parentElement.getBoundingClientRect(); if(!r.height) return;
+      const p=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/(vh/2+r.height/2)));
+      img.style.setProperty('--mxy',(-p*r.height*0.065).toFixed(1)+'px'); });
+    if(wide.matches&&cards.length&&show&&show.classList.contains('mx-stack')){
+      let cur=0;
+      cards.forEach((c,i)=>{ const r=c.getBoundingClientRect(); if(r.top<vh*0.5) cur=i;
+        const nx=cards[i+1]; if(!nx){ c.style.scale=''; c.style.filter=''; return; }
+        const k=Math.max(0,Math.min(1,(r.bottom-nx.getBoundingClientRect().top)/r.height));
+        c.style.scale=(1-k*0.06).toFixed(4); c.style.filter=k>0.01?`brightness(${(1-k*0.22).toFixed(3)})`:''; });
+      const id=cards[cur].id.slice(3); if(id!==curRs){ curRs=id; window.__rsSet&&window.__rsSet(id); }
+    }
+  };
+  const req=()=>{ if(!tick){ tick=true; requestAnimationFrame(upd); } };
+  addEventListener('scroll',req,{passive:true,capture:true}); addEventListener('resize',()=>{ setupStack(); req(); });
+  wide.addEventListener&&wide.addEventListener('change',()=>{ setupStack(); req(); });
+  let mt=null; new MutationObserver(()=>{ clearTimeout(mt); mt=setTimeout(()=>{ prep(); req(); },120); }).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+  prep(); setupStack(); req();
+  addEventListener('load',()=>{ prep(); req(); });
 })();
 
 /* Mobile floating CTA: hide while scrolling down, show again on stop or scroll up */
