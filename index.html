@@ -1811,6 +1811,15 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
   .offers .grid3::-webkit-scrollbar,#evGrid::-webkit-scrollbar{display:none}
   .offers .grid3>*,#evGrid>*{flex:0 0 84%;scroll-snap-align:start;min-width:0}
 }
+
+.pn-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.pn{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.pn .pb{border:1px solid var(--line)}
+.pn small{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.pn-num{font-size:20px;font-weight:700;color:#1B4025;letter-spacing:.02em}
+.pn-num em{font-style:normal;font-size:15px;font-weight:500;color:#9A8F7A}
+.pn-steps{margin:18px 0 0;padding-left:20px;line-height:1.8;color:#3c4a40;font-size:15px;max-width:760px}
+@media (max-width:900px){.pn-grid{grid-template-columns:1fr 1fr}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2160,7 +2169,7 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
           <li><span class="foot-hours"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Reservations &amp; front desk 24/7</span></li>
         </ul></div>
     </div>
-    <div class="paystrip" aria-label="Payment methods we accept"><span class="ps-lbl">Pay securely with</span><span class="ps-list"><b class="pb visa">VISA</b><b class="pb mc"><i></i><i></i>Mastercard</b><b class="pb amex">AMEX</b><b class="pb nexus">DBBL Nexus</b><b class="pb bkash">bKash</b><b class="pb nagad">Nagad</b><b class="pb rocket">Rocket</b><b class="pb bank">Internet banking</b></span><a class="ps-more" href="#payment" data-page="payment">Payment options →</a><span class="ps-by">Online payments processed by SSLCOMMERZ</span></div>
+    <div class="paystrip" aria-label="Payment methods we accept"><span class="ps-lbl">Pay securely with</span><span class="ps-list"><b class="pb visa">VISA</b><b class="pb mc"><i></i><i></i>Mastercard</b><b class="pb amex">AMEX</b><b class="pb nexus">DBBL Nexus</b><b class="pb bkash">bKash</b><b class="pb nagad">Nagad</b><b class="pb rocket">Rocket</b><b class="pb bank">Internet banking</b></span><a class="ps-more" href="#payment" data-page="payment" data-sec="numbers">Payment numbers →</a><span class="ps-by">Online payments processed by SSLCOMMERZ</span></div>
     <div class="legal"><span>© 2026 Aranyaak Luxury Resort. All rights reserved.</span><span><a href="#footer">Privacy policy</a> · <a href="#payment" data-page="payment" data-sec="policy">Booking &amp; cancellation policy</a> · <a href="#contact" data-page="contact" data-sec="here">Getting here</a></span></div>
   </div>
 </footer>
@@ -2702,6 +2711,17 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
           <p>Send the receipt to <a href="mailto:reservations@aranyaakresort.com">reservations@aranyaakresort.com</a> or on <a href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp</a>.</p></div>
         <div class="pay-card"><h3>${ico.desk}At the resort</h3><p>Pay the balance at the front desk when you check in, by cash, card or mobile banking.</p></div>
         <div class="pay-card"><h3>${ico.tel}Need help paying?</h3><p>Our reservations team is available 24/7.</p><p><a href="tel:+8801332546712">+880 1332-546712</a> · <a href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp</a></p></div></div></section>
+
+      <section class="pg-sec" id="pg-numbers"><span class="label">Payment numbers</span><h2>Pay to our numbers</h2>
+        <p class="pg-sub">Pay the advance from your mobile banking app or bank. Use your <b>booking number</b> (for example ARK-26-12345) as the reference, then send us the receipt.</p>
+        <div class="pn-grid">
+          <div class="pn"><b class="pb bkash">bKash</b><small>Merchant · Payment</small><span class="pn-num" data-copyv=""><em>Number to be added</em></span></div>
+          <div class="pn"><b class="pb nagad">Nagad</b><small>Merchant · Payment</small><span class="pn-num"><em>Number to be added</em></span></div>
+          <div class="pn"><b class="pb rocket">Rocket</b><small>Merchant · Payment</small><span class="pn-num"><em>Number to be added</em></span></div>
+          <div class="pn"><b class="pb bank">Bank</b><small>Account number</small><span class="pn-num"><em>To be added</em></span></div>
+        </div>
+        <ol class="pn-steps"><li>Open your bKash, Nagad or Rocket app and choose <b>Payment</b> (not Send Money).</li><li>Enter our number and the 50% advance amount.</li><li>In <b>Reference</b>, type your booking number.</li><li>Send the receipt or transaction ID on <a href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp</a> or to <a href="mailto:reservations@aranyaakresort.com">reservations@aranyaakresort.com</a>. We confirm your booking by SMS.</li></ol>
+      </section>
       <section class="pg-sec" id="pg-policy"><span class="label">Policies</span><h2>Booking &amp; cancellation</h2><div class="pol">
         <details open><summary>Advance and balance</summary><p>A 50% advance confirms your booking. The balance is paid at check-in.</p></details>
         <details><summary>Cancellation</summary><p>Free cancellation 14 or more days before arrival. After that, the advance is non-refundable.</p></details>
