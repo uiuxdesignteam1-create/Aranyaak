@@ -1804,6 +1804,13 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
 .ps-more{font-size:14px;color:inherit;opacity:.85}
 .ps-by{flex-basis:100%;font-size:12px;opacity:.6}
 @media (min-width:901px){.ps-by{flex-basis:auto;margin-left:auto}}
+
+/* v4: on phones, offers and events become swipe rows instead of long stacks */
+@media (max-width:900px){
+  .offers .grid3,#evGrid{display:flex!important;gap:14px!important;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-left:-16px;margin-right:-16px;padding:0 16px 6px;scroll-padding:0 16px}
+  .offers .grid3::-webkit-scrollbar,#evGrid::-webkit-scrollbar{display:none}
+  .offers .grid3>*,#evGrid>*{flex:0 0 84%;scroll-snap-align:start;min-width:0}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1846,7 +1853,7 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
       <span class="wordmark"><b>ARANYAAK</b><span>LUXURY RESORT</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
-      <span class="nav-ind" aria-hidden="true"></span><a href="#rooms" data-spy="rooms"><span>Pool cottages</span></a><a href="#offers" data-spy="offers"><span>Offers</span></a><a href="#dining" data-spy="dining"><span>Dining</span></a><a href="#gallery" data-page="gallery"><span>Gallery</span></a><a href="#events" data-spy="events"><span>Events</span></a><a href="#stories" data-spy="stories"><span>Stories</span></a>
+      <span class="nav-ind" aria-hidden="true"></span><a href="#rooms" data-spy="rooms"><span>Pool cottages</span></a><a href="#offers" data-spy="offers"><span>Offers</span></a><a href="#dining" data-spy="dining"><span>Dining</span></a><a href="#gallery" data-page="gallery"><span>Gallery</span></a><a href="#events" data-spy="events"><span>Events</span></a>
     </nav>
     <div class="nav-right">
       <button class="nav-close" id="closeBook" aria-label="Close booking"><span class="navtext">Close</span>
@@ -1859,7 +1866,7 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
       </button>
       <div class="umenu" id="umenu" role="menu" aria-label="Menu" hidden>
         <button type="button" role="menuitem" data-um="lang"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span>Language · বাংলা / English</span></button>
-        <a role="menuitem" href="#talk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8M12 16.5v.5" stroke-linecap="round"/></svg><span>Help &amp; contact</span></a>
+        <a role="menuitem" href="#talk" data-page="contact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8M12 16.5v.5" stroke-linecap="round"/></svg><span>Help &amp; contact</span></a>
         <hr>
         <a role="menuitem" class="um-feature" href="#top" data-book><span><b>Book direct</b><small>10% off automatically, breakfast included.</small></span><svg viewBox="0 0 986 820" aria-hidden="true"><use href="#logo"/></svg></a>
         <hr>
@@ -1867,7 +1874,6 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
         <a role="menuitem" href="#offers">Special offers</a>
         <a role="menuitem" href="#dining">Dining</a>
         <a role="menuitem" href="#events">Events</a>
-        <a role="menuitem" href="#stories">Stories</a>
         <a role="menuitem" href="#reviews">Guest reviews</a>
         <a role="menuitem" href="#estate">Explore the resort</a>
         <a role="menuitem" href="#founders">About Aranyaak</a>
@@ -1918,16 +1924,14 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
     </a>
     <ul class="menu-links">
       <li><a href="#top" data-close>Home</a></li>
-      <li><a href="#intro" data-close>Welcome</a></li>
       <li><a href="#founders" data-close>About</a></li>
       <li><a href="#estate" data-close>Explore the resort</a></li>
       <li><a href="#rooms" data-close>Pool cottages</a></li>
       <li><a href="#offers" data-close>Special offers</a></li>
       <li><a href="#dining" data-close>Dining</a></li>
       <li><a href="#events" data-close>Events</a></li>
-      <li><a href="#stories" data-close>Stories</a></li>
       <li><a href="#reviews" data-close>Guest reviews</a></li>
-      <li><a href="#talk" data-close>Contact</a></li>
+      <li><a href="#talk" data-page="contact" data-close>Contact</a></li>
       <li><button class="menu-book" data-book>Book</button></li>
     </ul>
     <div class="menu-foot">
@@ -1960,36 +1964,20 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
         <div class="hc-foot"><i aria-hidden="true"><svg width="12" height="9" viewBox="0 0 12 9"><path d="M1 4.5l3.2 3L11 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i>10% off automatically when you book direct</div>
       </form>
     </div>
-    <a class="scroll-cue" href="#intro">Scroll to discover ↓</a>
-    <a class="scroll-chev" href="#intro" aria-label="Scroll down"><svg width="30" height="18" viewBox="0 0 30 18" aria-hidden="true"><path d="M2 3l13 12L28 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="scroll-cue" href="#founders">Scroll to discover ↓</a>
+    <a class="scroll-chev" href="#founders" aria-label="Scroll down"><svg width="30" height="18" viewBox="0 0 30 18" aria-hidden="true"><path d="M2 3l13 12L28 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </section>
 
   <!-- Intro -->
-  <section class="intro" id="intro">
-    <div class="wrap">
-      <div>
-        <span class="label">Welcome to Aranyaak</span>
-        <h2>Private pools, green hills and time to yourself</h2>
-        <p class="lead">Aranyaak is on Lawachara Road in Sreemangal, in the heart of Bangladesh's tea country. Seven cottages, each with its own swimming pool, an infinity terrace and its own view of the nature around it. Built for privacy and quiet.</p>
-        <a class="link" href="#founders">About Aranyaak</a>
-      </div>
-      <div class="pillars">
-        <div class="pillar"><span class="num">01</span><div><h3>Private pools</h3><p>One for every cottage</p></div></div>
-        <div class="pillar"><span class="num">02</span><div><h3>Infinity terraces</h3><p>A different view from each cottage</p></div></div>
-        <div class="pillar"><span class="num">03</span><div><h3>Breakfast included</h3><p>With unlimited raw tea</p></div></div>
-      </div>
-    </div>
-  </section>
-
   <!-- Founders -->
   <section class="founders" id="founders">
     <div class="wrap">
       <div class="pic"><img src="img/founders.jpg" alt="Green surroundings at Aranyaak" loading="lazy"></div>
       <div>
-        <span class="label">About Aranyaak</span>
-        <h2 class="ab-h">A small luxury resort, made for nature and privacy</h2>
-        <p class="ab-p">Seven private-pool cottages amid Sreemangal's natural surroundings. Each one has a king-size bed, an infinity terrace and modern comforts, so you can spend the day between your pool and the view.</p>
-        <ul class="ab-list"><li>7 private-pool cottages</li><li>70 m² each</li><li>Breakfast included</li><li>Front desk open 24/7</li></ul>
+        <span class="label">Welcome to Aranyaak</span>
+        <h2 class="ab-h">Private pools, green hills and time to yourself</h2>
+        <p class="ab-p">Seven private-pool cottages on Lawachara Road, in the heart of Sreemangal's tea country. Built for privacy and quiet.</p>
+        <ul class="ab-list"><li>7 private pools</li><li>Infinity terraces</li><li>Breakfast included</li><li>Front desk 24/7</li></ul>
         <button class="btn btn-gold" id="filmBtn">▶ Take the video tour</button>
       </div>
     </div>
@@ -2099,14 +2087,9 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
       <div>
         <span class="label">Dining · RASOI</span>
         <h2>RASOI, our restaurant</h2>
-        <p class="lead">Breakfast at RASOI is included with every cottage stay, along with unlimited raw tea. Guests can also arrange a candlelight dinner, a BBQ evening or breakfast by their private pool. Not staying with us? Outside guests are welcome with a reservation.</p>
-        <div class="meals">
-          <div class="meal"><span class="when">Included</span><div><h3>Breakfast at RASOI</h3><p>Complimentary for every guest, with unlimited raw tea</p></div></div>
-          <div class="meal"><span class="when">On request</span><div><h3>Breakfast by your pool</h3><p>Served at your cottage · extra charge</p></div></div>
-          <div class="meal"><span class="when">On request</span><div><h3>Candlelight dinner &amp; BBQ</h3><p>Arranged for you in the evening · extra charge</p></div></div>
-        </div>
+        <p class="lead">Breakfast and unlimited raw tea are included with every stay. Outside guests are welcome with a reservation.</p>
         <div class="dining-actions">
-          <button class="btn btn-forest" id="diningTableBtn" type="button">Reserve a table</button>
+          <button class="btn btn-forest" id="diningTableBtn" type="button">See menu &amp; reserve</button>
           <a class="btn btn-outline" href="tel:+8801332546712">Call RASOI</a>
         </div>
       </div>
@@ -2118,31 +2101,9 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
     <div class="wrap">
       <div class="head">
         <div><span class="label">Events · up to 200 guests</span><h2>Celebrate and meet among the tea hills</h2></div>
-        <p>Weddings, gaye holud and mehendi, corporate retreats and family celebrations for up to 200 guests. Every event is planned with you: send an enquiry or call us.</p>
+        <p>Weddings, holud, retreats and celebrations for up to 200 guests. <a class="link" href="https://wa.me/8801332546712?text=Hello%20Aranyaak%2C%20I%27d%20like%20to%20plan%20an%20event." target="_blank" rel="noopener">Send an enquiry →</a></p>
       </div>
       <div class="grid3 ev-grid" id="evGrid"></div>
-      <div class="event-cta">
-        <div><h3>Planning an event?</h3><p>Tell us the date and how many guests, or call us on +880 1332-546712.</p></div>
-        <a class="btn btn-forest" href="https://wa.me/8801332546712?text=Hello%20Aranyaak%2C%20I%27d%20like%20to%20plan%20an%20event." target="_blank" rel="noopener">Send an enquiry</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stories -->
-  <section id="stories">
-    <div class="wrap">
-      <div class="head">
-        <div><span class="label">Stories from Aranyaak</span><h2>Every season feels different here</h2></div>
-        <p>A reason to come back: the monsoon, the first tea of spring, the winter fog.</p>
-      </div>
-      <div class="grid3">
-        <article class="story" data-story="monsoon"><div class="pic"><img src="img/story-monsoon.jpg" alt="Green hills in the monsoon" loading="lazy"></div>
-          <span class="label">Monsoon · Jun–Sep</span><h3>When the hills turn emerald</h3><a href="#stories" data-story-link>Read the story →</a></article>
-        <article class="story" data-story="spring"><div class="pic"><img src="img/story-spring.jpg" alt="Fresh tea leaves being picked" loading="lazy"></div>
-          <span class="label">Spring · Mar–Apr</span><h3>First-flush tea, picked at dawn</h3><a href="#stories" data-story-link>Read the story →</a></article>
-        <article class="story" data-story="winter"><div class="pic"><img src="img/story-winter.jpg" alt="Hills in winter fog" loading="lazy"></div>
-          <span class="label">Winter · Dec–Feb</span><h3>Fog mornings and warm tea on the terrace</h3><a href="#stories" data-story-link>Read the story →</a></article>
-      </div>
     </div>
   </section>
 
@@ -2165,15 +2126,6 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
     </div>
   </section>
 
-  <section class="talk" id="talk">
-    <div class="wrap">
-      <div><h2>Rather talk to a person?</h2><p>Reservations and front desk are open 24/7 · admin@aranyaakresort.com</p></div>
-      <div class="talk-actions">
-        <a class="btn btn-gold" href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp</a>
-        <button class="btn btn-outline" data-copy="admin@aranyaakresort.com">Copy email</button>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer id="footer">
@@ -2200,7 +2152,7 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
         </div>
       </div>
       <div><h4>Stay</h4><ul><li><a href="#rooms">Pool cottages</a></li><li><a href="#offers">Special offers</a></li><li><a href="#top" data-book>Book direct</a></li></ul></div>
-      <div><h4>Discover</h4><ul><li><a href="#events">Events</a></li><li><a href="#dining">Dining</a></li><li><a href="#stories">Stories</a></li><li><a href="#reviews">Guest reviews</a></li><li><a href="#reviews" data-review>Rate your stay</a></li><li><a href="#gallery" data-page="gallery">Gallery</a></li><li><a href="#contact" data-page="contact">Contact us</a></li><li><a href="#payment" data-page="payment">Payment options</a></li></ul></div>
+      <div><h4>Discover</h4><ul><li><a href="#events">Events</a></li><li><a href="#dining">Dining</a></li><li><a href="#reviews">Guest reviews</a></li><li><a href="#reviews" data-review>Rate your stay</a></li><li><a href="#gallery" data-page="gallery">Gallery</a></li><li><a href="#contact" data-page="contact">Contact us</a></li><li><a href="#payment" data-page="payment">Payment options</a></li></ul></div>
       <div class="foot-touch"><h4>Get in touch</h4><ul>
           <li><a href="tel:+8801332546712"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+880 1332-546712</a></li>
           <li><a href="https://wa.me/8801332546712" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M16 3.5C9 3.5 3.5 8.9 3.5 15.6c0 2.4.7 4.7 1.9 6.6L4 28.5l6.6-1.7c1.7.9 3.6 1.4 5.4 1.4 7 0 12.5-5.4 12.5-12.1S23 3.5 16 3.5z" stroke-linejoin="round"/></svg>WhatsApp us</a></li>
@@ -2700,7 +2652,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   document.addEventListener('click',e=>{ const c=e.target.closest('[data-story]'); if(c){ e.preventDefault(); openSt(c.dataset.story); return; }
     if($('#stp').hidden) return;
     if(e.target.closest('[data-sthome]')){ closeSt(); scrollTo({top:0}); return; }
-    if(e.target.closest('[data-stx]')){ closeSt(); $('#stories').scrollIntoView(); return; }
+    if(e.target.closest('[data-stx]')){ closeSt(); return; }
     if(e.target.closest('[data-stbook]')){ closeSt(); $('#stay').value=ALL; startBooking(); } });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#stp').hidden) closeSt(); });
 
