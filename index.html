@@ -1826,6 +1826,59 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-stopped{overflow:hidden}
+
+/* ===== v4 cottage reel: pinned, scroll-scrubbed cottage showcase ===== */
+.rooms-sec.reel-on .rs-show{display:none}
+.reel{position:relative;height:calc(var(--n,7) * 82vh + 30vh);margin-top:36px}
+.reel-stage{position:sticky;top:var(--rt,80px);height:calc(100vh - var(--rt,80px));overflow:hidden;background:#0E1A12;color:#fff;
+  clip-path:inset(var(--ry,0px) var(--rx,0px) var(--ry,0px) var(--rx,0px) round var(--rr,0px));will-change:clip-path}
+.reel-img{position:absolute;inset:0;margin:0;overflow:hidden;will-change:clip-path}
+.reel-img img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 60%;will-change:transform,filter}
+.reel-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(6,14,9,.78) 0%,rgba(6,14,9,.45) 38%,rgba(6,14,9,0) 68%),linear-gradient(0deg,rgba(6,14,9,.55),rgba(6,14,9,0) 40%)}
+.reel-txt{position:absolute;left:max(24px,calc((100% - 1200px)/2 + 20px));bottom:clamp(40px,9vh,96px);width:min(560px,calc(100% - 48px))}
+.reel-item{position:absolute;left:0;bottom:0;width:100%;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s .6s}
+.reel-item.on{opacity:1;visibility:visible;transition:opacity .6s ease .1s,visibility 0s}
+.reel-item>*{translate:0 34px;transition:translate .9s cubic-bezier(.2,.7,.2,1)}
+.reel-item.on>*{translate:0 0}
+.reel-item.on>*:nth-child(2){transition-delay:.06s}.reel-item.on>*:nth-child(3){transition-delay:.12s}.reel-item.on>*:nth-child(4){transition-delay:.18s}.reel-item.on>*:nth-child(5){transition-delay:.24s}
+.reel-view{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#F7C56A;font-weight:700}
+.reel-view::before{content:"";width:28px;height:1px;background:#F7C56A}
+.reel-name{color:#fff;font-size:clamp(54px,8.4vw,128px);line-height:.92;margin-top:14px;font-weight:300;letter-spacing:-.03em}
+.reel-name em{display:block;font-style:italic;font-size:.32em;letter-spacing:0;margin-top:10px;color:rgba(255,255,255,.75)}
+.reel-desc{margin-top:18px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.88);max-width:46ch}
+.reel-meta{margin-top:8px;font-size:13.5px;color:rgba(255,255,255,.65)}
+.reel-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:22px}
+.reel-price{font-family:var(--f-display);font-size:26px;font-weight:300}
+.reel-price small{font-family:var(--f-body,inherit);font-size:13px;opacity:.7}
+.reel-btns{display:flex;gap:10px;flex-wrap:wrap}
+.reel-count{position:absolute;right:max(24px,calc((100% - 1200px)/2 + 20px));top:clamp(22px,5vh,48px);display:flex;align-items:baseline;gap:8px;font-family:var(--f-display);font-weight:300}
+.reel-count b{font-weight:300;font-size:clamp(40px,5vw,68px);line-height:1}
+.reel-count span{opacity:.6;font-size:18px}
+.reel-index{position:absolute;right:max(24px,calc((100% - 1200px)/2 + 20px));bottom:clamp(40px,9vh,96px);list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;text-align:right}
+.reel-index button{background:none;border:0;color:rgba(255,255,255,.55);font:inherit;font-size:14px;letter-spacing:.04em;cursor:pointer;padding:5px 0;display:flex;align-items:center;justify-content:flex-end;gap:10px;transition:color .3s}
+.reel-index button::after{content:"";width:14px;height:1px;background:currentColor;transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.reel-index button:hover{color:#fff}
+.reel-index button[aria-current="true"]{color:#fff}
+.reel-index button[aria-current="true"]::after{width:42px;background:#F7C56A}
+.reel-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.14)}
+.reel-bar i{display:block;height:100%;width:100%;background:#F7C56A;transform-origin:0 50%;transform:scaleX(0)}
+.reel-hint{position:absolute;left:50%;bottom:18px;translate:-50% 0;font-size:11px;letter-spacing:.3em;text-transform:uppercase;opacity:.7;transition:opacity .4s}
+.reel-hint::after{content:"";display:block;width:1px;height:26px;margin:8px auto 0;background:linear-gradient(#fff,transparent);animation:reelHint 1.8s ease-in-out infinite}
+@keyframes reelHint{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:900px){
+  .reel{height:calc(var(--n,7) * 78vh + 30vh);margin-top:24px}
+  .reel-stage{height:calc(100svh - var(--rt,64px))}
+  .reel-shade{background:linear-gradient(0deg,rgba(6,14,9,.88) 0%,rgba(6,14,9,.55) 42%,rgba(6,14,9,0) 72%)}
+  .reel-txt{left:20px;right:20px;width:auto;bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+  .reel-name{font-size:clamp(46px,14vw,72px)}
+  .reel-desc{font-size:15px}
+  .reel-meta{display:none}
+  .reel-price{font-size:22px}
+  .reel-btns .btn{padding:12px 16px}
+  .reel-index,.reel-hint{display:none}
+  .reel-count{right:20px;top:18px}
+  .reel-count b{font-size:40px}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2025,6 +2078,9 @@ html.lenis,html.lenis body{height:auto}
         <div><span class="label">Stay · 7 cottages · 7 private pools</span><h2>Private pool cottages</h2></div>
         <p>One category, seven Premium Pool Cottages. Each is 70 m² with a king-size bed, its own private swimming pool, an infinity terrace and its own view. Breakfast is included.</p>
       </div>
+    </div>
+    <div class="reel" id="reel" data-nomotion hidden></div>
+    <div class="wrap">
       <div class="rs-show" id="rsShow">
         <aside class="rs-nav" aria-label="Rooms and villas"><ol id="rsNav"></ol><span class="rs-count" id="rsCount">01 / 03</span></aside>
         <div class="rs-cards" id="rsCards"></div>
@@ -3377,8 +3433,8 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   SETS.slice(0,3).forEach(set=>set.forEach((sel,k)=>$(sel).addEventListener('change',()=>{ SETS[3].forEach((os,kk)=>$(os).value=$(set[kk]).value); renderAvail(); })));
   renderAvail();
   /* ---- Rooms showcase (pinned list + scrolling cards) ---- */
-  const KIND={tea:'Rooms',hill:'Suites',villa:'Villas'};
   const pad=n=>String(n).padStart(2,'0');
+  const KIND={tea:'Rooms',hill:'Suites',villa:'Villas'};
   $('#rsNav').innerHTML=ROOMS.map((r,i)=>`<li><button type="button" data-rs="${r.id}"${i?'':' aria-current="true"'}><img class="rs-thumb" src="${r.imgs[0]}" alt="" loading="lazy"><span class="rs-tx"><span class="rs-nm">${r.name.replace(' Cottage','')}</span><small>${r.view}</small></span></button></li>`).join('');
   $('#rsCount').textContent=`01 / ${pad(ROOMS.length)}`;
   $('#rsCards').innerHTML=ROOMS.map((r,i)=>{ const from=BASE.wk;
@@ -3398,6 +3454,63 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   $$('.rs-card').forEach(c=>rsIO.observe(c));
   $('#rsNav').addEventListener('click',e=>{ const b=e.target.closest('[data-rs]'); if(!b) return; const c=$('#rs-'+b.dataset.rs); const off=innerHeight/2-c.offsetHeight/2; scrollTo({top:c.getBoundingClientRect().top+scrollY-Math.max(170,off),behavior:'smooth'}); rsSet(b.dataset.rs); });
   $$('#rsCards .rs-track').forEach(t=>t.addEventListener('scroll',()=>{ const k=Math.round(t.scrollLeft/t.clientWidth); t.parentNode.querySelectorAll('[data-rsdot]').forEach((d,j)=>d.toggleAttribute('aria-current',j===k)); },{passive:true}));
+
+  /* ---- v4 cottage reel: pinned, scroll-scrubbed showcase (falls back to the card list with reduced motion) ---- */
+  (()=>{
+    const host=$('#reel'); if(!host||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const N=ROOMS.length, sec=host.closest('.rooms-sec');
+    host.style.setProperty('--n',N); host.hidden=false; sec.classList.add('reel-on');
+    host.innerHTML=`<div class="reel-stage">
+      <div class="reel-imgs">${ROOMS.map((r,k)=>`<figure class="reel-img" data-k="${k}"><img src="${r.imgs[0]}" alt="${r.name}, ${r.view.toLowerCase()}" ${k>1?'loading="lazy"':''}></figure>`).join('')}</div>
+      <div class="reel-shade"></div>
+      <div class="reel-txt">${ROOMS.map((r,k)=>`<div class="reel-item${k?'':' on'}" data-k="${k}"${k?' aria-hidden="true"':''}>
+        <span class="reel-view">${r.view}</span>
+        <h3 class="reel-name">${r.name.replace(' Cottage','')}<em>Cottage</em></h3>
+        <p class="reel-desc">${r.desc}</p>
+        <p class="reel-meta">Private pool · Infinity terrace · ${r.size} m² · up to 4 guests</p>
+        <div class="reel-row"><span class="reel-price"><small>From</small> ${money(BASE.wk)} <small>/ night</small></span>
+          <div class="reel-btns"><button type="button" class="btn btn-gold" data-reelgo="${r.id}" data-to="avail">Book now</button><button type="button" class="btn btn-ghost" data-reelgo="${r.id}">View details</button></div></div></div>`).join('')}</div>
+      <div class="reel-count" aria-hidden="true"><b id="reelNum">01</b><span>/ ${pad(N)}</span></div>
+      <ol class="reel-index" aria-label="Cottages">${ROOMS.map((r,k)=>`<li><button type="button" data-reelk="${k}"${k?'':' aria-current="true"'}>${r.name.replace(' Cottage','')}</button></li>`).join('')}</ol>
+      <div class="reel-bar" aria-hidden="true"><i id="reelBar"></i></div>
+      <span class="reel-hint" aria-hidden="true">Scroll</span></div>`;
+    const stage=host.querySelector('.reel-stage'), figs=[...host.querySelectorAll('.reel-img')], imgs=figs.map(f=>f.querySelector('img')),
+          items=[...host.querySelectorAll('.reel-item')], idx=[...host.querySelectorAll('[data-reelk]')], num=$('#reelNum'), bar=$('#reelBar'), hint=host.querySelector('.reel-hint');
+    const clamp=v=>Math.max(0,Math.min(1,v)), ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+    let cur=0, top=80, tick=false;
+    const navTop=()=>{ const b=nav.querySelector('.nav-bar').getBoundingClientRect().bottom; const bp=document.getElementById('bookPanel'); const pb=bp?bp.getBoundingClientRect().bottom:0; return Math.round(Math.max(b, innerWidth>900&&pb>b&&pb<innerHeight*0.4?pb:b)); };
+    const draw=()=>{ tick=false; if(document.body.classList.contains('booking')) return;
+      const vh=innerHeight, r=host.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50) return;
+      const nt=navTop(); if(Math.abs(nt-top)>1){ top=nt; host.style.setProperty('--rt',top+'px'); }
+      const sh=vh-top;
+      // 1. entrance: the framed card opens out to full width as it reaches the top
+      const e=ease(clamp(1-(r.top-top)/(vh*0.85)));
+      const side=Math.max(16,(innerWidth-1200)/2+20);
+      stage.style.setProperty('--rx',((1-e)*side).toFixed(1)+'px'); stage.style.setProperty('--ry',((1-e)*sh*0.06).toFixed(1)+'px'); stage.style.setProperty('--rr',((1-e)*22).toFixed(1)+'px');
+      // 2. pinned: each next cottage rises over the last like a curtain
+      const pr=clamp((top-r.top)/Math.max(1,r.height-sh)), f=pr*(N-1);
+      let active=0;
+      for(let k=0;k<N;k++){
+        const t=k===0?1:ease(clamp((f-(k-1)-0.2)/0.65));
+        if(t>0.5) active=k;
+        figs[k].style.clipPath=k===0?'none':`inset(${((1-t)*100).toFixed(2)}% 0 0 0)`;
+        const next=k<N-1?ease(clamp((f-k-0.2)/0.65)):0;           // how far the next cottage has covered this one
+        const local=clamp(f-k+0.5);                                   // slow drift while on screen
+        imgs[k].style.transform=`translateY(${(-next*8).toFixed(2)}%) scale(${(1.16-0.12*t+0.06*local).toFixed(4)})`;
+        imgs[k].style.filter=next>0.01?`brightness(${(1-next*0.45).toFixed(3)})`:'';
+      }
+      if(active!==cur){ items[cur].classList.remove('on'); items[cur].setAttribute('aria-hidden','true'); items[active].classList.add('on'); items[active].removeAttribute('aria-hidden');
+        idx[cur].removeAttribute('aria-current'); idx[active].setAttribute('aria-current','true'); cur=active; num.textContent=pad(active+1); }
+      bar.style.transform=`scaleX(${pr.toFixed(4)})`; hint.style.opacity=pr>0.04?0:.7;
+    };
+    const req=()=>{ if(!tick){ tick=true; requestAnimationFrame(draw); } };
+    addEventListener('scroll',req,{passive:true}); addEventListener('resize',req); req();
+    // jump to a cottage from the index
+    host.addEventListener('click',e=>{
+      const j=e.target.closest('[data-reelk]'); if(j){ const k=+j.dataset.reelk, sh=innerHeight-top, r=host.getBoundingClientRect();
+        const f=Math.min(N-1,k+0.05), y=r.top+scrollY-top+(f/(N-1))*(r.height-sh); scrollTo({top:Math.max(0,y+2),behavior:'smooth'}); return; }
+      const g=e.target.closest('[data-reelgo]'); if(g){ const b=document.querySelector(`#rs-${g.dataset.reelgo} [data-rsgo]${g.dataset.to?'[data-to]':':not([data-to])'}`); b&&b.click(); } });
+  })();
   $('#rsCards').addEventListener('click',e=>{ const nv=e.target.closest('[data-rsnav],[data-rsdot]');
     if(nv){ const t=nv.closest('.rs-img').querySelector('.rs-track'), n=t.children.length, cur=Math.round(t.scrollLeft/t.clientWidth);
       const k=nv.dataset.rsdot!==undefined?+nv.dataset.rsdot:(cur+ +nv.dataset.rsnav+n)%n; t.scrollTo({left:k*t.clientWidth,behavior:'smooth'}); return; }
