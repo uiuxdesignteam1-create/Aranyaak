@@ -1857,6 +1857,12 @@ html.lenis,html.lenis body{height:auto}
 .pb.bank{height:44px;padding:0 14px;border:1px solid var(--line);background:#fff}
 .pb.has-logo[data-logo="nexus"] img,.pb.has-logo[data-logo="rocket"] img{height:32px}
 .pb.has-logo.mc i{display:none}
+
+.ib-list{margin-top:14px;padding:14px 16px;background:#F6F2EA;border-radius:10px}
+.ib-list b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#1B4025}
+.ib-list ul{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 8px}
+.ib-list li{font-size:14px;color:#1B4025;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.ib-list small{color:var(--muted)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2742,6 +2748,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       <div class="pay-hero"><div><b>50%</b><small>advance to confirm your booking</small></div><div><b>50%</b><small>balance at check-in</small></div><div><b>14 days</b><small>free cancellation before arrival</small></div></div>
       <section class="pg-sec" id="pg-online"><span class="label">Pay online</span><h2>Card, mobile banking or internet banking</h2>
         <div class="pay-grid"><div class="pay-card"><h3>${ico.card}Pay online</h3><p>Complete your booking on this website, then pay the advance on the secure SSLCOMMERZ page.</p>${PB}
+          <div class="ib-list"><b>Internet banking</b><ul><li>City Bank <small>· City Touch</small></li><li>Bank Asia</li><li>AB Bank</li><li>Islami Bank <small>· IBBL</small></li><li>Mutual Trust Bank <small>· MTB</small></li></ul></div>
           <ol><li>Choose your cottage and dates, then <b>Complete booking</b>.</li><li>Pick card, bKash, Nagad, Rocket or internet banking.</li><li>Enter your details on the secure payment page (never on our website).</li><li>Your booking is confirmed at once by email and SMS.</li></ol></div>
         <div class="pay-card"><h3>${ico.bank}Bank transfer</h3><p>Prefer to transfer? Use these details, then email the receipt with your name, booking number and check-in date.</p>
           <table class="bank-tbl"><tr><th>Account name</th><td>Aranyaak Luxury Resort</td></tr><tr><th>Bank</th><td><em>To be added</em></td></tr><tr><th>Branch</th><td><em>To be added</em></td></tr><tr><th>Account number</th><td><em>To be added</em></td></tr><tr><th>Routing number</th><td><em>To be added</em></td></tr></table>
@@ -2901,7 +2908,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     {id:'card',ic:'card',name:'Card',sub:'Visa · Mastercard · Amex',how:'After you complete the booking you go to the secure SSLCOMMERZ page to pay {amt} by debit or credit card.',done:'A secure SSLCOMMERZ payment link for your card payment has been sent by email and SMS.'},
     {id:'bkash',ic:'mobile',name:'bKash',sub:'Mobile banking',how:'Pay {amt} from your bKash account on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay with bKash has been sent by email and SMS.'},
     {id:'nagad',ic:'mobile',name:'Nagad',sub:'Mobile banking',how:'Pay {amt} from your Nagad account on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay with Nagad has been sent by email and SMS.'},
-    {id:'netbank',ic:'net',name:'Internet banking',sub:'Bangladeshi banks',how:'Pay {amt} through your bank\'s internet banking on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay through internet banking has been sent by email and SMS.'},
+    {id:'netbank',ic:'net',name:'Internet banking',sub:'City · Bank Asia · AB · IBBL · MTB',how:'Pay {amt} through your bank\'s internet banking on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay through internet banking has been sent by email and SMS.'},
     {id:'bank',ic:'bank',name:'Bank transfer',sub:'Deposit or transfer',how:'Our reservations team sends you the resort\'s bank account details by email and SMS. Transfer {amt} and send us the receipt.',done:'Our reservations team will send the bank account details by email and SMS.'}
   ];
   const PAYIC={card:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9.5h19M6 15h4"/></svg>',
