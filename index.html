@@ -1930,6 +1930,31 @@ html body .rs-track{overflow-x:auto;overflow-y:hidden!important;overscroll-behav
 .tour .pnlm-render-container{transition:filter .4s}
 .sv-veil{display:none}
 @media (max-width:600px){.sv-map{width:150px;left:12px;bottom:12px}.tour .tour-demo{bottom:auto;top:84px;right:12px}}
+
+/* ===== Google Street View look ===== */
+.tour .tour-top{background:none;padding:12px;pointer-events:none}
+.gsv-card{display:flex;gap:6px;align-items:flex-start;background:#fff;color:#202124;border-radius:8px;box-shadow:0 1px 2px rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15);padding:10px 16px 14px 6px;max-width:380px;font-family:Roboto,"DM Sans",system-ui,sans-serif}
+.gsv-back{flex:none;width:40px;height:40px;border:0;border-radius:50%;background:none;font-size:20px;color:#5f6368;cursor:pointer}
+.gsv-back:hover{background:#f1f3f4}
+.tour .gsv-card h3{color:#202124;font-family:Roboto,"DM Sans",system-ui,sans-serif;font-weight:500;font-size:20px;letter-spacing:0;margin:8px 0 0}
+.tour .gsv-card .gsv-sub{display:block;font-size:13px;color:#5f6368;margin:2px 0 0}
+.tour .gsv-card #tourText{color:#3c4043;font-size:13.5px;line-height:1.45;margin:8px 0 0;max-width:34ch}
+.gsv-book{margin-top:10px;border:1px solid #dadce0;background:#fff;color:#1B4025;font:600 13.5px Roboto,"DM Sans",system-ui,sans-serif;padding:8px 14px;border-radius:999px;cursor:pointer}
+.gsv-book:hover{background:#EEF4EF;border-color:#2F6B44}
+.tour .tour-x{width:40px;height:40px;background:#fff;color:#5f6368;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.gsv-ctrl{position:absolute;right:16px;bottom:16px;z-index:6;display:flex;flex-direction:column;align-items:center;gap:10px}
+.gsv-ctrl button{border:0;cursor:pointer;background:#fff;color:#666;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.gsv-compass{width:44px;height:44px;border-radius:50%;padding:2px}
+.gsv-compass svg{width:100%;height:100%}
+.gsv-zoom{display:flex;flex-direction:column;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.gsv-zoom button{width:40px;height:40px;font-size:22px;line-height:1;box-shadow:none;border-radius:0}
+.gsv-zoom button+button{border-top:1px solid #e6e6e6}
+.gsv-ctrl button:hover{color:#202124;background:#f8f9fa}
+.gsv-fs{width:40px;height:40px;border-radius:8px;display:grid;place-items:center}
+.sv-map{border:0;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.35);width:240px}
+.tour .tour-demo{left:50%;right:auto;transform:translateX(-50%);bottom:16px;background:rgba(32,33,36,.75)}
+.tour .tour-hint{background:rgba(32,33,36,.8);border-radius:8px}
+@media (max-width:600px){.gsv-card{max-width:calc(100vw - 80px);padding:6px 12px 10px 4px}.tour .gsv-card #tourText{display:none}.gsv-card h3{font-size:17px}.gsv-fs{display:none}.sv-map{width:140px}.tour .tour-demo{display:none}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2329,7 +2354,12 @@ html body .rs-track{overflow-x:auto;overflow-y:hidden!important;overscroll-behav
 <div class="evp stp" id="stp" hidden role="dialog" aria-modal="true" aria-labelledby="stpTitle"><div class="evp-in" id="stpIn"></div></div>
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true" aria-label="360° tour of Aranyaak">
   <div id="pano" class="tour-pano"></div>
-  <div class="tour-top"><div><span class="label">360° tour · Aranyaak</span><h3 id="tourTitle">Entrance</h3><p id="tourText"></p></div><button class="tour-x" type="button" data-tourx aria-label="Close the tour">✕</button></div>
+  <div class="tour-top"><div class="gsv-card"><button class="gsv-back" type="button" data-tourx aria-label="Back to the website">←</button><div><h3 id="tourTitle">Entrance</h3><p class="gsv-sub">Aranyaak Luxury Resort · Sreemangal</p><p id="tourText"></p><button class="gsv-book" type="button" data-book>Book a cottage</button></div></div><button class="tour-x" type="button" data-tourx aria-label="Close the tour">✕</button></div>
+  <div class="gsv-ctrl" aria-label="View controls">
+    <button type="button" class="gsv-compass" id="gsvCompass" aria-label="Face north"><svg viewBox="0 0 40 40" aria-hidden="true"><g id="gsvNeedle"><path d="M20 6l5 14h-10z" fill="#E0463A"/><path d="M20 34l-5-14h10z" fill="#9AA0A6"/></g></svg></button>
+    <div class="gsv-zoom"><button type="button" data-gsvz="-1" aria-label="Zoom in">+</button><button type="button" data-gsvz="1" aria-label="Zoom out">−</button></div>
+    <button type="button" class="gsv-fs" data-gsvfs aria-label="Full screen"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  </div>
   <div class="tour-hint" id="tourHint">Drag to look around · Click the ground to walk</div>
   <div class="sv-puck" id="svPuck" aria-hidden="true"><i></i><span id="svPuckTx"></span></div>
   <div class="sv-map" id="svMap" aria-label="Mini map"><img src="img/estate-aerial.jpg" alt=""><div id="svDots"></div></div>
@@ -2530,10 +2560,13 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       else if(c[0]<-2){ const r=$('#tour').getBoundingClientRect(); puck.style.transform=`translate(${e.clientX-r.left}px,${e.clientY-r.top}px)`; puck.classList.add('on','nope'); setTimeout(()=>puck.classList.remove('nope'),500); } });
     document.addEventListener('keydown',e=>{ if($('#tour').hidden||!viewer) return; if(e.key==='ArrowUp'||e.key==='w'){ const l=svLinkAt(viewer.getYaw()); if(l){ e.preventDefault(); svWalk(l); } } });
     $('#svMap').addEventListener('click',e=>{ const d=e.target.closest('[data-svgo]'); if(!d||!viewer||d.dataset.svgo===svCur) return; viewer.loadScene(d.dataset.svgo); });
-    const spin=()=>{ if(!$('#tour').hidden&&viewer){ const cone=$('#svDots .sv-cone'); if(cone) cone.style.transform=`rotate(${(viewer.getYaw()+(SV_OFF[svCur]||0)).toFixed(1)}deg)`; } requestAnimationFrame(spin); }; requestAnimationFrame(spin); }
+    document.addEventListener('click',e=>{ if($('#tour').hidden||!viewer) return; const z=e.target.closest('[data-gsvz]'); if(z){ viewer.setHfov(Math.max(50,Math.min(120,viewer.getHfov()+ +z.dataset.gsvz*18)),400); return; }
+      if(e.target.closest('#gsvCompass')){ viewer.setYaw(svNorm(-(SV_OFF[svCur]||0)),600); return; }
+      if(e.target.closest('[data-gsvfs]')){ const t=$('#tour'); if(document.fullscreenElement) document.exitFullscreen&&document.exitFullscreen(); else t.requestFullscreen&&t.requestFullscreen().catch(()=>{}); } });
+    const spin=()=>{ if(!$('#tour').hidden&&viewer){ const h=(viewer.getYaw()+(SV_OFF[svCur]||0)); const cone=$('#svDots .sv-cone'); if(cone) cone.style.transform=`rotate(${h.toFixed(1)}deg)`; const nd=$('#gsvNeedle'); if(nd) nd.setAttribute('transform',`rotate(${(-h).toFixed(1)} 20 20)`); } requestAnimationFrame(spin); }; requestAnimationFrame(spin); }
   const closeTour=()=>{ $('#tour').hidden=true; document.body.style.overflow=''; tourLast&&tourLast.focus&&tourLast.focus(); };
   document.addEventListener('click',e=>{ const b=e.target.closest('[data-tour]'); if(b){ openTour(b.dataset.tour); return; }
-    if(e.target.closest('[data-tourx]')) closeTour();
+    if(e.target.closest('[data-tourx]')||e.target.closest('#tour [data-book]')) closeTour();
     const sb=e.target.closest('#tourStrip [data-scene]'); if(sb&&viewer){ viewer.loadScene(sb.dataset.scene); } });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#tour').hidden) closeTour(); });
 
