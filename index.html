@@ -1847,6 +1847,9 @@ html.lenis,html.lenis body{height:auto}
   .rs-anim:nth-child(even) .rs-img{clip-path:inset(0 0 0 100%)}
   .rs-anim:nth-child(even).rs-in .rs-img{clip-path:inset(0 0 0 0)}
 }
+
+.rs-short{font-size:15.5px;line-height:1.6;color:var(--muted);margin:0;max-width:44ch}
+@media (prefers-reduced-motion:no-preference){.rs-anim.rs-in .rs-info>*:nth-child(5){transition-delay:.75s}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -3409,6 +3412,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
         <button type="button" class="sr-nav next" data-rsnav="1" aria-label="Next photo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
         <div class="sr-dots">${r.imgs.map((_,k)=>`<button type="button" data-rsdot="${k}" aria-label="Photo ${k+1}"${k?'':' aria-current="true"'}></button>`).join('')}</div></div>
       <div class="rs-info"><span class="rs-kind">${r.view}</span><h3>${r.name}</h3>
+        <p class="rs-desc rs-short">${r.desc}</p>
         <p class="rs-price"><small>From</small> ${money(from)} <small>/ night</small></p>
         <div class="rs-btns"><button type="button" class="btn btn-gold" data-rsgo="${r.id}" data-to="avail">Book now</button><button type="button" class="btn btn-outline" data-rsgo="${r.id}">View details</button></div>
       </div></article>`; }).join('');
