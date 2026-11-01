@@ -1909,6 +1909,27 @@ html body section.offers{background-color:#0E2A19!important;background-image:rad
 
 /* cottage photo sliders: only scroll sideways, never trap the vertical page scroll */
 html body .rs-track{overflow-x:auto;overflow-y:hidden!important;overscroll-behavior-x:contain;overscroll-behavior-y:auto;touch-action:pan-x pan-y}
+
+/* ===== Street View-style tour ===== */
+.tour .tour-strip{display:none}
+.tour .tour-demo{bottom:16px}
+.sv-puck{position:absolute;left:0;top:0;z-index:4;pointer-events:none;opacity:0;transition:opacity .15s}
+.sv-puck.on{opacity:1}
+.sv-puck i{position:absolute;left:-36px;top:-36px;width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,.95);background:radial-gradient(circle,rgba(255,255,255,.35) 0 18%,rgba(255,255,255,.12) 19% 100%);transform:scaleY(var(--sy,1));box-shadow:0 0 0 1px rgba(0,0,0,.25);transition:background .2s,border-color .2s}
+.sv-puck.go i{border-color:#F7C56A;background:radial-gradient(circle,rgba(247,197,106,.6) 0 18%,rgba(247,197,106,.18) 19% 100%)}
+.sv-puck.nope i{animation:svNope .45s ease}
+@keyframes svNope{0%,100%{translate:0}25%{translate:-6px}75%{translate:6px}}
+.sv-puck span{position:absolute;left:0;top:30px;transform:translateX(-50%);white-space:nowrap;font:600 12.5px var(--f-body,system-ui);color:#fff;background:rgba(0,0,0,.6);padding:4px 10px;border-radius:999px}
+.sv-puck span:empty{display:none}
+.sv-map{position:absolute;left:16px;bottom:16px;z-index:5;width:220px;aspect-ratio:2/1;border-radius:12px;overflow:hidden;border:2px solid rgba(255,255,255,.85);box-shadow:0 10px 30px -10px rgba(0,0,0,.6);background:#2F5A39}
+.sv-map img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) brightness(.85)}
+.sv-dot{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:2px solid #fff;background:rgba(27,64,37,.85);padding:0;cursor:pointer}
+.sv-dot.on{background:#F7C56A;border-color:#fff;z-index:2}
+.sv-cone{position:absolute;left:50%;top:50%;width:0;height:0;margin-left:-15px;margin-top:-34px;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:30px solid rgba(247,197,106,.55);transform-origin:50% 34px;pointer-events:none}
+.tour.sv-walking .pnlm-render-container{filter:blur(1.5px) brightness(1.05);transition:filter .3s}
+.tour .pnlm-render-container{transition:filter .4s}
+.sv-veil{display:none}
+@media (max-width:600px){.sv-map{width:150px;left:12px;bottom:12px}.tour .tour-demo{bottom:auto;top:84px;right:12px}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2309,7 +2330,10 @@ html body .rs-track{overflow-x:auto;overflow-y:hidden!important;overscroll-behav
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true" aria-label="360° tour of Aranyaak">
   <div id="pano" class="tour-pano"></div>
   <div class="tour-top"><div><span class="label">360° tour · Aranyaak</span><h3 id="tourTitle">Entrance</h3><p id="tourText"></p></div><button class="tour-x" type="button" data-tourx aria-label="Close the tour">✕</button></div>
-  <div class="tour-hint" id="tourHint">Drag to look around · Click the arrows to walk</div>
+  <div class="tour-hint" id="tourHint">Drag to look around · Click the ground to walk</div>
+  <div class="sv-puck" id="svPuck" aria-hidden="true"><i></i><span id="svPuckTx"></span></div>
+  <div class="sv-map" id="svMap" aria-label="Mini map"><img src="img/estate-aerial.jpg" alt=""><div id="svDots"></div></div>
+  <div class="sv-veil" id="svVeil" aria-hidden="true"></div>
   <div class="tour-strip" id="tourStrip"></div>
   <p class="tour-demo">Demo: sample 360° photos. Your own 360° photos of Aranyaak go here.</p>
   <div class="tour-load" id="tourLoad">Loading 360° view…</div>
@@ -2471,16 +2495,42 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     $('#tourStrip').innerHTML=Object.entries(SCENES).map(([k,v])=>`<button type="button" data-scene="${k}"><img src="${v.img}" alt="" loading="lazy"><span>${v.title}</span></button>`).join('');
     tourInfo(id); $('#tourLoad').hidden=false; $('#tourHint').classList.remove('off'); clearTimeout(window._th); window._th=setTimeout(()=>$('#tourHint').classList.add('off'),3500);
     try{ await loadPannellum(); }catch(e){ $('#tourLoad').textContent='The 360° viewer could not load. Please check your connection.'; return; }
-    if(viewer){ viewer.resize(); if(viewer.getScene()!==id) viewer.loadScene(id); $('#tourLoad').hidden=true; t.querySelector('.tour-x').focus(); return; }
+    if(viewer){ viewer.resize(); if(viewer.getScene()!==id) viewer.loadScene(id); svScene(id); $('#tourLoad').hidden=true; t.querySelector('.tour-x').focus(); return; }
     const scenes={}; for(const [k,v] of Object.entries(SCENES)) scenes[k]={type:'equirectangular',panorama:v.img,yaw:v.yaw,hfov:100,
-      hotSpots:v.next.map(([to,yaw,label])=>({pitch:-8,yaw,type:'scene',sceneId:to,text:'Walk to '+label,cssClass:'tour-arrow',createTooltipFunc:(div,txt)=>{ div.innerHTML='<span class="ta-ic">➜</span><span class="ta-tx">'+label+'</span>'; div.title=txt; }}))};
+      hotSpots:[]};
     viewer=pannellum.viewer('pano',{default:{firstScene:id,autoLoad:true,sceneFadeDuration:900,showControls:false,compass:false,hfov:100,minHfov:50,maxHfov:120},scenes});
     viewer.on('load',()=>{ $('#tourLoad').hidden=true; viewer.resize(); });
     setTimeout(()=>viewer&&viewer.resize(),300);
-    viewer.on('scenechange',sid=>{ tourInfo(sid); $('#tourLoad').hidden=true; });
+    viewer.on('scenechange',sid=>{ tourInfo(sid); $('#tourLoad').hidden=true; svScene(sid); });
+    svAttach(); svScene(id);
     viewer.on('mousedown',()=>$('#tourHint').classList.add('off')); viewer.on('touchstart',()=>$('#tourHint').classList.add('off'));
     t.querySelector('.tour-x').focus();
   }
+
+  /* ---- Street View-style walking: click the ground to walk, mini map with view cone (no arrows) ---- */
+  const SV_POS={entrance:[12,86],teawalk:[50,44],orchard:[28,48],restaurant:[44,70],pool:[62,58],villa:[78,28]};
+  const svNorm=a=>{ a=((a+180)%360+360)%360-180; return a; };
+  const svBearing=(a,b)=>{ const [x1,y1]=SV_POS[a],[x2,y2]=SV_POS[b]; return Math.atan2(x2-x1,-(y2-y1))*180/Math.PI; };
+  const SV_OFF={}; for(const [k,v] of Object.entries(SCENES)){ const [to,yaw]=v.next[0]; SV_OFF[k]=svBearing(k,to)-yaw; }
+  let svAttached=false, svWalking=false, svDown=null, svCur='entrance';
+  const svLinkAt=yaw=>{ let best=null,bd=46; for(const [to,ly,label] of SCENES[svCur].next){ const d=Math.abs(svNorm(yaw-ly)); if(d<bd){ bd=d; best={to,ly,label}; } } return best; };
+  const svScene=id=>{ svCur=id; $('#svDots').innerHTML=Object.entries(SV_POS).map(([k,[x,y]])=>`<button type="button" class="sv-dot${k===id?' on':''}" style="left:${x}%;top:${y}%" data-svgo="${k}" aria-label="Go to ${SCENES[k].title}">${k===id?'<i class="sv-cone"></i>':''}</button>`).join(''); };
+  const svWalk=(link)=>{ if(svWalking||!viewer) return; svWalking=true; $('#svPuck').classList.remove('on'); $('#tour').classList.add('sv-walking');
+    const back=SCENES[link.to].next.find(n=>n[0]===svCur), arrive=back?svNorm(back[1]+180):SCENES[link.to].yaw;
+    viewer.lookAt(-4,link.ly,Math.max(42,viewer.getHfov()*.45),650,()=>{ viewer.loadScene(link.to,0,arrive,100); setTimeout(()=>{ $('#tour').classList.remove('sv-walking'); svWalking=false; },700); }); };
+  function svAttach(){ if(svAttached) return; svAttached=true; const pano=$('#pano'), puck=$('#svPuck'), ptx=$('#svPuckTx');
+    const coords=e=>{ try{ return viewer.mouseEventToCoords(e); }catch(_){ return null; } };
+    pano.addEventListener('pointermove',e=>{ if(!viewer||svWalking||e.pointerType==='touch'||e.buttons){ puck.classList.remove('on'); return; } const c=coords(e); if(!c||c[0]>-3){ puck.classList.remove('on'); pano.style.cursor=''; return; }
+      const r=$('#tour').getBoundingClientRect(), sy=Math.max(.22,Math.min(1,Math.sin(-c[0]*Math.PI/180)*1.6)), link=svLinkAt(c[1]);
+      puck.style.transform=`translate(${e.clientX-r.left}px,${e.clientY-r.top}px)`; puck.style.setProperty('--sy',sy.toFixed(3)); puck.classList.add('on'); puck.classList.toggle('go',!!link); ptx.textContent=link?link.label:''; pano.style.cursor=link?'pointer':'grab'; });
+    pano.addEventListener('pointerleave',()=>puck.classList.remove('on'));
+    pano.addEventListener('pointerdown',e=>{ svDown=[e.clientX,e.clientY,Date.now()]; });
+    pano.addEventListener('pointerup',e=>{ if(!svDown||!viewer) return; const moved=Math.hypot(e.clientX-svDown[0],e.clientY-svDown[1]), dt=Date.now()-svDown[2]; svDown=null; if(moved>6||dt>600) return;
+      const c=coords(e); if(!c) return; const link=svLinkAt(c[1]); if(c[0]<-2&&link) svWalk(link);
+      else if(c[0]<-2){ const r=$('#tour').getBoundingClientRect(); puck.style.transform=`translate(${e.clientX-r.left}px,${e.clientY-r.top}px)`; puck.classList.add('on','nope'); setTimeout(()=>puck.classList.remove('nope'),500); } });
+    document.addEventListener('keydown',e=>{ if($('#tour').hidden||!viewer) return; if(e.key==='ArrowUp'||e.key==='w'){ const l=svLinkAt(viewer.getYaw()); if(l){ e.preventDefault(); svWalk(l); } } });
+    $('#svMap').addEventListener('click',e=>{ const d=e.target.closest('[data-svgo]'); if(!d||!viewer||d.dataset.svgo===svCur) return; viewer.loadScene(d.dataset.svgo); });
+    const spin=()=>{ if(!$('#tour').hidden&&viewer){ const cone=$('#svDots .sv-cone'); if(cone) cone.style.transform=`rotate(${(viewer.getYaw()+(SV_OFF[svCur]||0)).toFixed(1)}deg)`; } requestAnimationFrame(spin); }; requestAnimationFrame(spin); }
   const closeTour=()=>{ $('#tour').hidden=true; document.body.style.overflow=''; tourLast&&tourLast.focus&&tourLast.focus(); };
   document.addEventListener('click',e=>{ const b=e.target.closest('[data-tour]'); if(b){ openTour(b.dataset.tour); return; }
     if(e.target.closest('[data-tourx]')) closeTour();
