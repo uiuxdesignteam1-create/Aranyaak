@@ -2962,7 +2962,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   const openPage=(k,sec)=>{ if(!PAGES[k]) return; if(document.body.classList.contains('booking')) exitBooking();
     if(xpg.hidden) pgLast=document.activeElement; ['#stp','#evp'].forEach(q=>{ const el=$(q); if(el&&!el.hidden) el.hidden=true; });
     $('#xpgIn').innerHTML=PAGES[k](); xpg.dataset.pg=k; nav.classList.remove('expanded','open');
-    const um=$('#umenu'); if(um&&!um.hidden){ um.hidden=true; $('#openMenu').setAttribute('aria-expanded','false'); }
+    const um=$('#umenu'); if(um&&!um.hidden){ um.hidden=true; document.body.classList.remove('um-open'); $('#openMenu').setAttribute('aria-expanded','false'); $('#openMenu').setAttribute('aria-label','Open menu'); }
     xpg.hidden=false; pgPlace(); document.body.style.overflow='hidden'; document.body.classList.add('ev-open');
     xpg.scrollTop=0; if(sec){ const t=$('#pg-'+sec); if(t) setTimeout(()=>xpg.scrollTo({top:t.offsetTop-70,behavior:'smooth'}),60); }
     $('#xpg .evp-crumb button').focus({preventScroll:true}); if(typeof setLang==='function'&&document.documentElement.lang==='bn') setLang('bn'); };
@@ -3821,6 +3821,17 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   const openAll=()=>[...sec.querySelectorAll('.ofl:not(.open) .ofl-front')].forEach((f,k)=>setTimeout(()=>f.click(),250+k*380));
   if(reduce) return;
   if('IntersectionObserver' in window){ const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ openAll(); io.disconnect(); } },{threshold:.3,rootMargin:'0px 0px -10% 0px'}); io.observe(sec.querySelector('.grid3')); } else openAll();
+})();
+
+/* Scroll safety net: never leave the page locked when no popup or page is open */
+(()=>{ const OV=['#tour','#evp','#stp','#rvp','#xpg','#mm','#vt','#payov','#glb'];
+  const anyOpen=()=>OV.some(q=>{ const el=document.querySelector(q); return el&&!el.hidden; });
+  const fix=()=>{ const um=document.getElementById('umenu'); if(um&&um.hidden&&document.body.classList.contains('um-open')) document.body.classList.remove('um-open');
+    if(!anyOpen()&&document.body.style.overflow==='hidden') document.body.style.overflow='';
+    if(!anyOpen()) document.body.classList.remove('ev-open'); };
+  let t=null; const later=()=>{ clearTimeout(t); t=setTimeout(fix,400); };
+  ['click','keydown','popstate'].forEach(ev=>addEventListener(ev,later,true));
+  new MutationObserver(later).observe(document.body,{attributes:true,subtree:true,attributeFilter:['hidden']});
 })();
 
 /* Mobile floating CTA: hide while scrolling down, show again on stop or scroll up */
