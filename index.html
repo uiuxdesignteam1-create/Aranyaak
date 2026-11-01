@@ -1851,8 +1851,11 @@ html.lenis,html.lenis body{height:auto}
 .rs-short{font-size:15.5px;line-height:1.6;color:var(--muted);margin:0;max-width:44ch}
 @media (prefers-reduced-motion:no-preference){.rs-anim.rs-in .rs-info>*:nth-child(5){transition-delay:.75s}}
 
-.pb.has-logo{padding:0 8px;background:#fff}
-.pb.has-logo img{height:20px;width:auto;display:block}
+.pb.has-logo{height:44px;padding:0 12px;background:#fff;border:1px solid var(--line)}
+.pb.has-logo img{height:26px;width:auto;max-width:84px;display:block;object-fit:contain}
+.pb.has-logo[data-logo="amex"]{padding:0 5px}.pb.has-logo[data-logo="amex"] img{height:38px;border-radius:3px}
+.pb.bank{height:44px;padding:0 14px;border:1px solid var(--line);background:#fff}
+.pb.has-logo[data-logo="nexus"] img,.pb.has-logo[data-logo="rocket"] img{height:32px}
 .pb.has-logo.mc i{display:none}
 </style>
 
