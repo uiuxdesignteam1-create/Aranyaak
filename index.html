@@ -1882,6 +1882,30 @@ html.lenis,html.lenis body{height:auto}
 .bt-lead{font-size:16px;line-height:1.55;color:rgba(255,255,255,.85);max-width:44ch}
 @media (max-width:1100px){#evGrid.bento{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:380px 240px 240px}.bt-1{grid-column:span 2;grid-row:auto}.bt-2{grid-column:span 2}}
 @media (max-width:640px){#evGrid.bento{grid-template-rows:420px 220px 220px;gap:10px!important}.bt-txt{left:16px;right:16px;bottom:16px}.bt-name{font-size:22px}.bt-1 .bt-name{font-size:32px}.bt-lead{font-size:14.5px}.bt-3 .bt-kick,.bt-4 .bt-kick{display:none}.bt-3 .bt-name,.bt-4 .bt-name{font-size:20px}.bt-count{top:12px;left:12px}.bt-go{width:34px;height:34px;top:10px;right:10px}}
+
+/* ===== v4 special offers: new background + sealed "tap to open" cards ===== */
+html body section.offers{background-color:#0E2A19!important;background-image:radial-gradient(900px 520px at 85% 0%,rgba(247,197,106,.16),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(47,107,68,.45),transparent 65%),repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 1px,transparent 1px 22px)!important;background-size:auto!important;background-position:0 0!important;background-repeat:no-repeat,no-repeat,repeat!important}
+.offers .of-sub{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:22px;color:#F7C56A;margin-top:12px}
+.ofl{perspective:1600px;position:relative;min-width:0}
+.ofl-in{position:relative;display:grid;transition:transform .9s cubic-bezier(.2,.75,.2,1);transform-style:preserve-3d;height:100%}
+.ofl-in>*{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.ofl .offer{transform:rotateY(180deg);height:100%}
+.ofl.open .ofl-in{transform:rotateY(180deg)}
+.ofl-front{position:relative;border:0;border-radius:16px;cursor:pointer;font:inherit;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px;overflow:hidden;
+  background:linear-gradient(150deg,#24563A 0%,#173623 100%);box-shadow:inset 0 0 0 1px rgba(247,197,106,.45),0 30px 60px -30px rgba(0,0,0,.6);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+.ofl-front::before{content:"";position:absolute;inset:14px;border:1px dashed rgba(247,197,106,.35);border-radius:10px;pointer-events:none}
+.ofl-front:hover{transform:translateY(-6px) rotate(-1deg)}
+.ofl-seal{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#FFD98A,#E0A43C 60%,#B97C1F);box-shadow:0 10px 24px -8px rgba(0,0,0,.55),inset 0 -6px 12px rgba(120,70,10,.35);color:#173623}
+.ofl-seal svg{width:58px;height:58px}
+.ofl-tag{font-family:var(--f-display);font-style:italic;font-weight:300;font-size:30px}
+.ofl-tap{font-size:12px;font-weight:700;letter-spacing:.24em;color:#F7C56A;display:flex;align-items:center;gap:8px}
+.ofl-tap::before,.ofl-tap::after{content:"";width:22px;height:1px;background:currentColor;opacity:.6}
+.ofl.nudge .ofl-front{animation:ofNudge 1.2s ease-in-out 2}
+@keyframes ofNudge{0%,100%{transform:none}20%{transform:rotate(-2.5deg) translateY(-4px)}40%{transform:rotate(2deg)}60%{transform:rotate(-1.5deg)}80%{transform:rotate(1deg)}}
+.ofl-leaf{position:absolute;left:50%;top:40%;width:14px;height:9px;border-radius:0 100% 0 100%;background:#7FB069;pointer-events:none;z-index:5;animation:ofLeaf 1.3s cubic-bezier(.15,.7,.3,1) forwards}
+.ofl-leaf:nth-child(3n){background:#F7C56A}.ofl-leaf:nth-child(3n+1){background:#4E8A5C}
+@keyframes ofLeaf{0%{transform:translate(-50%,-50%) rotate(0) scale(.6);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot)) scale(1);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ofl-front{display:none}.ofl .offer{transform:none}.ofl-in{transform:none!important}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2131,7 +2155,7 @@ html.lenis,html.lenis body{height:auto}
   <section class="offers" id="offers">
     <div class="wrap">
       <div class="head">
-        <div><span class="label">Special offers</span><h2>Reasons to stay a little longer</h2></div>
+        <div><span class="label">Special offers</span><h2>Reasons to stay a little longer</h2><p class="of-sub">Three sealed offers. Tap one to open it.</p></div>
         <p>Offers apply when you book direct. The best offer for your dates is applied automatically: one offer per booking, no codes needed.</p>
       </div>
       <div class="grid3">
@@ -3560,7 +3584,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   }
   /* 2. Reveal on scroll (fade + rise, gently staggered) */
   if(!reduce && 'IntersectionObserver' in window){
-    const SEL=['.intro .wrap>*','.pillar','.founders .wrap>*','#estate .head','.map','.rooms-sec .head','.offers .head','.offer','.dining .wrap>*','.meal','.events .head','.event-cta','#stories .head','.story','.testi .wrap>*','.talk .wrap>*','.foot-band>*','.foot>*'];
+    const SEL=['.intro .wrap>*','.pillar','.founders .wrap>*','#estate .head','.map','.rooms-sec .head','.offers .head','.dining .wrap>*','.meal','.events .head','.event-cta','#stories .head','.story','.testi .wrap>*','.talk .wrap>*','.foot-band>*','.foot>*'];
     const els=[...new Set(SEL.flatMap(q=>[...document.querySelectorAll(q)]))];
     els.forEach(el=>{ el.classList.add('rv'); const sib=[...el.parentElement.children].filter(x=>els.includes(x)); el.style.setProperty('--rvd',(Math.min(sib.indexOf(el),5)*90)+'ms'); });
     const io=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }),{rootMargin:'0px 0px -8% 0px',threshold:0.08});
@@ -3649,6 +3673,25 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
 (()=>{ const tried={}; const swap=(el,name)=>{ const go=src=>{ const im=new Image(); im.onload=()=>{ document.querySelectorAll(`[data-logo="${name}"]`).forEach(b=>{ if(b.classList.contains('has-logo')) return; const t=b.textContent.trim(); b.textContent=''; const i=document.createElement('img'); i.src=src; i.alt=t; b.appendChild(i); b.classList.add('has-logo'); }); }; im.onerror=()=>{ if(src.endsWith('.svg')) go(`img/pay/${name}.png`); }; im.src=src; }; go(`img/pay/${name}.svg`); };
   const scan=()=>document.querySelectorAll('[data-logo]:not(.has-logo)').forEach(b=>{ const n=b.dataset.logo; if(!tried[n]){ tried[n]=1; swap(b,n); } else if(document.querySelector(`.has-logo[data-logo="${n}"]`)){ tried[n]=0; swap(b,n); } });
   scan(); new MutationObserver(()=>scan()).observe(document.body,{childList:true,subtree:true});
+})();
+
+/* v4 special offers: sealed cards that open with a flip and a burst of tea leaves */
+(()=>{ const sec=document.getElementById('offers'); if(!sec) return; const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TAGS=['Best rate','Monsoon','For two'];
+  sec.querySelectorAll('.grid3 > .offer').forEach((card,i)=>{
+    const w=document.createElement('div'); w.className='ofl'; const inn=document.createElement('div'); inn.className='ofl-in'; card.parentNode.insertBefore(w,card); w.appendChild(inn);
+    const tag=(card.querySelector('.badge')||{}).textContent||TAGS[i]||'Offer';
+    const f=document.createElement('button'); f.type='button'; f.className='ofl-front'; f.setAttribute('aria-expanded','false'); f.setAttribute('aria-label','Open offer: '+(card.querySelector('h3')||{}).textContent);
+    f.innerHTML=`<span class="ofl-seal" aria-hidden="true"><svg viewBox="0 0 986 820"><use href="#logo"/></svg></span><span class="ofl-tag">${tag}</span><span class="ofl-tap">TAP TO OPEN</span>`;
+    inn.appendChild(f); inn.appendChild(card);
+    if(reduce){ w.classList.add('open'); return; }
+    card.setAttribute('aria-hidden','true'); card.querySelectorAll('a,button').forEach(el=>el.tabIndex=-1);
+    f.addEventListener('click',()=>{ if(w.classList.contains('open')) return; w.classList.add('open'); f.setAttribute('aria-expanded','true'); f.tabIndex=-1; card.removeAttribute('aria-hidden'); card.querySelectorAll('a,button').forEach(el=>el.removeAttribute('tabindex'));
+      for(let k=0;k<16;k++){ const l=document.createElement('span'); l.className='ofl-leaf'; const ang=Math.random()*Math.PI*2, dist=90+Math.random()*120; l.style.setProperty('--dx',Math.cos(ang)*dist+'px'); l.style.setProperty('--dy',(Math.sin(ang)*dist-40)+'px'); l.style.setProperty('--rot',(Math.random()*540-270)+'deg'); l.style.animationDelay=(Math.random()*.12)+'s'; w.appendChild(l); setTimeout(()=>l.remove(),1600); }
+      setTimeout(()=>{ const b=card.querySelector('.btn'); b&&b.focus({preventScroll:true}); },700); });
+  });
+  // gentle nudge on the first sealed card when the section comes into view
+  if(!reduce&&'IntersectionObserver' in window){ const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ const c=sec.querySelector('.ofl:not(.open)'); c&&c.classList.add('nudge'); io.disconnect(); } },{threshold:.4}); io.observe(sec.querySelector('.grid3')); }
 })();
 
 /* Mobile floating CTA: hide while scrolling down, show again on stop or scroll up */
