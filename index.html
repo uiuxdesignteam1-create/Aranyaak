@@ -1820,6 +1820,12 @@ a.ct-card:hover{border-color:#2F6B44;box-shadow:0 10px 24px -16px rgba(27,64,37,
 .pn-num em{font-style:normal;font-size:15px;font-weight:500;color:#9A8F7A}
 .pn-steps{margin:18px 0 0;padding-left:20px;line-height:1.8;color:#3c4a40;font-size:15px;max-width:760px}
 @media (max-width:900px){.pn-grid{grid-template-columns:1fr 1fr}}
+
+/* Lenis smooth scroll */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -3469,28 +3475,31 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
 (()=>{
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
-  /* 1. Smooth (inertia) scrolling for mouse wheels */
+  /* 1. Smooth scrolling (desktop) with Lenis; phones keep their own native scrolling */
   if(!reduce && fine){
-    document.documentElement.style.scrollBehavior='auto';
-    let target=scrollY, cur=scrollY, raf=null, animating=false;
-    const maxY=()=>document.documentElement.scrollHeight-innerHeight;
-    const scrollable=el=>{ for(;el&&el!==document.body;el=el.parentElement){ const cs=getComputedStyle(el); if(/(auto|scroll)/.test(cs.overflowY)&&el.scrollHeight>el.clientHeight+2) return true; } return false; };
-    const locked=()=>document.body.style.overflow==='hidden'||document.body.classList.contains('booking')&&false||!document.getElementById('tour')?.hidden||!document.getElementById('mm')?.hidden;
-    const step=()=>{ cur+= (target-cur)*0.1; if(Math.abs(target-cur)<0.5){ cur=target; animating=false; raf=null; scrollTo(0,cur); return; } animating=true; scrollTo(0,cur); raf=requestAnimationFrame(step); };
-    addEventListener('wheel',e=>{
-      if(e.ctrlKey||e.defaultPrevented||locked()||scrollable(e.target)||Math.abs(e.deltaX)>Math.abs(e.deltaY)) return;
-      e.preventDefault();
-      const d=e.deltaMode===1?e.deltaY*40:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
-      if(!animating){ cur=scrollY; target=scrollY; }
-      target=Math.max(0,Math.min(maxY(),target+d*1.0));
-      if(!raf) raf=requestAnimationFrame(step);
-    },{passive:false});
-    // keep in sync with keyboard, scrollbar, anchor links and scripted scrolls
-    addEventListener('scroll',()=>{ if(!animating){ cur=target=scrollY; } },{passive:true});
-    ['keydown','mousedown','touchstart'].forEach(ev=>addEventListener(ev,()=>{ if(raf){ cancelAnimationFrame(raf); raf=null; animating=false; cur=target=scrollY; } },{passive:true}));
-    // smooth anchor jumps
-    document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#"]'); if(!a||e.defaultPrevented) return; const id=a.getAttribute('href').slice(1); const el=id&&document.getElementById(id); if(!el||locked()) return;
-      e.preventDefault(); const nav=document.getElementById('nav'); const off=id==='top'?99999:(nav?Math.max(nav.querySelector('.nav-bar').offsetHeight+(innerWidth>900?77:56),nav.getBoundingClientRect().height):0); target=Math.max(0,Math.min(maxY(),el.getBoundingClientRect().top+scrollY-off)); cur=scrollY; if(!raf) raf=requestAnimationFrame(step); history.replaceState(null,'','#'+id); });
+    const PREVENT='.evp,.mm,.tour,.umenu,.glb,#payov,.payov-box,.rs-track,.gl-filt,.dp-pop,select,[data-lenis-prevent]';
+    const start=()=>{
+      if(!window.Lenis) return;
+      const lenis=new Lenis({lerp:0.12,wheelMultiplier:1,smoothWheel:true,syncTouch:false,prevent:n=>!!(n.closest&&n.closest(PREVENT))});
+      window.__lenis=lenis;
+      const raf=t=>{ lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
+      // pause while a popup/page has locked the body, resume after
+      const sync=()=>{ document.body.style.overflow==='hidden'?lenis.stop():lenis.start(); };
+      new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['style']});
+      // route the site's own smooth scrolls through Lenis so they share the same easing
+      const nativeTo=window.scrollTo.bind(window);
+      window.scrollTo=function(x,y){ if(x&&typeof x==='object'&&x.behavior==='smooth'&&!lenis.isStopped){ lenis.scrollTo(Math.max(0,x.top||0),{duration:1.2}); return; } return nativeTo(x,y); };
+    };
+    // in-page anchor links with header offset (Lenis when loaded, native smooth scroll otherwise)
+    document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#"]'); if(!a||e.defaultPrevented||a.dataset.page||document.body.style.overflow==='hidden') return;
+      const id=a.getAttribute('href').slice(1); const el=id&&document.getElementById(id); if(!el&&id!=='top') return;
+      e.preventDefault(); const nav=document.getElementById('nav');
+      const off=nav?Math.max(nav.querySelector('.nav-bar').offsetHeight+(innerWidth>900?77:56),nav.getBoundingClientRect().height):0;
+      const L=window.__lenis;
+      if(L&&!L.isStopped) L.scrollTo(id==='top'||!el?0:el,{offset:-off,duration:1.2});
+      else scrollTo({top:id==='top'||!el?0:Math.max(0,el.getBoundingClientRect().top+scrollY-off),behavior:'smooth'});
+      history.replaceState(null,'','#'+id); });
+    if(window.Lenis) start(); else { const sc=document.createElement('script'); sc.src='https://unpkg.com/lenis@1.1.2/dist/lenis.min.js'; sc.async=true; sc.onload=start; document.head.appendChild(sc); }
   }
   /* 2. Reveal on scroll (fade + rise, gently staggered) */
   if(!reduce && 'IntersectionObserver' in window){
