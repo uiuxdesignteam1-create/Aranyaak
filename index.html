@@ -1906,6 +1906,9 @@ html body section.offers{background-color:#0E2A19!important;background-image:rad
 .ofl-leaf:nth-child(3n){background:#F7C56A}.ofl-leaf:nth-child(3n+1){background:#4E8A5C}
 @keyframes ofLeaf{0%{transform:translate(-50%,-50%) rotate(0) scale(.6);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot)) scale(1);opacity:0}}
 @media (prefers-reduced-motion:reduce){.ofl-front{display:none}.ofl .offer{transform:none}.ofl-in{transform:none!important}}
+
+/* cottage photo sliders: only scroll sideways, never trap the vertical page scroll */
+html body .rs-track{overflow-x:auto;overflow-y:hidden!important;overscroll-behavior-x:contain;overscroll-behavior-y:auto;touch-action:pan-x pan-y}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -3558,7 +3561,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
   /* 1. Smooth scrolling (desktop) with Lenis; phones keep their own native scrolling */
   if(!reduce && fine){
-    const PREVENT='.evp,.mm,.tour,.umenu,.glb,#payov,.payov-box,.rs-track,.gl-filt,.dp-pop,select,[data-lenis-prevent]';
+    const PREVENT='.evp,.mm,.tour,.umenu,.glb,#payov,.payov-box,.gl-filt,.dp-pop,select,[data-lenis-prevent]';
     const start=()=>{
       if(!window.Lenis) return;
       const lenis=new Lenis({lerp:0.12,wheelMultiplier:1,smoothWheel:true,syncTouch:false,prevent:n=>!!(n.closest&&n.closest(PREVENT))});
