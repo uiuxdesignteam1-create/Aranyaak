@@ -1850,6 +1850,10 @@ html.lenis,html.lenis body{height:auto}
 
 .rs-short{font-size:15.5px;line-height:1.6;color:var(--muted);margin:0;max-width:44ch}
 @media (prefers-reduced-motion:no-preference){.rs-anim.rs-in .rs-info>*:nth-child(5){transition-delay:.75s}}
+
+.pb.has-logo{padding:0 8px;background:#fff}
+.pb.has-logo img{height:20px;width:auto;display:block}
+.pb.has-logo.mc i{display:none}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2199,7 +2203,7 @@ html.lenis,html.lenis body{height:auto}
           <li><span class="foot-hours"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Reservations &amp; front desk 24/7</span></li>
         </ul></div>
     </div>
-    <div class="paystrip" aria-label="Payment methods we accept"><span class="ps-lbl">Pay securely with</span><span class="ps-list"><b class="pb visa">VISA</b><b class="pb mc"><i></i><i></i>Mastercard</b><b class="pb amex">AMEX</b><b class="pb nexus">DBBL Nexus</b><b class="pb bkash">bKash</b><b class="pb nagad">Nagad</b><b class="pb rocket">Rocket</b><b class="pb bank">Internet banking</b></span><a class="ps-more" href="#payment" data-page="payment" data-sec="numbers">Payment numbers →</a><span class="ps-by">Online payments processed by SSLCOMMERZ</span></div>
+    <div class="paystrip" aria-label="Payment methods we accept"><span class="ps-lbl">Pay securely with</span><span class="ps-list"><b class="pb visa" data-logo="visa">VISA</b><b class="pb mc" data-logo="mastercard"><i></i><i></i>Mastercard</b><b class="pb amex" data-logo="amex">AMEX</b><b class="pb nexus" data-logo="nexus">DBBL Nexus</b><b class="pb bkash" data-logo="bkash">bKash</b><b class="pb nagad" data-logo="nagad">Nagad</b><b class="pb rocket" data-logo="rocket">Rocket</b><b class="pb bank">Internet banking</b></span><a class="ps-more" href="#payment" data-page="payment" data-sec="numbers">Payment numbers →</a><span class="ps-by">Online payments processed by SSLCOMMERZ</span></div>
     <div class="legal"><span>© 2026 Aranyaak Luxury Resort. All rights reserved.</span><span><a href="#footer">Privacy policy</a> · <a href="#payment" data-page="payment" data-sec="policy">Booking &amp; cancellation policy</a> · <a href="#contact" data-page="contact" data-sec="here">Getting here</a></span></div>
   </div>
 </footer>
@@ -2724,7 +2728,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     bank:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5L12 4l9 5.5M5 10v7M9.5 10v7M14.5 10v7M19 10v7M3 20h18"/></svg>',
     desk:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 11h18v9H3zM7 11V7a5 5 0 0 1 10 0v4"/></svg>',
     clock:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'};
-  const PB='<span class="ps-list"><b class="pb visa">VISA</b><b class="pb mc"><i></i><i></i>Mastercard</b><b class="pb amex">AMEX</b><b class="pb nexus">DBBL Nexus</b><b class="pb bkash">bKash</b><b class="pb nagad">Nagad</b><b class="pb rocket">Rocket</b><b class="pb bank">Internet banking</b></span>';
+  const PB='<span class="ps-list"><b class="pb visa" data-logo="visa">VISA</b><b class="pb mc" data-logo="mastercard"><i></i><i></i>Mastercard</b><b class="pb amex" data-logo="amex">AMEX</b><b class="pb nexus" data-logo="nexus">DBBL Nexus</b><b class="pb bkash" data-logo="bkash">bKash</b><b class="pb nagad" data-logo="nagad">Nagad</b><b class="pb rocket" data-logo="rocket">Rocket</b><b class="pb bank">Internet banking</b></span>';
   const crumbs=t=>`<nav class="evp-top" aria-label="Breadcrumb"><ol class="evp-crumb"><li><button type="button" data-pghome>Home</button></li><li aria-current="page">${t}</li></ol></nav>`;
   const galGrid=()=>{ gList=GAL.filter(g=>gCat==='All'||g[1]===gCat); return gList.map((g,i)=>`<button type="button" class="gl-item ${gCat==='All'?SHAPE[i%SHAPE.length]:(i%5===0?'w':'')}" data-gk="${i}" aria-label="Open photo: ${g[2]}"><img src="${g[0]}" alt="${g[2]}" loading="lazy"><span>${g[2]}</span></button>`).join(''); };
   const PAGES={
@@ -2745,9 +2749,9 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       <section class="pg-sec" id="pg-numbers"><span class="label">Payment numbers</span><h2>Pay to our numbers</h2>
         <p class="pg-sub">Pay the advance from your mobile banking app or bank. Use your <b>booking number</b> (for example ARK-26-12345) as the reference, then send us the receipt.</p>
         <div class="pn-grid">
-          <div class="pn"><b class="pb bkash">bKash</b><small>Merchant · Payment</small><span class="pn-num" data-copyv=""><em>Number to be added</em></span></div>
-          <div class="pn"><b class="pb nagad">Nagad</b><small>Merchant · Payment</small><span class="pn-num"><em>Number to be added</em></span></div>
-          <div class="pn"><b class="pb rocket">Rocket</b><small>Merchant · Payment</small><span class="pn-num"><em>Number to be added</em></span></div>
+          <div class="pn"><b class="pb bkash" data-logo="bkash">bKash</b><small>Merchant · Payment</small><span class="pn-num" data-copyv=""><em>Number to be added</em></span></div>
+          <div class="pn"><b class="pb nagad" data-logo="nagad">Nagad</b><small>Merchant · Payment</small><span class="pn-num"><em>Number to be added</em></span></div>
+          <div class="pn"><b class="pb rocket" data-logo="rocket">Rocket</b><small>Merchant · Payment</small><span class="pn-num"><em>Number to be added</em></span></div>
           <div class="pn"><b class="pb bank">Bank</b><small>Account number</small><span class="pn-num"><em>To be added</em></span></div>
         </div>
         <ol class="pn-steps"><li>Open your bKash, Nagad or Rocket app and choose <b>Payment</b> (not Send Money).</li><li>Enter our number and the 50% advance amount.</li><li>In <b>Reference</b>, type your booking number.</li><li>Send the receipt or transaction ID on <a href="https://wa.me/8801332546712" target="_blank" rel="noopener">WhatsApp</a> or to <a href="mailto:reservations@aranyaakresort.com">reservations@aranyaakresort.com</a>. We confirm your booking by SMS.</li></ol>
@@ -3609,6 +3613,12 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
 (()=>{ if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)) return;
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('rs-in'); io.unobserve(e.target); } }),{rootMargin:'0px 0px -18% 0px',threshold:0});
   document.querySelectorAll('#rsCards .rs-card').forEach(c=>{ c.classList.add('rs-anim'); io.observe(c); });
+})();
+
+/* Payment logos: official logo files dropped into img/pay/ (e.g. img/pay/bkash.png) replace the text badges automatically */
+(()=>{ const tried={}; const swap=(el,name)=>{ const go=src=>{ const im=new Image(); im.onload=()=>{ document.querySelectorAll(`[data-logo="${name}"]`).forEach(b=>{ if(b.classList.contains('has-logo')) return; const t=b.textContent.trim(); b.textContent=''; const i=document.createElement('img'); i.src=src; i.alt=t; b.appendChild(i); b.classList.add('has-logo'); }); }; im.onerror=()=>{ if(src.endsWith('.svg')) go(`img/pay/${name}.png`); }; im.src=src; }; go(`img/pay/${name}.svg`); };
+  const scan=()=>document.querySelectorAll('[data-logo]:not(.has-logo)').forEach(b=>{ const n=b.dataset.logo; if(!tried[n]){ tried[n]=1; swap(b,n); } else if(document.querySelector(`.has-logo[data-logo="${n}"]`)){ tried[n]=0; swap(b,n); } });
+  scan(); new MutationObserver(()=>scan()).observe(document.body,{childList:true,subtree:true});
 })();
 
 /* Mobile floating CTA: hide while scrolling down, show again on stop or scroll up */
