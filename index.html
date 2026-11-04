@@ -2009,6 +2009,219 @@ html[lang="bn"] body :is(.rs-price,.price,.amt,.tot b,.pn-num,.reel-price,.pay-h
 .btn-sel,.btn-sel:hover,.btn-sel.on:hover{box-shadow:none!important}
 .rcard.is-booked .rc-buy .amt{opacity:.55}
 @media (max-width:600px){.rcard.rc-compact{grid-template-columns:1fr!important}.rc-compact .rc-pic{min-height:180px}.rc-row{flex-direction:column;align-items:stretch;padding:16px 18px;gap:14px}.rc-buy{flex-direction:row;align-items:center;justify-content:space-between}.rc-buy .amt{text-align:left}}
+
+/* ===== Booking · Airbnb pattern (Figma 11a) ===== */
+.bk{--abg:#E9F0EA;--abk:#B3AA9B;--abp:#F1ECE3}
+.ab{max-width:1040px;margin:0 auto;padding-bottom:40px}
+.ab-lnk{background:none;border:0;padding:0;font:600 14px var(--f-body);color:var(--forest);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.ab-pill{background:var(--abp);border:0;border-radius:8px;padding:9px 16px;font:600 14px var(--f-body);color:var(--forest);cursor:pointer}
+.ab-pill:hover{background:#E8E1D4}
+.ab-title{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0 20px}
+.ab-title h1{font-size:clamp(28px,3vw,36px);margin:0}
+.ab-tact{display:flex;gap:20px;flex:none}
+.ab-gal{position:relative;display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:8px;border-radius:16px;overflow:hidden}
+.ab-ph{border:0;padding:0;margin:0;cursor:pointer;overflow:hidden;background:var(--leaf)}
+.ab-ph.big{grid-row:span 2}
+.ab-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:filter .2s}
+.ab-ph:hover img{filter:brightness(.88)}
+.ab-all{position:absolute;right:16px;bottom:16px;background:#fff;border:1px solid var(--forest);border-radius:8px;padding:8px 14px;font:600 13px var(--f-body);color:var(--forest);cursor:pointer}
+.ab-cnt{display:none}
+.ab-two{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:72px;margin-top:32px;align-items:start}
+.ab .ab-l>*+*{border-top:1px solid var(--line);padding-top:26px;margin-top:26px}
+.ab section.ab-sec{padding-bottom:0}
+.ab .ab-hl{padding-left:0}
+.ab-facts h2{font:600 22px var(--f-body);color:var(--forest);margin:0 0 4px}
+.ab-facts p{margin:0;font-size:15px}
+.ab-host{display:flex;align-items:center;gap:14px}
+.ab-av{width:46px;height:46px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;flex:none}
+.ab-av svg{width:22px;height:22px}
+.ab-host b{display:block;font-size:15px}.ab-host small{font-size:13px;color:var(--muted)}
+.ab-hl{list-style:none;padding:0;margin:0;display:grid;gap:22px}
+.ab-hl li{display:flex;gap:18px;align-items:flex-start}
+.ab-hl svg{flex:none;color:var(--forest);margin-top:2px}
+.ab-hl b{display:block;font-size:15px}.ab-hl span{font-size:14px;color:var(--muted)}
+.ab-desc{font-size:16px;line-height:1.65;margin:0}
+.ab-sec h2{font-size:24px;margin:0 0 18px}
+.ab-am{list-style:none;padding:0;margin:0 0 22px;display:grid;grid-template-columns:1fr 1fr;gap:16px 32px}
+.ab-am li{display:flex;align-items:center;gap:14px;font-size:15px}
+.ab-am svg{flex:none;color:var(--forest)}
+.ab-r{position:sticky;top:96px}
+.ab-note{display:flex;justify-content:center;gap:8px;align-items:center;background:#fff;border-radius:12px;padding:14px;margin:0 0 14px;font-size:13.5px;font-weight:600;color:var(--forest);box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.ab-note b{color:#2F6B44}
+.ab-res{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px;box-shadow:0 6px 22px rgba(0,0,0,.09);display:flex;flex-direction:column;gap:16px}
+.ab-price{margin:0;color:var(--muted);font-size:15px}
+.ab-price b{font:400 26px var(--f-display);color:var(--forest);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.ab-dg{border:1px solid #B9AE9A;border-radius:10px;overflow:hidden}
+.ab-dd{display:grid;grid-template-columns:1fr 1fr}
+.ab-d,.ab-g{background:#fff;border:0;text-align:left;padding:10px 12px;cursor:pointer;font:inherit;color:var(--charcoal);display:flex;flex-direction:column;gap:2px;position:relative}
+.ab-d+.ab-d{border-left:1px solid #B9AE9A}
+.ab-g{width:100%;border-top:1px solid #B9AE9A}
+.ab-d small,.ab-g small{font:700 10px var(--f-body);letter-spacing:.06em;color:var(--forest)}
+.ab-d span,.ab-g span{font-size:14px}
+.ab-g i{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--forest)}
+.ab-d:hover,.ab-g:hover{background:#FAF8F3}
+.ab-strip{margin:0;background:var(--abp);border-radius:8px;padding:10px;text-align:center;font-size:13px;color:var(--forest)}
+.ab-strip.no{background:#F6E7E3;color:#8A3B2A}
+.ab-go{width:100%;height:52px;font-size:16px}
+.ab-go:disabled{background:#A9C2B0!important;cursor:not-allowed}
+.ab-small{margin:0;text-align:center;font-size:13px;color:var(--muted)}
+.ab-pop{position:absolute;z-index:20;background:#fff;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.18)}
+.ab-pop.cal{top:72px;right:-24px;width:720px;padding:24px 28px 20px}
+.ab-pop.gp{top:136px;left:22px;right:22px;padding:8px 18px 14px}
+.gp-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+.gp-row b{display:block;font-size:15px}.gp-row small{font-size:13px;color:var(--muted)}
+.gp-st{display:flex;align-items:center;gap:14px}
+.gp-st button{width:32px;height:32px;border-radius:50%;border:1px solid #B9AE9A;background:#fff;color:var(--forest);font-size:17px;cursor:pointer;line-height:1}
+.gp-st button:disabled{border-color:var(--line);color:var(--line);cursor:not-allowed}
+.gp-st span{min-width:14px;text-align:center}
+.gp-n{font-size:12px;color:var(--muted);line-height:1.5;margin:12px 0 4px}
+.gp-f{text-align:right}
+/* calendar */
+.cal-head{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:16px}
+.cal-head h3{font-size:24px;margin:0}
+.cal-head p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.cal-fields{display:grid;grid-template-columns:150px 150px;border:1px solid #B9AE9A;border-radius:10px;overflow:hidden}
+.cf{padding:8px 12px;display:flex;flex-direction:column;gap:2px;border-radius:10px}
+.cf+.cf{border-left:1px solid #B9AE9A}
+.cf.on{box-shadow:inset 0 0 0 2px var(--forest)}
+.cf small{font:700 10px var(--f-body);letter-spacing:.06em;color:var(--forest)}
+.cf b{font-weight:400;font-size:14px}
+.cal-body{position:relative}
+.cal-nv{position:absolute;top:-4px;width:32px;height:32px;border-radius:50%;border:0;background:none;font-size:22px;line-height:1;color:var(--forest);cursor:pointer;z-index:2}
+.cal-nv:hover:not(:disabled){background:var(--abp)}
+.cal-nv:disabled{color:var(--line);cursor:default}
+.cal-nv.p{left:0}.cal-nv.n{right:0}
+.cal-months{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.cm h4{text-align:center;font:600 15px var(--f-body);color:var(--forest);margin:2px 0 14px}
+.cw,.cg{display:grid;grid-template-columns:repeat(7,1fr)}
+.cw span{text-align:center;font:600 11px var(--f-body);color:var(--muted);padding-bottom:8px}
+.cd{position:relative;aspect-ratio:1/1;max-height:46px;border:0;background:none;padding:0;font:600 14px var(--f-body);color:var(--charcoal);cursor:pointer;display:grid;place-items:center}
+.cd.z{cursor:default}
+.cd i{position:relative;z-index:1;font-style:normal;width:calc(100% - 2px);max-width:44px;aspect-ratio:1/1;display:grid;place-items:center;border-radius:50%;border:1.5px solid transparent;transition:border-color .12s}
+.cd:not(:disabled):not(.s):not(.e):hover i{border-color:var(--forest)}
+.cd.x{color:#C9C2B5;cursor:not-allowed;font-weight:400}
+.cd.b i{text-decoration:line-through;color:var(--abk)}
+.cd.r::before,.cd.sb::before,.cd.e::before{content:"";position:absolute;top:2px;bottom:2px;left:0;right:0;background:var(--abg)}
+.cd.sb::before{left:50%}
+.cd.e::before{right:50%}
+.cd.s:not(.sb)::before{display:none}
+.cd.r.c0::before{border-radius:10px 0 0 10px}
+.cd.r.c6::before{border-radius:0 10px 10px 0}
+.cd.r.c0.c6::before{border-radius:10px}
+.cd.s i,.cd.e i{background:var(--forest);color:#fff}
+.cal-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:14px;flex-wrap:wrap}
+.cal-key{display:flex;gap:18px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.cal-key span{display:inline-flex;align-items:center;gap:7px}
+.cal-key .k1{width:13px;height:13px;border-radius:50%;background:var(--forest)}
+.cal-key .k2{width:22px;height:12px;border-radius:4px;background:var(--abg)}
+.cal-key s{color:var(--abk)}
+.cal-act{display:flex;align-items:center;gap:18px}
+.ab-cal .cal-head{margin-bottom:20px}
+/* sticky top bar after scroll */
+.ab-sticky{position:fixed;left:0;right:0;top:72px;z-index:29;background:#fff;border-bottom:1px solid var(--line);transform:translateY(-110%);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s}
+.ab-sticky.on{transform:none;opacity:1;pointer-events:auto}
+.ab-sw{max-width:1040px;margin:0 auto;padding:0 var(--gutter);height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ab-sw nav{display:flex;gap:28px}
+.ab-sw nav a{font:600 14px var(--f-body);color:var(--muted);text-decoration:none;padding:22px 0}
+.ab-sw nav a:hover{color:var(--forest);box-shadow:inset 0 -3px 0 var(--forest)}
+.ab-sp{display:flex;align-items:center;gap:18px}
+.ab-sp span{text-align:right}
+.ab-sp b{display:block;font-size:16px;color:var(--forest);text-decoration:underline}
+.ab-sp small{font-size:12px;color:var(--muted)}
+.ab section.ab-know{border-top:1px solid var(--line);margin-top:48px;padding-top:36px;padding-bottom:0}
+.ab-k{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:16px}
+.ab-k svg{color:var(--forest);display:block;margin-bottom:12px}
+.ab-k b{display:block;font-size:15px;margin-bottom:6px}
+.ab-k p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
+.ab-mbar{display:none}
+/* Confirm and pay */
+.cp{max-width:1040px;margin:0 auto;padding:8px 0 48px}
+.cp-top{display:flex;align-items:center;gap:18px;margin-bottom:28px}
+.cp-top h1{margin:0;font-size:clamp(28px,3vw,36px)}
+.cp-back{width:42px;height:42px;border-radius:50%;border:0;background:#F1ECE3;color:var(--forest);font-size:18px;cursor:pointer;flex:none}
+.cp-back:hover{background:#E8E1D4}
+.cp-grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:64px;align-items:start}
+.cp-l{display:flex;flex-direction:column;gap:16px}
+.cp-step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+.cp-step.open{box-shadow:0 6px 22px rgba(0,0,0,.08);padding-bottom:24px}
+.cp-sh{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.cp-sh h2{font:600 18px var(--f-body);color:var(--charcoal);margin:0}
+.cp-step:not(.open):not(.done) .cp-sh h2{color:var(--muted)}
+.cp-step.open .cp-sh{margin-bottom:18px}
+.cp-done{margin:8px 0 0;font-size:14px;color:var(--muted)}
+.cp-nx{display:flex;justify-content:flex-end;margin-top:20px}
+.cp-nx .btn,.cp-pay{min-width:120px;height:48px}
+.cp-lead{margin:0 0 16px;font-size:15px;color:var(--muted)}
+.cp-rev{margin:0 0 22px;display:grid;gap:0}
+.cp-rev div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
+.cp-rev dt{color:var(--muted)}.cp-rev dd{margin:0;text-align:right;font-weight:600}
+.cp-h3{font:600 15px var(--f-body);margin:0 0 12px}
+.cp-h3 small{font-weight:400;color:var(--muted);margin-left:6px}
+.cp-x{display:flex;flex-wrap:wrap;gap:8px}
+.cp-xb{border:1px solid #B9AE9A;background:#fff;border-radius:999px;padding:8px 14px;font:500 13px var(--f-body);color:var(--forest);cursor:pointer}
+.cp-xb.on{background:#EEF4EF;border-color:#2F6B44;font-weight:600}
+.cp-pay{width:100%;margin-top:22px;height:54px;font-size:16px}
+.cp-r{position:sticky;top:96px}
+.cp-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.cp-card>*+*{border-top:1px solid var(--line);padding-top:16px;margin-top:16px}
+.cp-prop{display:flex;gap:14px;align-items:center}
+.cp-prop img{width:96px;height:84px;object-fit:cover;border-radius:10px;flex:none}
+.cp-prop b{display:block;font-size:17px}
+.cp-prop small{display:block;font-size:13px;color:var(--muted)}
+.cp-prop small.ok{color:#2F6B44;font-weight:600}
+.cp-blk>b{display:block;font-size:14px;margin-bottom:4px}
+.cp-blk p{margin:0;font-size:13.5px}
+.cp-blk details{margin-top:6px;font-size:13px}
+.cp-blk summary{font-weight:600;text-decoration:underline;cursor:pointer;list-style:none}
+.cp-blk summary::-webkit-details-marker{display:none}
+.cp-blk details p{margin-top:6px;color:var(--muted)}
+.cp-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cp-row b{display:block;font-size:14px}.cp-row span{font-size:14px}
+.cp-blk dl{margin:8px 0 0;display:grid;gap:8px}
+.cp-blk dl div{display:flex;justify-content:space-between;font-size:14px}
+.cp-blk dt{color:var(--muted)}.cp-blk dd{margin:0}.cp-blk dd.neg{color:#2F6B44}
+.cp-tot{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-weight:600;font-size:15px}
+.cp-due{background:#EEF4EF;border-radius:10px;padding:12px 14px;display:grid;gap:6px;border-top:0!important}
+.cp-due div{display:flex;justify-content:space-between;font-size:14px}
+.cp-due div:first-child{font-weight:600}
+.bk.cpm .bk-bar{display:none}
+.bk.cpm .bk-demo{display:none}
+@media (max-width:1100px){.ab-pop.cal{width:640px;right:-8px;padding:22px}.cal-months{gap:28px}}
+@media (max-width:900px){
+  .ab{padding-bottom:96px}
+  .ab-title{margin:4px 0 14px}.ab-tact{gap:14px}
+  .ab-gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1*var(--gutter));border-radius:0;gap:0;scrollbar-width:none}
+  .ab-gal::-webkit-scrollbar{display:none}
+  .ab-ph,.ab-ph.big{flex:0 0 100%;height:300px;scroll-snap-align:start}
+  .ab-all{display:none}
+  .ab-two{grid-template-columns:1fr;gap:0;margin-top:22px}
+  .ab-r{position:static;margin-top:28px}
+  .ab-note{display:none}
+  .ab-res{box-shadow:none}
+  .ab-am{grid-template-columns:1fr}
+  .ab-k{grid-template-columns:1fr;gap:24px}
+  .ab-sticky{display:none}
+  .ab-pop.cal,.ab-pop.gp{position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;max-height:88vh;overflow-y:auto;border-radius:20px 20px 0 0;z-index:60;padding:22px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+  body.ab-popm::after{content:"";position:fixed;inset:0;background:rgba(19,31,23,.45);z-index:55}
+  .cal-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .cal-fields{grid-template-columns:1fr 1fr;width:100%}
+  .cal-months{grid-template-columns:1fr;gap:24px}
+  .cd{max-height:none}
+  .ab-mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;background:#fff;border-top:1px solid var(--line);padding:12px var(--gutter-r) calc(12px + env(safe-area-inset-bottom,0px)) var(--gutter);justify-content:space-between;align-items:center;gap:12px}
+  .ab-mb{background:none;border:0;text-align:left;padding:0;cursor:pointer;font:inherit}
+  .ab-mb b{display:block;font-size:17px;color:var(--forest);text-decoration:underline}
+  .ab-mb small{font-size:12px;color:var(--muted);text-decoration:underline}
+  .ab-mbar .btn{height:48px;padding:0 28px}
+  .cp-grid{display:flex;flex-direction:column-reverse;gap:16px}
+  .cp-r{position:static}
+  .cp-card{padding:16px}
+  .cp-step{padding:18px}
+  .cp-top{margin-bottom:18px}
+}
+@media (max-width:600px){.fgrid{grid-template-columns:1fr}.cp-prop img{width:72px;height:64px}}
+@media (max-width:900px){.cp-card .cp-blk{display:none}}
+
+.rc-compact .rc-pic{cursor:pointer}.rc-name{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left}.rc-name:hover{text-decoration:underline}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -3134,8 +3347,9 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   const terms=rt=>{const c=cancelBy(); const cx=c?`Free cancellation until ${c}`:'Advance non-refundable (less than 14 days to arrival)'; return `Breakfast for everyone · ${cx} · 50% advance, balance at check-in`;};
 
   function stepsHtml(){
-    return `<ol class="steps">${STEPS.map((t,i)=>{const s=i+1, cls=s<S.step?'done':s===S.step?'now':'';
-      const inner=`<span class="n">${s<S.step?'✓':s}</span>${t}`;
+    const FLOW=[[1,'Choose your cottage'],[3,'Confirm and pay'],[4,'Confirmation']];
+    return `<ol class="steps">${FLOW.map(([s,t],i)=>{const cls=s<S.step?'done':s===S.step?'now':'';
+      const inner=`<span class="n">${s<S.step?'✓':i+1}</span>${t}`;
       return `<li class="${cls}">${cls==='done'&&S.step<4?`<button class="st" data-act="step" data-s="${s}">${inner}</button>`:`<span class="st" ${s===S.step?'aria-current="step"':''}>${inner}</span>`}</li>`;}).join('')}</ol>`;
   }
   function summaryHtml(){
@@ -3167,9 +3381,9 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     const shared=`<p class="rc-shared"><b>Every cottage:</b> Private pool · Infinity terrace · King-size bed · 70 m² · Breakfast included · 50% advance, balance at check-in</p>`;
     const cards=list.slice().sort((a,b)=>availR(b)-availR(a)).map(r=>{const av=availR(r), fits=fitsR(r)&&av, sel=S.room===r.id, n=nights();
       const rt=r.rates[0], on=sel&&S.rate===rt.id;
-      return `<article class="card rcard rc-compact${sel?' sel':''}${av?'':' is-booked'}"><div class="pic rc-pic"><img src="${r.imgs[0]}" alt="${r.name}" loading="lazy"></div>
+      return `<article class="card rcard rc-compact${sel?' sel':''}${av?'':' is-booked'}"><div class="pic rc-pic" data-act="dother" data-room="${r.id}" role="button" tabindex="0" aria-label="Open ${r.name}"><img src="${r.imgs[0]}" alt="${r.name}" loading="lazy"></div>
         <div class="rc-row">
-          <div class="rc-info"><span class="rc-av ${av?'ok':'no'}"><i></i>${av?'Available':'Booked'}</span><h3>${r.name}</h3>
+          <div class="rc-info"><span class="rc-av ${av?'ok':'no'}"><i></i>${av?'Available':'Booked'}</span><h3><button type="button" class="rc-name" data-act="dother" data-room="${r.id}">${r.name}</button></h3>
             <p class="rc-meta">${r.view} · up to ${r.cap} guests</p>
             ${av?'':`<p class="av-line no">Booked for your dates. Try other dates.</p>`}
             ${fitsR(r)?'':`<p class="fit">Sleeps up to 4 (4 adults, or 2 adults + 2 children).</p>`}</div>
@@ -3384,7 +3598,187 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       <a class="btn btn-outline btn-sm" href="${wa}" target="_blank" rel="noopener">WhatsApp us</a>
       <button class="btn btn-gold btn-sm" data-act="home">Back to home</button></div></div>`;
   }
+  /* ===== Airbnb-pattern booking (Figma 11a): cottage page + range calendar + 3-step Confirm and pay ===== */
+  const AB={a:null,b:null,ym:null,pop:null,room:null,saved:new Set(),moreAm:false,moreKnow:false};
+  const ymOf=iso=>iso.slice(0,8)+'01';
+  const monthAdd=(ym,k)=>{const d=D(ym); d.setUTCMonth(d.getUTCMonth()+k); return isoU(d).slice(0,8)+'01';};
+  const nTxt=n=>`${n} night${n>1?'s':''}`;
+  const gTxt=()=>`${S.guests} ${S.guests>1?'adults':'adult'}${S.kids?`, ${S.kids} ${S.kids>1?'children':'child'}`:''}`;
+  const dmy=iso=>fmt(iso,{day:'2-digit',month:'2-digit',year:'numeric'});
+  function calMonth(ym,rid){
+    const d0=D(ym), y=d0.getUTCFullYear(), m=d0.getUTCMonth(), first=d0.getUTCDay(), days=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+    const a=AB.a, b=AB.b, picking=!!(a&&!b), today=todayIso();
+    const freeTo=iso=>{ for(let x=a;x<iso;x=addDays(x,1)) if(BOOKED_DEMO(rid,x)) return false; return true; };
+    let cells=''; for(let i=0;i<first;i++) cells+='<span class="cd z"></span>';
+    for(let dd=1;dd<=days;dd++){
+      const iso=`${y}-${String(m+1).padStart(2,'0')}-${String(dd).padStart(2,'0')}`, col=(first+dd-1)%7;
+      const bkd=BOOKED_DEMO(rid,iso), past=iso<today;
+      const ok=picking&&iso>a ? freeTo(iso) : (!past&&!bkd);
+      const s=iso===a, e=iso===b, r=!!(a&&b&&iso>a&&iso<b);
+      const cls=['cd',s?'s':'',e?'e':'',r?'r':'',(s&&b&&b!==a)?'sb':'',(!ok&&!s&&!e)?'x':'',(bkd&&!ok&&!s&&!e)?'b':'',(col===0||dd===1)?'c0':'',(col===6||dd===days)?'c6':''].filter(Boolean).join(' ');
+      cells+=`<button type="button" class="${cls}" data-day="${iso}" ${ok||s||e?'':'disabled'} aria-pressed="${s||e}" aria-label="${fmt(iso,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}${bkd&&!ok?', booked':''}"><i>${dd}</i></button>`;
+    }
+    return `<div class="cm"><h4>${fmt(ym,{month:'long',year:'numeric'})}</h4><div class="cw" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div><div class="cg">${cells}</div></div>`;
+  }
+  function calHtml(rid,pop){
+    const a=AB.a, b=AB.b, n=a&&b?Math.round((D(b)-D(a))/864e5):0;
+    const head=a&&b?nTxt(n):a?'Select check-out date':'Select check-in date';
+    const sub=a&&b?`${fmt(a,{day:'numeric',month:'short',year:'numeric'})} – ${fmt(b,{day:'numeric',month:'short',year:'numeric'})}`:'Crossed-out dates are already booked';
+    const ym=AB.ym, canPrev=ym>ymOf(todayIso());
+    const fld=(l,v,on)=>`<span class="cf${on?' on':''}"><small>${l}</small><b>${v?dmy(v):'Add date'}</b></span>`;
+    return `<div class="cal-head"><div><h3>${head}</h3><p>${sub}</p></div>${pop?`<div class="cal-fields">${fld('CHECK-IN',a,!a||!b&&false)}${fld('CHECK-OUT',b,!!a&&!b)}</div>`:''}</div>
+      <div class="cal-body"><button type="button" class="cal-nv p" data-cal="prev" ${canPrev?'':'disabled'} aria-label="Previous month">‹</button><button type="button" class="cal-nv n" data-cal="next" aria-label="Next month">›</button>
+        <div class="cal-months">${calMonth(ym,rid)}${calMonth(monthAdd(ym,1),rid)}</div></div>
+      <div class="cal-foot"><div class="cal-key"><span><i class="k1"></i>Check-in / check-out</span><span><i class="k2"></i>Your nights</span><span><s>12</s>Booked</span></div>
+        <div class="cal-act"><button type="button" class="ab-lnk" data-cal="clear">Clear dates</button>${pop?'<button type="button" class="btn btn-forest btn-sm" data-cal="close">Close</button>':''}</div></div>`;
+  }
+  function guestsPop(){
+    const tot=S.guests+(S.kids||0);
+    const st=(k,lab,sub,v,min,max)=>`<div class="gp-row"><div><b>${lab}</b><small>${sub}</small></div><div class="gp-st"><button type="button" data-gp="${k}" data-d="-1" ${v<=min?'disabled':''} aria-label="Fewer ${lab.toLowerCase()}">−</button><span>${v}</span><button type="button" data-gp="${k}" data-d="1" ${v>=max||tot>=4?'disabled':''} aria-label="More ${lab.toLowerCase()}">+</button></div></div>`;
+    return `<div class="ab-pop gp" role="dialog" aria-label="Guests">${st('guests','Adults','Age 12+',S.guests,1,4)}${st('kids','Children','Ages 6–11',S.kids||0,0,2)}
+      <p class="gp-n">Each cottage sleeps up to 4 guests: 4 adults, or 2 adults + 2 children. Up to 2 children aged 5 and under stay free.</p><div class="gp-f"><button type="button" class="ab-lnk" data-abpop="close">Close</button></div></div>`;
+  }
+  function resCard(r){
+    const av=availR(r), fits=fitsR(r), n=nights(), c=cancelBy();
+    return `<p class="ab-price"><b>${money(stayNet())}</b> <span>for ${nTxt(n)}</span></p>
+      <div class="ab-dg"><div class="ab-dd"><button type="button" class="ab-d" data-abpop="cal"><small>CHECK-IN</small><span>${dmy(S.in)}</span></button><button type="button" class="ab-d" data-abpop="cal"><small>CHECK-OUT</small><span>${dmy(S.out)}</span></button></div>
+        <button type="button" class="ab-g" data-abpop="guests" aria-expanded="${AB.pop==='guests'}"><small>GUESTS</small><span>${gTxt()}</span><i aria-hidden="true">⌄</i></button></div>
+      ${AB.pop==='cal'?`<div class="ab-pop cal" role="dialog" aria-label="Choose dates" data-lenis-prevent>${calHtml(r.id,true)}</div>`:''}
+      ${AB.pop==='guests'?guestsPop():''}
+      ${av?`<p class="ab-strip">${money(Math.round(stayNet()*ADV))} today · balance at check-in</p>`:`<p class="ab-strip no">Booked on some of these nights. Choose other dates.</p>`}
+      <button type="button" class="btn btn-forest ab-go" data-act="abreserve" ${av&&fits?'':'disabled'}>${av?'Reserve':'Not available'}</button>
+      <p class="ab-small">${c?`Free cancellation until ${c}`:'Free cancellation 14+ days before arrival'}</p>`;
+  }
+  const HL=r=>[['pool','Your own pool and infinity terrace',`The pool is only for this cottage, with a ${r.view.toLowerCase()}.`],['tea','Breakfast included','Served every morning, with unlimited raw tea.'],['tag','10% off when you book here','Applied automatically, no code needed.']];
+  const ABI={pool:'<path d="M3 17c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M3 21c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M8 13V5a2 2 0 0 1 4 0M16 13V5a2 2 0 0 0-4 0M8 9h8"/>',tea:'<path d="M4 10h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/>',tag:'<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',host:'<path d="M3 21h18M5 21V10l7-5 7 5v11M10 21v-6h4v6"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',list:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',back:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/>'};
+  const AMI={pool:ABI.pool,view:'<path d="M3 18l5-7 4 5 3-3 6 5M3 18h18"/><circle cx="16" cy="7" r="2"/>',terrace:'<path d="M3 20h18M5 20v-6h14v6M4 14l8-6 8 6"/>',ac:'<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9 4l3 2 3-2M9 20l3-2 3 2"/>',tv:'<rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8"/>',wifi:'<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/>',tea:ABI.tea,scale:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9a3 3 0 0 1 6 0"/>',fridge:'<rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 10h12M9 6v2M9 13v3"/>',check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>'};
+  const amK=a=>/pool/i.test(a)?'pool':/view/i.test(a)?'view':/terrace/i.test(a)?'terrace':/air/i.test(a)?'ac':/tv/i.test(a)?'tv':/wifi/i.test(a)?'wifi':/tea|breakfast/i.test(a)?'tea':/scale/i.test(a)?'scale':/minibar/i.test(a)?'fridge':'check';
+  const amI=a=>`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${AMI[amK(a)]}</svg>`;
+  const abI=k=>`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ABI[k]||ICO[k]||''}</svg>`;
+  function abPageHtml(r){
+    if(AB.room!==r.id){ Object.assign(AB,{room:r.id,a:S.in,b:S.out,ym:ymOf(S.in),pop:null,moreAm:false,moreKnow:false}); }
+    if(!AB.pop){ AB.a=S.in; AB.b=S.out; }
+    const gal=[...r.imgs,...GAL_EXTRA].slice(0,5), d=CD(r), am=[...r.amen], extra=[...d.comfort.filter(x=>!am.includes(x)),...d.dine];
+    const n=nights(), saved=AB.saved.has(r.id);
+    const know=[['clock','Check-in and check-out','Check-in from 2:00 PM · check-out until 12:00 PM. Please bring your NID or passport.','Arrival: from 2:00 PM. Departure: until 12:00 PM. Every adult guest needs an NID or passport at check-in.'],
+      ['list','House rules','Pets welcome free of charge · no outside food · visitors with approval.','Pets welcome free of charge · smoking allowed · no outside food · visitors with approval. Extra adult ৳3,000 / night · child 6–11 ৳1,500 / night · up to 2 children aged 5 and under stay free · 12+ counts as an adult.'],
+      ['back','Cancellation','Free 14+ days before arrival. After that the 50% advance is non-refundable.','Full refund 14+ days before arrival. Later than that, the 50% advance is non-refundable. Refunds within 7 working days. 50% advance to confirm; the balance is paid at check-in by cash, card, bKash, Nagad or bank transfer.']];
+    return `<div class="ab" data-room="${r.id}">
+      <div class="ab-sticky" id="abSticky"><div class="ab-sw"><nav aria-label="Sections"><a href="#abPhotos" data-abjump>Photos</a><a href="#abAmen" data-abjump>Amenities</a><a href="#abDates" data-abjump>Dates</a><a href="#abKnow" data-abjump>Things to know</a></nav>
+        <div class="ab-sp"><span><b id="abStP">${money(stayNet())}</b><small id="abStN">for ${nTxt(n)}</small></span><button type="button" class="btn btn-forest btn-sm" data-act="abreserve" data-stk>Reserve</button></div></div></div>
+      <button class="rd-back" data-act="exit" data-to="rooms">← All pool cottages</button>
+      <div class="ab-title"><h1 tabindex="-1" id="bkTitle">${r.name}</h1><div class="ab-tact"><button type="button" class="ab-lnk" data-ab="share">↗ Share</button><button type="button" class="ab-lnk" data-ab="save" aria-pressed="${saved}">${saved?'♥ Saved':'♡ Save'}</button></div></div>
+      <div class="ab-gal" id="abPhotos">${gal.map((src,k)=>`<button type="button" class="ab-ph${k?'':' big'}" data-act="dphoto" data-room="${r.id}" data-k="${k}" aria-label="Open photo ${k+1}"><img src="${src}" alt="${r.name}, photo ${k+1}" ${k?'loading="lazy"':''}></button>`).join('')}
+        <button type="button" class="ab-all" data-act="dphoto" data-room="${r.id}" data-k="0">▦ Show all photos</button><span class="ab-cnt">1 / ${gal.length}</span></div>
+      <div class="ab-two"><div class="ab-l">
+        <div class="ab-facts"><h2>Private pool cottage in Sreemangal</h2><p>Up to ${r.cap} guests · ${r.beds} · ${r.size} m² · ${r.view.toLowerCase()}</p></div>
+        <div class="ab-host"><span class="ab-av">${abI('host')}</span><div><b>Hosted by Aranyaak Luxury Resort</b><small>Front desk 24/7 · Lawachara Road, Sreemangal</small></div></div>
+        <ul class="ab-hl">${HL(r).map(([i,a,s])=>`<li>${abI(i)}<div><b>${a}</b><span>${s}</span></div></li>`).join('')}</ul>
+        <p class="ab-desc">${r.desc} Breakfast and unlimited raw tea are included with every stay.</p>
+        <section class="ab-sec" id="abAmen"><h2>What this cottage offers</h2><ul class="ab-am">${am.map(x=>`<li>${amI(x)} ${x}</li>`).join('')}${AB.moreAm?extra.map(x=>`<li>${amI(x)} ${x}</li>`).join(''):''}</ul>
+          <button type="button" class="ab-pill" data-ab="moream">${AB.moreAm?'Show fewer amenities':`Show all ${am.length+extra.length} amenities`}</button></section>
+        <section class="ab-sec" id="abDates"><div class="ab-cal" id="abCalIn">${calHtml(r.id,false)}</div></section>
+      </div>
+      <aside class="ab-r"><div class="ab-rs"><p class="ab-note"><b>%</b> Prices include VAT &amp; service · 10% off direct</p><div class="ab-res" id="abRes">${resCard(r)}</div></div></aside></div>
+      <section class="ab-sec ab-know" id="abKnow"><h2>Things to know</h2><div class="ab-k">${know.map(([i,a,s,l])=>`<div>${abI(i)}<b>${a}</b><p>${AB.moreKnow?l:s}</p></div>`).join('')}</div><button type="button" class="ab-lnk" data-ab="moreknow">${AB.moreKnow?'Show less':'Show more'}</button></section>
+      <div class="ab-mbar"><button type="button" class="ab-mb" data-abpop="cal"><b id="abMbP">${money(stayNet())}</b><small id="abMbN">${nTxt(n)} · ${fmt(S.in,{day:'numeric',month:'short'})} – ${fmt(S.out,{day:'numeric',month:'short'})}</small></button><button type="button" class="btn btn-forest" data-act="abreserve" data-stk>Reserve</button></div>
+    </div>`;
+  }
+  function updAb(){
+    const r=ROOMS.find(x=>x.id===AB.room); if(!r||!$('#abRes')) return;
+    $('#abRes').innerHTML=resCard(r); $('#abCalIn').innerHTML=calHtml(r.id,false);
+    const n=nights(), av=availR(r)&&fitsR(r);
+    $('#abStP').textContent=$('#abMbP').textContent=money(stayNet()); $('#abStN').textContent='for '+nTxt(n);
+    $('#abMbN').textContent=`${nTxt(n)} · ${fmt(S.in,{day:'numeric',month:'short'})} – ${fmt(S.out,{day:'numeric',month:'short'})}`;
+    $$('[data-stk]').forEach(b=>b.disabled=!av);
+    document.body.classList.toggle('ab-popm',!!AB.pop);
+  }
+  function abPick(iso){
+    const rid=AB.room; const a=AB.a, b=AB.b;
+    if(!a||b||iso<=a){ AB.a=iso; AB.b=null; }
+    else { AB.b=iso; S.in=AB.a; S.out=AB.b; }
+    updAb();
+  }
+  function abJump(id){ const el=document.getElementById(id); if(!el) return; const y=el.getBoundingClientRect().top+scrollY-140; scrollTo({top:y,behavior:'smooth'}); }
+  addEventListener('scroll',()=>{ const g=$('#abPhotos'), st=$('#abSticky'); if(!g||!st) return; st.classList.toggle('on',g.getBoundingClientRect().bottom<80); },{passive:true});
+  bk.addEventListener('click',e=>{
+    if(!$('.ab')) return;
+    const day=e.target.closest('[data-day]'); if(day){ if(!day.disabled) abPick(day.dataset.day); return; }
+    const cal=e.target.closest('[data-cal]'); if(cal){ const k=cal.dataset.cal;
+      if(k==='prev'){ AB.ym=monthAdd(AB.ym,-1); } else if(k==='next'){ AB.ym=monthAdd(AB.ym,1); }
+      else if(k==='clear'){ AB.a=AB.b=null; }
+      else if(k==='close'){ if(!AB.b){ AB.a=S.in; AB.b=S.out; } AB.pop=null; }
+      updAb(); return; }
+    const gp=e.target.closest('[data-gp]'); if(gp){ const k=gp.dataset.gp, d=+gp.dataset.d; S[k]=Math.max(0,(S[k]||0)+d); if(S.guests<1) S.guests=1; updAb(); return; }
+    const pp=e.target.closest('[data-abpop]'); if(pp){ const k=pp.dataset.abpop;
+      if(k==='close'||AB.pop===k){ if(AB.pop==='cal'&&!AB.b){ AB.a=S.in; AB.b=S.out; } AB.pop=null; }
+      else { AB.pop=k; if(k==='cal'){ AB.a=S.in; AB.b=S.out; AB.ym=ymOf(S.in); } }
+      updAb(); if(AB.pop&&matchMedia('(min-width:901px)').matches) $('#abRes')?.scrollIntoView({block:'nearest',behavior:'smooth'}); return; }
+    const jp=e.target.closest('[data-abjump]'); if(jp){ e.preventDefault(); abJump(jp.getAttribute('href').slice(1)); return; }
+    const ab=e.target.closest('[data-ab]'); if(ab){ const k=ab.dataset.ab, r=ROOMS.find(x=>x.id===AB.room);
+      if(k==='share'){ const u=location.href.split('#')[0]; if(navigator.share) navigator.share({title:r.name+' · Aranyaak',url:u}).catch(()=>{}); else navigator.clipboard?.writeText(u).then(()=>toast('Link copied'),()=>toast('Copy the address bar to share')); }
+      else if(k==='save'){ AB.saved.has(r.id)?AB.saved.delete(r.id):AB.saved.add(r.id); ab.setAttribute('aria-pressed',AB.saved.has(r.id)); ab.textContent=AB.saved.has(r.id)?'♥ Saved':'♡ Save'; toast(AB.saved.has(r.id)?'Saved':'Removed from saved'); }
+      else if(k==='moream'){ AB.moreAm=!AB.moreAm; render(); abJump('abAmen'); }
+      else if(k==='moreknow'){ AB.moreKnow=!AB.moreKnow; render(); abJump('abKnow'); }
+      return; }
+    const rs=e.target.closest('[data-act="abreserve"]'); if(rs){ e.stopPropagation(); const r=ROOMS.find(x=>x.id===AB.room); if(!availR(r)||!fitsR(r)) return; AB.pop=null; document.body.classList.remove('ab-popm'); S.room=r.id; S.rate='bb'; S.stay=r.name; S.sub=1; go(3); return; }
+    if(AB.pop&&!e.target.closest('.ab-pop')){ if(AB.pop==='cal'&&!AB.b){ AB.a=S.in; AB.b=S.out; } AB.pop=null; updAb(); }
+  },true);
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&AB.pop&&$('.ab')){ if(AB.pop==='cal'&&!AB.b){ AB.a=S.in; AB.b=S.out; } AB.pop=null; updAb(); } });
+
+  function cpSum(){
+    const r=room(), n=nights(), c=cancelBy(), x=EXTRAS.filter(e=>S.extras.has(e.id));
+    return `<div class="cp-card"><div class="cp-prop"><img src="${r.imgs[0]}" alt="" loading="lazy"><div><b>${r.name}</b><small>${r.view} · private pool</small><small class="ok">Breakfast included</small></div></div>
+      <div class="cp-blk"><b>${c?'Free cancellation':'Cancellation'}</b><p>${c?`Cancel before ${c} for a full refund.`:'Less than 14 days to arrival: the 50% advance is non-refundable.'}</p>
+        <details><summary>Full policy</summary><p>Full refund 14+ days before arrival. Later than that, the 50% advance is non-refundable. Refunds within 7 working days.</p></details></div>
+      <div class="cp-row"><div><b>Dates</b><span>${range()}</span></div><button type="button" class="ab-pill" data-cpchange="cal">Change</button></div>
+      <div class="cp-row"><div><b>Guests</b><span>${gTxt()}</span></div><button type="button" class="ab-pill" data-cpchange="guests">Change</button></div>
+      <div class="cp-blk"><b>Price details</b>
+        <dl><div><dt>${nTxt(n)}</dt><dd>${money(stayGross())}</dd></div><div><dt>Book direct · 10% off</dt><dd class="neg">− ${money(stayGross()-stayNet())}</dd></div>${x.map(e=>`<div><dt>${e.name}</dt><dd>On request</dd></div>`).join('')}</dl>
+        <div class="cp-tot"><span>Total · VAT &amp; service incl.</span><b>${money(total())}</b></div></div>
+      <div class="cp-due"><div><span>Due now (50%)</span><b>${money(advance())}</b></div><div><span>At check-in</span><b>${money(total()-advance())}</b></div></div></div>`;
+  }
+  function cpHtml(){
+    const sub=S.sub||1, g=S.guest, m=PAY.find(x=>x.id===S.pay)||PAY[0];
+    const inp=(id,label,type,attrs='')=>`<div class="bf" data-f="${id}"><label for="g_${id}">${label}</label><input id="g_${id}" type="${type}" value="${esc(g[id])}" ${attrs}><span class="msg">${MSG[id]}</span></div>`;
+    const box=(k,t,inner,doneTxt)=>{ const open=sub===k, done=sub>k;
+      return `<section class="cp-step${open?' open':''}${done?' done':''}" id="cpS${k}"><div class="cp-sh"><h2>${k}. ${t}</h2>${done?`<button type="button" class="ab-lnk" data-cp="${k}">Edit</button>`:''}</div>${open?inner:done?`<p class="cp-done">${doneTxt}</p>`:''}</section>`; };
+    const s1=`<div class="fgrid">${inp('first','First name','text','autocomplete="given-name" required')}${inp('last','Last name','text','autocomplete="family-name" required')}${inp('phone','Mobile / WhatsApp','tel','autocomplete="tel" placeholder="+880 1XXX-XXXXXX" required')}${inp('email','Email (for your confirmation)','email','autocomplete="email" required')}
+      <div class="bf full"><label for="g_requests">Special requests <i>(optional)</i></label><textarea id="g_requests" placeholder="Anniversary, arrival time, dietary needs…">${esc(g.requests)}</textarea></div></div>
+      <div class="cp-nx"><button type="button" class="btn btn-forest" data-cp="next">Next</button></div>`;
+    const s2=`<p class="cp-lead">Pay ${money(advance())} now. The other ${money(total()-advance())} is paid at check-in.</p>
+      <div class="pm cp-pm" role="radiogroup" aria-label="Payment method">${PAY.map(p=>`<label class="pm-opt"><input type="radio" name="pay" value="${p.id}" ${S.pay===p.id?'checked':''}><span class="pm-ic" aria-hidden="true">${PAYIC[p.ic]}</span><span class="pm-tx"><b>${p.name}</b><small>${p.sub}</small></span><i class="pm-ck" aria-hidden="true"></i></label>`).join('')}</div>
+      <div class="pm-note" id="payNote">${payNote()}</div>
+      <p class="pm-secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Online payments are processed securely by SSLCOMMERZ. We never see or store your card details.</p>
+      <div class="cp-nx"><button type="button" class="btn btn-forest" data-cp="next">Next</button></div>`;
+    const s3=`<dl class="cp-rev"><div><dt>Cottage</dt><dd>${room().name}</dd></div><div><dt>Dates</dt><dd>${range()} · ${nTxt(nights())}</dd></div><div><dt>Guests</dt><dd>${gTxt()}</dd></div><div><dt>Guest</dt><dd>${esc(g.first)} ${esc(g.last)} · ${esc(g.phone)}</dd></div><div><dt>Payment</dt><dd>${m.name} · ${money(advance())} now</dd></div></dl>
+      <h3 class="cp-h3">Add to your stay <small>optional · price on request</small></h3>
+      <div class="cp-x">${EXTRAS.map(x=>{const on=S.extras.has(x.id); return `<button type="button" class="cp-xb${on?' on':''}" data-act="x" data-x="${x.id}" aria-pressed="${on}">${on?'✓ ':'+ '}${x.name}</button>`;}).join('')}</div>
+      <label class="agree" id="agree"><input type="checkbox" id="g_agree" ${S.agree?'checked':''}><span>I agree to the booking and cancellation policy. The 50% advance becomes non-refundable within 14 days of arrival.</span></label>
+      <button type="button" class="btn btn-forest cp-pay" data-act="go">${S.pay==='bank'?'Confirm booking':'Confirm and pay '+money(advance())}</button>`;
+    return `<div class="cp"><div class="cp-top"><button type="button" class="cp-back" data-act="cpback" aria-label="Back to the cottage">←</button><h1 tabindex="-1" id="bkTitle">Confirm and pay</h1></div>
+      <div class="cp-grid"><div class="cp-l">${box(1,'Your details',s1,`${esc(g.first)} ${esc(g.last)} · ${esc(g.phone)}`)}${box(2,'Pay the 50% advance',s2,`${m.name} · ${money(advance())} now`)}${box(3,'Review your booking',s3,'')}</div>
+      <aside class="cp-r" aria-label="Your booking">${cpSum()}</aside></div></div>`;
+  }
+  function cpValid(){
+    const bad=[]; ['first','last','phone','email'].forEach(k=>{ const v=(S.guest[k]||'').trim(); let ok=!!v; if(k==='email') ok=/^\S+@\S+\.\S+$/.test(v); if(k==='phone') ok=v.replace(/\D/g,'').length>=7;
+      view.querySelector(`[data-f="${k}"]`)?.classList.toggle('err',!ok); if(!ok) bad.push(k); });
+    if(bad.length){ $('#g_'+bad[0])?.focus(); return false; } return true;
+  }
+  function cpGo(k){ S.sub=k; render(); const s=$('#cpS'+k); if(s){ const y=s.getBoundingClientRect().top+scrollY-110; scrollTo({top:Math.max(0,y)}); s.querySelector('input,button')?.focus({preventScroll:true}); } }
+  bk.addEventListener('click',e=>{
+    if(!$('.cp')) return;
+    const c=e.target.closest('[data-cp]'); if(c){ const k=c.dataset.cp;
+      if(k==='next'){ if(S.sub===1&&!cpValid()) return; cpGo((S.sub||1)+1); } else cpGo(+k); return; }
+    const ch=e.target.closest('[data-cpchange]'); if(ch){ S.detail=S.room; AB.room=null; go(1); AB.pop=ch.dataset.cpchange; if(AB.pop==='cal'){ AB.a=S.in; AB.b=S.out; } updAb(); return; }
+    if(e.target.closest('[data-act="cpback"]')){ e.stopPropagation(); go(1); }
+  },true);
   function render(){
+    if(S.step===2) S.step=3;
+    document.body.classList.remove('ab-popm');
+    if(S.step===1&&S.detail){ view.innerHTML=abPageHtml(ROOMS.find(r=>r.id===S.detail)); bk.classList.add('detail'); bk.classList.remove('cpm','done'); document.body.classList.toggle('ab-popm',!!AB.pop); return; }
+    if(S.step===3){ view.innerHTML=cpHtml(); bk.classList.remove('detail','done'); bk.classList.add('cpm'); return; }
+    bk.classList.remove('cpm');
     const head={1:['Choose your cottage',''],2:['Make it yours','Request any extras you would like. We confirm the price with you before your stay.'],3:['Your details','We only need a few things to hold your cottage. Please bring your NID or passport at check-in.'],4:['Your stay is reserved',`We have sent the details to ${esc(S.guest.email)} by email and SMS.`]}[S.step];
     let top='', body='';
     if(S.step===1){({top,body}=roomsHtml());}
@@ -3422,7 +3816,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     lb.addEventListener('click',e=>{ if(e.target.closest('.lb-x')||e.target===lb) close(); else if(e.target.closest('.lb-n.n')){i=(i+1)%gal.length;draw();} else if(e.target.closest('.lb-n.p')){i=(i-1+gal.length)%gal.length;draw();} });
   }
   function go(s,push=true){
-    S.step=s; render(); scrollTo({top:0});
+    if(s===2) s=3; S.step=s; render(); scrollTo({top:0});
     $('#bkTitle').focus({preventScroll:true});
     if(push) try{history.pushState({bk:s},'');}catch(_){}
   }
@@ -3431,7 +3825,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     if(!outD||outD<=inD) outD=addDays(inD,1);
     Object.assign(S,{in:inD,out:outD,guests:+$('#guests').value,kids:0,stay:$('#stay').value,promo:'',
       room:null,rate:null,detail:null,extras:new Set(),guest:{country:'Bangladesh',arrival:'2:00 PM'},pay:'card',agree:false,ref:null});
-    { const pre=ROOMS.find(r=>r.name===S.stay); if(pre){ S.room=pre.id; S.rate='bb'; } }
+    AB.room=null; { const pre=ROOMS.find(r=>r.name===S.stay); if(pre){ S.room=pre.id; S.rate='bb'; S.detail=pre.id; } }
     closeBook(); closeMenu(true);
     document.body.classList.add('booking'); bk.hidden=false; if(show) go(1);
   }
@@ -3449,10 +3843,13 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     if(!S.agree){$('#g_agree').focus(); toast('Please agree to the booking policy'); return false;}
     return true;
   }
+  function cpFinal(){ const g=S.guest; const okD=(g.first||'').trim()&&(g.last||'').trim()&&/^\S+@\S+\.\S+$/.test(g.email||'')&&(g.phone||'').replace(/\D/g,'').length>=7;
+    if(!okD){ cpGo(1); setTimeout(cpValid,0); return false; }
+    if(!S.agree){ $('#agree')?.classList.add('err'); $('#g_agree')?.focus(); toast('Please agree to the booking policy'); return false; } return true; }
   function primary(){
-    if(S.step===1){ if(rate()) go(2); }
+    if(S.step===1){ if(rate()){ S.sub=1; go(3); } }
     else if(S.step===2) go(3);
-    else if(S.step===3 && validate()){
+    else if(S.step===3 && cpFinal()){
       S.ref='ARK-26-'+(10000+Math.floor(Math.random()*90000));
       if(S.pay==='bank'){ S.paid=false; last={...S,extras:new Set(S.extras),guest:{...S.guest}}; go(4); }
       else openPay();
@@ -3625,8 +4022,8 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       const k=nv.dataset.rsdot!==undefined?+nv.dataset.rsdot:(cur+ +nv.dataset.rsnav+n)%n; t.scrollTo({left:k*t.clientWidth,behavior:'smooth'}); return; }
     const b=e.target.closest('[data-rsgo]'); if(!b) return; const rid=b.dataset.rsgo;
     $('#checkin').value=$('#abIn').value; $('#checkout').value=$('#abOut').value; $('#guests').value=$('#abGuests').value;
-    startBooking(false); S.stay=ROOMS.find(r=>r.id===rid).name; S.room=rid; S.rate='bb'; S.detail=b.dataset.to==='avail'?null:rid; go(1);
-    if(b.dataset.to==='avail') setTimeout(()=>$('#rpAvail')?.scrollIntoView({block:'start'}),60); });
+    startBooking(false); S.stay=ROOMS.find(r=>r.id===rid).name; S.room=rid; S.rate='bb'; S.detail=rid; AB.room=null; go(1);
+    if(b.dataset.to==='avail') setTimeout(()=>abJump('abDates'),80); });
 
   addEventListener('popstate',e=>{
     if(!document.body.classList.contains('booking')) return;
