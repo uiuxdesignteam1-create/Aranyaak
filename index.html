@@ -2222,6 +2222,9 @@ html[lang="bn"] body :is(.rs-price,.price,.amt,.tot b,.pn-num,.reel-price,.pay-h
 @media (max-width:900px){.cp-card .cp-blk{display:none}}
 
 .rc-compact .rc-pic{cursor:pointer}.rc-name{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left}.rc-name:hover{text-decoration:underline}
+
+/* menu: hide links already shown in the top bar */
+@media (min-width:1201px){.umenu .um-dup{display:none}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2277,18 +2280,18 @@ html[lang="bn"] body :is(.rs-price,.price,.amt,.tot b,.pn-num,.reel-price,.pay-h
       </button>
       <div class="umenu" id="umenu" role="menu" aria-label="Menu" hidden>
         <button type="button" role="menuitem" data-um="lang"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span>Language · বাংলা / English</span></button>
-        <a role="menuitem" href="#talk" data-page="contact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8M12 16.5v.5" stroke-linecap="round"/></svg><span>Help &amp; contact</span></a>
+        
         <hr>
         <a role="menuitem" class="um-feature" href="#top" data-book><span><b>Book direct</b><small>10% off automatically, breakfast included.</small></span><svg viewBox="0 0 986 820" aria-hidden="true"><use href="#logo"/></svg></a>
         <hr>
-        <a role="menuitem" href="#rooms">Pool cottages</a>
-        <a role="menuitem" href="#offers">Special offers</a>
-        <a role="menuitem" href="#dining">Dining</a>
-        <a role="menuitem" href="#events">Events</a>
+        <a role="menuitem" class="um-dup" href="#rooms">Pool cottages</a>
+        <a role="menuitem" class="um-dup" href="#offers">Special offers</a>
+        <a role="menuitem" class="um-dup" href="#dining">Dining</a>
+        <a role="menuitem" class="um-dup" href="#events">Events</a>
         <a role="menuitem" href="#reviews">Guest reviews</a>
         <a role="menuitem" href="#estate">Explore the resort</a>
         <a role="menuitem" href="#founders">About Aranyaak</a>
-        <a role="menuitem" href="#gallery" data-page="gallery">Gallery</a>
+        <a role="menuitem" class="um-dup" href="#gallery" data-page="gallery">Gallery</a>
         <a role="menuitem" href="#payment" data-page="payment">Payment options</a>
         <a role="menuitem" href="#contact" data-page="contact">Contact</a>
         <hr>
