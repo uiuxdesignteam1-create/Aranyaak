@@ -1987,6 +1987,28 @@ html[lang="bn"] body :is(.rs-price,.price,.amt,.tot b,.pn-num,.reel-price,.pay-h
 .acc-strip b{font-family:var(--f-display);font-weight:400;font-size:19px;color:var(--forest);line-height:1.2}
 .acc-strip span{font-size:13.5px;color:var(--muted)}
 @media (max-width:900px){.acc-strip{grid-template-columns:1fr 1fr}.acc-strip li:nth-child(3){border-left:0}.acc-strip li:nth-child(n+3){border-top:1px solid var(--line)}.acc-strip li{padding:16px 10px;grid-template-columns:38px 1fr}.acc-strip svg{width:34px;height:34px;padding:7px}.acc-strip b{font-size:16px}}
+
+/* compact result card (Figma 10 · variant A) */
+.rc-shared{margin:0 0 14px;padding:12px 18px;border-radius:8px;background:#EEF4EF;color:var(--forest);font-size:13px;line-height:1.5}
+.rc-shared b{font-weight:600}
+.rcard.rc-compact{grid-template-columns:220px minmax(0,1fr)!important;min-height:0}
+.rc-compact .rc-pic{min-height:170px}
+.rc-row{display:flex;align-items:center;gap:20px;padding:20px 24px}
+.rc-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.rc-info h3{font-size:24px;margin:0}
+.rc-info .rc-meta{margin:0}
+.rc-info .av-line,.rc-info .fit{margin:0;font-size:12.5px}
+.rc-av{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#EEF4EF;color:var(--forest)}
+.rc-av i{width:6px;height:6px;border-radius:50%;background:#2F6B44}
+.rc-av.no{background:#F3E6E2;color:#8A3B2A}.rc-av.no i{background:#B5523B}
+.rc-buy{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex:none}
+.rc-buy .amt{text-align:right;font-family:var(--f-display);font-size:24px;color:var(--forest);line-height:1.15}
+.rc-buy .amt s{display:block;font-family:var(--f-body);font-size:12px;color:var(--muted)}
+.rc-buy .amt small{display:block;font-family:var(--f-body);font-size:11px;color:var(--muted)}
+.rc-buy .btn-sel{min-width:120px}
+.btn-sel,.btn-sel:hover,.btn-sel.on:hover{box-shadow:none!important}
+.rcard.is-booked .rc-buy .amt{opacity:.55}
+@media (max-width:600px){.rcard.rc-compact{grid-template-columns:1fr!important}.rc-compact .rc-pic{min-height:180px}.rc-row{flex-direction:column;align-items:stretch;padding:16px 18px;gap:14px}.rc-buy{flex-direction:row;align-items:center;justify-content:space-between}.rc-buy .amt{text-align:left}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -3142,18 +3164,19 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       <div class="bf"><label for="dbS">Stay in</label><select id="dbS">${(()=>{ const cur=S.room?(room()||{}).name:S.stay; return [ALL,...ROOMS.map(r=>r.name)].map(v=>`<option value="${v}" ${v===(cur||S.stay)?'selected':''}>${v}</option>`).join(''); })()}</select></div>
       <button class="btn btn-forest btn-sm" type="submit">Check availability</button></form>`;
     const avSum=`<div class="av-sum ${freeN?'ok':'none'}" role="status"><span class="av-dot"></span><p><b>${freeN?`${freeN} of ${list.length} cottage${list.length>1?'s':''} available`:(list.length>1?'All cottages are booked':'This cottage is booked')}</b> for ${range()}${freeN?'':'. Please try other dates'+(S.stay!==ALL?' or see all cottages.':'.')}</p></div>`;
-    const cards=list.slice().sort((a,b)=>availR(b)-availR(a)).map(r=>{const av=availR(r), fits=fitsR(r)&&av, sel=S.room===r.id;
-      return `<article class="card rcard${sel?' sel':''}${av?'':' is-booked'}"><div class="pic rc-pic"><img src="${r.imgs[0]}" alt="${r.name}" loading="lazy"><span class="rc-cap">${r.view} · private pool</span><span class="av-badge ${av?'ok':'no'}">${av?'Available':'Booked'}</span></div>
-        <div class="rc-body">${r.chip?`<span class="chip">${r.chip}</span>`:''}<h3>${r.name}</h3>
-        ${av?`<p class="av-line ok">✓ Available for ${range()}</p>`:`<p class="av-line no">Booked for your dates. Try other dates or choose another cottage.</p>`}
-        <p class="rc-meta">${r.view} · Private pool · Infinity terrace · ${r.size} m² · ${r.bed}</p><p class="rc-meta">2 adults + 1 child as standard · up to 4 adults, or 2 adults + 2 children</p><p class="rc-desc">${r.desc}</p>
-        ${fitsR(r)?'':`<p class="fit">Each cottage sleeps up to 4 guests (4 adults, or 2 adults + 2 children).</p>`}
-        ${r.rates.map(rt=>{const on=sel&&S.rate===rt.id;
-          return `<div class="rate"><div><b>${rt.name}</b><small>${terms(rt)}</small></div>
-            <div class="amt"><s>${money(stayGross())}</s>${money(stayNet())}<small>${nights()} night${nights()>1?'s':''} · VAT &amp; service incl.</small><span class="off">10% off · book direct</span></div>
-            <button class="btn btn-forest btn-sm btn-sel${on?' on':''}" data-act="sel" data-r="${r.id}" data-t="${rt.id}" aria-pressed="${on}" ${fits?'':'disabled'}>${!av?'Booked':on?'Selected ✓':'Select'}</button></div>`;}).join('')}
+    const shared=`<p class="rc-shared"><b>Every cottage:</b> Private pool · Infinity terrace · King-size bed · 70 m² · Breakfast included · 50% advance, balance at check-in</p>`;
+    const cards=list.slice().sort((a,b)=>availR(b)-availR(a)).map(r=>{const av=availR(r), fits=fitsR(r)&&av, sel=S.room===r.id, n=nights();
+      const rt=r.rates[0], on=sel&&S.rate===rt.id;
+      return `<article class="card rcard rc-compact${sel?' sel':''}${av?'':' is-booked'}"><div class="pic rc-pic"><img src="${r.imgs[0]}" alt="${r.name}" loading="lazy"></div>
+        <div class="rc-row">
+          <div class="rc-info"><span class="rc-av ${av?'ok':'no'}"><i></i>${av?'Available':'Booked'}</span><h3>${r.name}</h3>
+            <p class="rc-meta">${r.view} · up to ${r.cap} guests</p>
+            ${av?'':`<p class="av-line no">Booked for your dates. Try other dates.</p>`}
+            ${fitsR(r)?'':`<p class="fit">Sleeps up to 4 (4 adults, or 2 adults + 2 children).</p>`}</div>
+          <div class="rc-buy"><div class="amt"><s>${money(stayGross())}</s>${money(stayNet())}<small>${n} night${n>1?'s':''} · 10% off direct</small></div>
+            <button class="btn btn-forest btn-sm btn-sel${on?' on':''}" data-act="sel" data-r="${r.id}" data-t="${rt.id}" aria-pressed="${on}" ${fits?'':'disabled'}>${!av?'Booked':on?'Selected ✓':'Select'}</button></div>
         </div></article>`;}).join('');
-    return {top:datebar, body:`${avSum}<div class="rooms-list">${cards}</div>${S.stay!==ALL?`<button class="backlink" data-act="all">Show all 7 cottages</button>`:''}`};
+    return {top:datebar, body:`${avSum}${shared}<div class="rooms-list">${cards}</div>${S.stay!==ALL?`<button class="backlink" data-act="all">Show all 7 cottages</button>`:''}`};
   }
   const ICON={wifi:'📶',view:'🌄',bath:'🛁',ac:'❄️',tea:'☕',veranda:'🪴',kitchen:'🍳',court:'🌳',book:'📚'};
   const amenIcon=a=>/view/i.test(a)?ICON.view:/wifi/i.test(a)?ICON.wifi:/bath/i.test(a)?ICON.bath:/air/i.test(a)?ICON.ac:/tea|coffee/i.test(a)?ICON.tea:/veranda/i.test(a)?ICON.veranda:/kitchen/i.test(a)?ICON.kitchen:/courtyard/i.test(a)?ICON.court:ICON.book;
