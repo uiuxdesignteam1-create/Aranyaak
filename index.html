@@ -2345,6 +2345,9 @@ html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,h
 /* subtle drop shadow under every card (Nov 2026) */
 :root{--card-shadow:0 1px 2px rgba(27,64,37,.06),0 10px 26px -14px rgba(27,64,37,.22)}
 .rs-card,.offer,.dn-f figure,.event.bt,.rcard,.xcard,.pay-card,.ct-card,.pn,.gl-item,.cp-step,.cp-r,.ab-res,.founders .pic{box-shadow:var(--card-shadow)}
+/* softer divider between nav and floating booking bar */
+html body .nav.expanded:not(.open) .nav-bar{border-bottom-color:transparent!important}
+html body .nav.expanded:not(.open) .book-panel{border-top:1px solid rgba(27,64,37,.06)!important}
 /* bigger top-bar links (Nov 2026) */
 .nav-links a{font-size:17px!important}
 html[lang="bn"] .nav-links a{font-size:19px!important}
