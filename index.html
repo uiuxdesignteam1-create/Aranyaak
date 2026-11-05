@@ -2314,6 +2314,15 @@ section.discover{background:var(--ivory);padding-bottom:0}
   .dc-tabs{gap:16px;overflow-x:auto}
   .dc-tabs button{white-space:nowrap}
 }
+
+/* top bar always shows its links on computers; menu never repeats them */
+@media (min-width:901px){.nav-links{display:flex!important}.umenu .um-dup{display:none!important}}
+@media (min-width:901px) and (max-width:1200px){
+  .nav-links{gap:18px!important;margin:0 10px!important}
+  .nav-links a{font-size:14px!important}
+  .nav-call{font-size:0!important;width:44px;height:44px;border-radius:50%;background:#F1ECE3;justify-content:center;padding:0!important}
+  .nav-call .nc-ic{display:block!important}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2356,7 +2365,7 @@ section.discover{background:var(--ivory);padding-bottom:0}
       <span class="wordmark"><b>ARANYAAK</b><span>LUXURY RESORT</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
-      <span class="nav-ind" aria-hidden="true"></span><a href="#rooms" data-spy="rooms"><span>Pool cottages</span></a><a href="#offers" data-spy="offers"><span>Offers</span></a><a href="#dining" data-spy="dining"><span>Dining</span></a><a href="#gallery" data-page="gallery"><span>Gallery</span></a><a href="#events" data-spy="events"><span>Events</span></a>
+      <span class="nav-ind" aria-hidden="true"></span><a href="#rooms" data-spy="rooms"><span>Cottages</span></a><a href="#offers" data-spy="offers"><span>Offers</span></a><a href="#dining" data-spy="dining"><span>Dining</span></a><a href="#gallery" data-page="gallery"><span>Gallery</span></a><a href="#events" data-spy="events"><span>Events</span></a>
     </nav>
     <div class="nav-right">
       <button class="nav-close" id="closeBook" aria-label="Close booking"><span class="navtext">Close</span>
@@ -2373,7 +2382,7 @@ section.discover{background:var(--ivory);padding-bottom:0}
         <hr>
         <a role="menuitem" class="um-feature um-soft" href="#top" data-book><span class="um-ic" aria-hidden="true"><svg viewBox="0 0 986 820"><use href="#logo"/></svg></span><span class="um-tx"><b>Book a cottage</b><small>10% off + breakfast included</small></span><svg class="um-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <hr>
-        <a role="menuitem" class="um-dup" href="#rooms">Pool cottages</a>
+        <a role="menuitem" class="um-dup" href="#rooms">Cottages</a>
         <a role="menuitem" class="um-dup" href="#offers">Special offers</a>
         <a role="menuitem" class="um-dup" href="#dining">Dining</a>
         <a role="menuitem" class="um-dup" href="#events">Events</a>
@@ -4155,6 +4164,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   Object.assign(BN, {"TAP TO OPEN": "খুলতে চাপুন", "Breakfast and unlimited raw tea are included with every stay. Outside guests are welcome with a reservation.": "প্রতিটি বুকিংয়ের সঙ্গে সকালের নাশতা আর যত খুশি কাঁচা চা। বাইরের অতিথিরাও আগে থেকে জানিয়ে আসতে পারেন।", "See menu & reserve": "মেনু দেখুন ও টেবিল বুক করুন", "Call RASOI": "রসুইতে ফোন করুন", "RASOI, our restaurant": "রসুই, আমাদের রেস্টুরেন্ট", "Weddings, holud, retreats and celebrations for up to 200 guests.": "বিয়ে, হলুদ, অফিসের রিট্রিট কিংবা পারিবারিক উদযাপন, ২০০ জন পর্যন্ত অতিথির জন্য।", "Send an enquiry →": "জানতে চাইলে লিখুন →", "Celebrate and meet among the tea hills": "চা-পাহাড়ের মাঝে উদযাপন আর আয়োজন", "Retreats": "রিট্রিট", "Off-sites": "অফ-সাইট", "Birthdays": "জন্মদিন", "Anniversaries": "বিবাহবার্ষিকী", "“Waking up to our own pool with the tea garden right below was something else. Quiet, private and the staff remembered every little thing we asked for.”": "“নিজের পুলের পাশে ঘুম ভাঙা আর ঠিক নিচেই চা-বাগান, অন্যরকম অনুভূতি। শান্ত, নিরিবিলি, আর আমাদের ছোটখাটো সব অনুরোধও স্টাফরা মনে রেখেছিলেন।”", "“We came for the rainforest and stayed by the pool most of the day. The Lawachara walk in the morning and dinner by candlelight were the highlights.”": "“এসেছিলাম বনের টানে, কিন্তু দিনের বেশিরভাগ সময় কাটল পুলের পাশেই। সকালে লাউয়াছড়ায় হাঁটা আর রাতে ক্যান্ডেললাইট ডিনার ছিল সবচেয়ে ভালো লাগার।”", "“Perfect for a short break from the city. Clean cottage, a lovely private pool and fresh Sylheti breakfast served on the deck.”": "“শহর থেকে কয়েক দিনের বিরতির জন্য একদম ঠিকঠাক। পরিষ্কার কটেজ, সুন্দর প্রাইভেট পুল, আর ডেকে বসে সিলেটি নাশতা।”", "“The sunset from the ridge with a swim at the same time is hard to beat. We are already planning our next visit in the monsoon.”": "“টিলার ওপর থেকে সূর্যাস্ত দেখতে দেখতে সাঁতার, এর তুলনা হয় না। বর্ষায় আবার আসার পরিকল্পনা করছি।”", "Dhaka": "ঢাকা", "Chattogram": "চট্টগ্রাম", "Sylhet": "সিলেট", "London, UK": "লন্ডন, যুক্তরাজ্য", "Couple": "দম্পতি", "Anniversary": "বিবাহবার্ষিকী", "Weekend": "উইকেন্ড", "Family": "পরিবার"});
   Object.assign(BN, {"Around Aranyaak": "অরণ্যকের আশপাশে", "Nearby places to explore": "কাছাকাছি ঘুরে দেখার জায়গা", "Nearby places": "কাছাকাছি দর্শনীয় স্থান", "Rainforest, tea gardens, lakes and waterfalls around Sreemangal. Tap a place to open it in Google Maps.": "শ্রীমঙ্গলের আশপাশে বন, চা-বাগান, লেক আর ঝরনা। কোনো জায়গায় চাপ দিলে গুগল ম্যাপে খুলবে।", "Images are illustrations, not photographs of the places.": "ছবিগুলো আঁকা চিত্র, জায়গাগুলোর আসল ছবি নয়।", "Lawachara National Park": "লাউয়াছড়া জাতীয় উদ্যান", "Rainforest trails and hoolock gibbons": "বনের পথ আর উল্লুক", "Sreemangal tea gardens": "শ্রীমঙ্গলের চা-বাগান", "Walks through the rolling tea estates": "ঢেউখেলানো চা-বাগানে হাঁটা", "Nilkantha Tea Cabin": "নীলকণ্ঠ টি কেবিন", "The famous seven-layer tea": "বিখ্যাত সাত রঙের চা", "Khasia village": "খাসিয়া পুঞ্জি", "Betel-leaf village inside the forest": "বনের ভেতরে পান-চাষের গ্রাম", "Madhabpur Lake": "মাধবপুর লেক", "A quiet lake among the tea hills": "চা-পাহাড়ের মাঝে শান্ত লেক", "Baikka Beel": "বাইক্কা বিল", "Wetland birds, best in winter": "জলাভূমির পাখি, শীতে সবচেয়ে ভালো", "Tea Resort & Museum": "টি রিসোর্ট ও জাদুঘর", "Tools and stories of the tea industry": "চা-শিল্পের যন্ত্র আর গল্প", "Noorjahan Tea Garden": "নূরজাহান চা-বাগান", "A well-known Sreemangal tea estate": "শ্রীমঙ্গলের পরিচিত চা-বাগান", "Hum Hum waterfall": "হামহাম ঝরনা", "Forest trek, best in the monsoon": "বনের পথে ট্রেক, বর্ষায় সবচেয়ে সুন্দর"});
   Object.assign(BN, {"Discover Aranyaak": "অরণ্যক ঘুরে দেখুন", "Location": "অবস্থান", "On Lawachara Road, in the tea country of Sreemangal. Find us, see what is close by, and plan your journey.": "শ্রীমঙ্গলের চা-বাগানের মাঝে, লাউয়াছড়া রোডে। আমাদের খুঁজে নিন, কাছের জায়গাগুলো দেখুন আর যাত্রা ঠিক করুন।", "Our location": "আমাদের ঠিকানা", "What’s nearby": "কাছে কী আছে", "How to get here": "কীভাবে আসবেন", "Get directions": "পথ দেখুন", "Call +880 1332-546712": "কল করুন +880 1332-546712", "Tap a place for directions from the resort.": "রিসোর্ট থেকে পথ দেখতে জায়গায় চাপ দিন।", "By road": "সড়কপথে", "By train": "ট্রেনে", "By air": "আকাশপথে", "Intercity trains run from Dhaka and Sylhet to Sreemangal station. We can pick you up from the station.": "ঢাকা ও সিলেট থেকে আন্তঃনগর ট্রেন শ্রীমঙ্গল স্টেশনে যায়। আমরা স্টেশন থেকে আপনাকে নিয়ে আসতে পারি।", "Airport pick-up and drop-off can be added when you book.": "বুকিংয়ের সময় এয়ারপোর্ট পিক-আপ ও ড্রপ যোগ করা যায়।", "Lawachara Khasia village": "লাউয়াছড়া খাসিয়া পুঞ্জি", "Aranyaak Luxury Resort": "অরণ্যক লাক্সারি রিসোর্ট"});
+  Object.assign(BN, {"Cottages": "কটেজ"});
   const BN_RULES=[
     [/^(\d+) photos$/, m=>`${m[1]}টি ছবি`],
     [/^(\d+) nights?$/, m=>`${m[1]} রাত`],
