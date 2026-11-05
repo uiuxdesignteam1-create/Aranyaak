@@ -1642,7 +1642,7 @@ input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0;line-heig
 .hero h1.h-pool{font-size:clamp(40px,5.1vw,74px);text-wrap:balance}
 
 /* ===== CTA colour: Saffron (#F69B31) with white text + soft text shadow ===== */
-:root{--cta:#2F6B44;--cta-hover:#1B4025;--cta-press:#163620;--cta-shadow:none}
+:root{--cta:#2F6B44;--cta-hover:#2F6B44;--cta-press:#163620;--cta-shadow:none}
 html body .rs-btns .btn-gold,html body .v360,html body .tour-btn,html body .sr-mapbtn,html body .av-reserve .btn-gold,html body .btn-gold,html body .btn-forest,html body .hc-book,html body .bs-book,html body .mbar-book,html body .menu-book,html body .sr-go,html body .rb-go,html body #bkBarB,html body .btn-sel.on,
 .btn-gold,.btn-forest,.hc-book,.bs-book,.mbar-book,.menu-book,.book-form .btn-forest,.sr-go,.rb-go,.go,#bkBarB,.btn-sel.on,
 .founders .btn-gold,.talk .btn-gold,.hero-ctas .btn-forest,.cpop-act .btn-forest,.drp-ft .btn-forest{
@@ -2323,6 +2323,20 @@ section.discover{background:var(--ivory);padding-bottom:0}
   .nav-call{font-size:0!important;width:44px;height:44px;border-radius:50%;background:#F1ECE3;justify-content:center;padding:0!important}
   .nav-call .nc-ic{display:block!important}
 }
+/* CTA hover: keep the colour, sweep a white shimmer across (Nov 2026) */
+.btn-gold:hover,.btn-forest:hover,.hc-book:hover,.bs-book:hover,.sr-go:hover,.rb-go:hover,.sr-mapbtn:hover,.cp-pay:hover,.ab-go:hover,.btn-sel.on:hover,.book-form .btn-forest:hover,.talk .btn-gold:hover{background:var(--cta)!important;color:#fff!important;transform:none!important}
+.btn-sel:not(.on):hover{background:#fff!important;color:#2F6B44!important}
+.btn-outline:hover{background:transparent!important;color:#1B4025!important;border-color:#1B4025!important}
+.btn-ghost:hover{background:transparent!important}
+.btn-ghost.dc-call:hover{background:#fff!important}
+.btn,.hc-book,.sr-mapbtn,.mbar-book,.menu-book,.go,#bkBarB,.v360,.tour-btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::before,.hc-book::before,.sr-mapbtn::before,.mbar-book::before,.menu-book::before,.go::before,#bkBarB::before,.v360::before,.tour-btn::before{content:"";position:absolute;top:-10%;bottom:-10%;left:0;width:45%;background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,0) 15%,rgba(255,255,255,.6) 50%,rgba(255,255,255,0) 85%,transparent 100%);transform:translateX(-160%) skewX(-18deg);pointer-events:none;z-index:1}
+.btn-outline::before,.btn-sel:not(.on)::before{background:linear-gradient(105deg,transparent 0%,rgba(47,107,68,0) 15%,rgba(47,107,68,.16) 50%,rgba(47,107,68,0) 85%,transparent 100%)}
+.btn:hover::before,.hc-book:hover::before,.sr-mapbtn:hover::before,.mbar-book:hover::before,.menu-book:hover::before,.go:hover::before,#bkBarB:hover::before,.v360:hover::before,.tour-btn:hover::before,.btn:focus-visible::before,.hc-book:focus-visible::before{animation:ctaShine .85s cubic-bezier(.3,.6,.3,1)}
+.btn:disabled::before,.btn[disabled]::before{animation:none!important}
+@keyframes ctaShine{from{transform:translateX(-160%) skewX(-18deg)}to{transform:translateX(330%) skewX(-18deg)}}
+html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,html body .bs-book:hover,html body .mbar-book:hover,html body .menu-book:hover,html body .go:hover,html body #bkBarB:hover,html body .sr-go:hover,html body .rb-go:hover,html body .sr-mapbtn:hover,html body .btn-sel.on:hover{background:var(--cta)!important;transform:none!important}
+@media (prefers-reduced-motion:reduce){.btn::before,.hc-book::before,.sr-mapbtn::before,.mbar-book::before,.go::before,#bkBarB::before{display:none}}
 /* bigger top-bar links (Nov 2026) */
 .nav-links a{font-size:17px!important}
 html[lang="bn"] .nav-links a{font-size:19px!important}
