@@ -2337,6 +2337,9 @@ section.discover{background:var(--ivory);padding-bottom:0}
 @keyframes ctaShine{from{transform:translateX(-130%) skewX(-18deg)}to{transform:translateX(230%) skewX(-18deg)}}
 html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,html body .bs-book:hover,html body .mbar-book:hover,html body .menu-book:hover,html body .go:hover,html body #bkBarB:hover,html body .sr-go:hover,html body .rb-go:hover,html body .sr-mapbtn:hover,html body .btn-sel.on:hover{background:var(--cta)!important;transform:none!important}
 @media (prefers-reduced-motion:reduce){.btn::before,.hc-book::before,.sr-mapbtn::before,.mbar-book::before,.go::before,#bkBarB::before{display:none}}
+/* subtle drop shadow under every card (Nov 2026) */
+:root{--card-shadow:0 1px 2px rgba(27,64,37,.06),0 10px 26px -14px rgba(27,64,37,.22)}
+.rs-card,.offer,.dn-f figure,.event.bt,.rcard,.xcard,.pay-card,.ct-card,.pn,.gl-item,.cp-step,.cp-r,.ab-res,.founders .pic{box-shadow:var(--card-shadow)}
 /* bigger top-bar links (Nov 2026) */
 .nav-links a{font-size:17px!important}
 html[lang="bn"] .nav-links a{font-size:19px!important}
