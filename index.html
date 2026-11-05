@@ -2323,6 +2323,29 @@ section.discover{background:var(--ivory);padding-bottom:0}
   .nav-call{font-size:0!important;width:44px;height:44px;border-radius:50%;background:#F1ECE3;justify-content:center;padding:0!important}
   .nav-call .nc-ic{display:block!important}
 }
+
+/* Dining · RASOI — photo mosaic (Figma 18 · F) */
+html body section.dining.dn-f{background:var(--sand)!important}
+.dn-f .wrap{grid-template-columns:5fr 6fr!important;gap:72px!important;align-items:center}
+.dn-f .lead{font-size:16px;line-height:1.65;max-width:52ch}
+.dn-list{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:10px}
+.dn-list li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--forest);font-weight:500}
+.dn-list li span{color:var(--muted);font-weight:400}
+.dn-list i{font-style:normal;font-weight:700;width:18px;text-align:center;color:#9A5A0C}
+.dn-list li.inc i{color:#2F6B44}
+.dn-out{margin:22px 0 0;font-size:14px;color:var(--muted)}
+.dn-f .dining-actions{margin-top:26px}
+.dn-mosaic{display:grid;grid-template-columns:1.15fr 1fr 1fr;grid-template-rows:280px 220px;gap:14px}
+.dn-mosaic figure{margin:0;border-radius:18px;overflow:hidden;background:#DCD2BF}
+.dn-mosaic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.dn-mosaic figure:hover img{transform:scale(1.05)}
+.dn-a{grid-row:1/3}
+.dn-b{grid-column:2/4}
+@media (max-width:900px){
+  .dn-f .wrap{grid-template-columns:1fr!important;gap:36px!important}
+  .dn-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:240px 150px 150px;gap:10px}
+  .dn-a{grid-row:auto;grid-column:1/3}.dn-b{grid-column:auto}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2608,17 +2631,30 @@ section.discover{background:var(--ivory);padding-bottom:0}
   </section>
 
   <!-- Dining -->
-  <section class="dining" id="dining">
+  <section class="dining dn-f" id="dining">
     <div class="wrap">
-      <div class="pic"><img src="img/dining.jpg" alt="Dining on a veranda among the trees" loading="lazy"></div>
-      <div>
+      <div class="dn-txt">
         <span class="label">Dining · RASOI</span>
         <h2>RASOI, our restaurant</h2>
-        <p class="lead">Breakfast and unlimited raw tea are included with every stay. Outside guests are welcome with a reservation.</p>
+        <p class="lead">Breakfast at RASOI is included with every cottage stay, along with unlimited raw tea. Guests can also arrange a candlelight dinner, a BBQ evening or breakfast by their private pool.</p>
+        <ul class="dn-list">
+          <li class="inc"><i aria-hidden="true">✓</i>Breakfast at RASOI <span>· included</span></li>
+          <li class="inc"><i aria-hidden="true">✓</i>Unlimited raw tea <span>· included</span></li>
+          <li><i aria-hidden="true">+</i>Breakfast by your pool <span>· on request</span></li>
+          <li><i aria-hidden="true">+</i>BBQ evening <span>· on request</span></li>
+          <li><i aria-hidden="true">+</i>Candlelight dinner <span>· on request</span></li>
+        </ul>
+        <p class="dn-out">Not staying with us? Outside guests are welcome with a reservation.</p>
         <div class="dining-actions">
           <button class="btn btn-forest" id="diningTableBtn" type="button">See menu &amp; reserve</button>
           <a class="btn btn-outline" href="tel:+8801332546712">Call RASOI</a>
         </div>
+      </div>
+      <div class="dn-mosaic">
+        <figure class="dn-a"><img src="img/dining/01-indoor-restaurant.jpg" alt="Inside RASOI, the resort restaurant, with garden views" loading="lazy" decoding="async"></figure>
+        <figure class="dn-b"><img src="img/dining/02-outdoor-garden-dining-sm.jpg" alt="Outdoor garden dining deck at RASOI" loading="lazy" decoding="async"></figure>
+        <figure class="dn-c"><img src="img/dining/03-restaurant-buffet-sm.jpg" alt="Breakfast buffet at RASOI" loading="lazy" decoding="async"></figure>
+        <figure class="dn-d"><img src="img/dining/04-food-and-dining-table-sm.jpg" alt="A table set with food and fresh juice by the window" loading="lazy" decoding="async"></figure>
       </div>
     </div>
   </section>
