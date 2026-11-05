@@ -2271,6 +2271,45 @@ section.nearby{background:#0F2D1B;color:#F6F2EA}
 .nb-note{margin:16px 0 0;font-size:12px;color:rgba(207,224,211,.7)}
 @media (max-width:1000px){.nb-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:210px}.nb-head{flex-direction:column;align-items:flex-start;gap:14px}}
 @media (max-width:600px){.nb-grid{gap:10px;grid-auto-rows:160px}.nb-c{left:14px;right:44px;bottom:12px}.nb-c b{font-size:17px}.nb-c small{display:none}.nb-big .nb-c small{display:block}.nb-big .nb-c b{font-size:26px}.nb-go{width:26px;height:26px;right:10px;bottom:12px}}
+
+/* Discover Aranyaak (Figma 16 · A): live map + panel */
+section.discover{background:var(--ivory);padding-bottom:0}
+.dc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:40px}
+.dc-head h2{font-size:clamp(32px,3.6vw,46px);line-height:1.12;margin:12px 0 0;color:var(--forest)}
+.dc-head p{max-width:440px;margin:0;color:var(--muted);font-size:16px;line-height:1.6}
+.dc-stage{position:relative;height:640px}
+.dc-map{position:absolute;inset:0;background:#E4EBDD}
+.dc-map iframe{width:100%;height:100%;border:0;display:block;filter:saturate(.85)}
+.dc-wrap{position:relative;height:100%;display:flex;align-items:center;justify-content:flex-end;pointer-events:none}
+.dc-panel{pointer-events:auto;width:420px;max-height:580px;overflow:auto;background:#fff;border-radius:18px;padding:26px 30px 24px;box-shadow:0 12px 40px rgba(0,0,0,.16)}
+.dc-tabs{display:flex;gap:22px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.dc-tabs button{background:none;border:0;padding:0 0 12px;font:600 14px var(--f-body);color:var(--muted);cursor:pointer;box-shadow:inset 0 -2px 0 transparent}
+.dc-tabs button[aria-selected="true"]{color:var(--forest);box-shadow:inset 0 -2px 0 var(--forest)}
+.dc-tabs button:focus-visible{outline:2px solid var(--forest);outline-offset:4px}
+.dc-pane h3{font-size:24px;margin:14px 0 8px;color:var(--forest)}
+.dc-pane p{margin:0 0 16px;font-size:15px;line-height:1.6}
+.dc-btns{display:flex;flex-wrap:wrap;gap:10px}
+.dc-call{border:1px solid var(--forest);color:var(--forest)!important;background:#fff!important;box-shadow:none!important}
+.dc-list{list-style:none;margin:0;padding:0}
+.dc-list a{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--forest)}
+.dc-list a:hover .dc-t{text-decoration:underline}
+.dc-n{font:600 12px var(--f-body);color:#9A5A0C;width:20px}
+.dc-t{flex:1;font:500 15px var(--f-body)}
+.dc-a{font-size:14px;transition:transform .2s}
+.dc-list a:hover .dc-a{transform:translate(2px,-2px)}
+.dc-hint{font-size:12px!important;color:var(--muted);margin:12px 0 0!important}
+.dc-dl{margin:14px 0 18px;display:grid;gap:14px}
+.dc-dl dt{font:600 14px var(--f-body);color:var(--forest)}
+.dc-dl dd{margin:3px 0 0;font-size:14.5px;line-height:1.55}
+@media (max-width:900px){
+  .dc-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:24px}
+  .dc-stage{height:auto}
+  .dc-map{position:relative;height:300px}
+  .dc-wrap{display:block;height:auto;pointer-events:auto;padding-top:20px;padding-bottom:56px}
+  .dc-panel{width:auto;max-height:none;box-shadow:none;border:1px solid var(--line);padding:20px}
+  .dc-tabs{gap:16px;overflow-x:auto}
+  .dc-tabs button{white-space:nowrap}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2335,7 +2374,7 @@ section.nearby{background:#0F2D1B;color:#F6F2EA}
         <a role="menuitem" class="um-dup" href="#dining">Dining</a>
         <a role="menuitem" class="um-dup" href="#events">Events</a>
         <a role="menuitem" href="#reviews">Guest reviews</a>
-        <a role="menuitem" href="#estate">Explore the resort</a>
+        <a role="menuitem" href="#estate">Discover Aranyaak</a>
         <a role="menuitem" href="#nearby">Nearby places</a>
         <a role="menuitem" href="#founders">About Aranyaak</a>
         <a role="menuitem" class="um-dup" href="#gallery" data-page="gallery">Gallery</a>
@@ -2386,7 +2425,7 @@ section.nearby{background:#0F2D1B;color:#F6F2EA}
     <ul class="menu-links">
       <li><a href="#top" data-close>Home</a></li>
       <li><a href="#founders" data-close>About</a></li>
-      <li><a href="#estate" data-close>Explore the resort</a></li>
+      <li><a href="#estate" data-close>Discover Aranyaak</a></li>
       <li><a href="#rooms" data-close>Pool cottages</a></li>
       <li><a href="#offers" data-close>Special offers</a></li>
       <li><a href="#dining" data-close>Dining</a></li>
@@ -2445,21 +2484,36 @@ section.nearby{background:#0F2D1B;color:#F6F2EA}
   </section>
 
   <!-- Estate map -->
-  <section id="estate">
-    <div class="wrap">
-      <div class="head">
-        <div><span class="label">Explore the resort</span><h2>Every corner of Aranyaak, from above</h2></div>
-        <div class="head-r"><p>Tap a place on the map, then step inside it in 360°: look around and walk from spot to spot.</p><button class="btn btn-gold tour-btn" type="button" data-tour="entrance"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>Start the 360° tour</button></div>
-      </div>
-      <div class="map" id="map">
-        <img class="map-img" src="img/estate-aerial.jpg" alt="Aerial view of the tea estate">
-        <button class="pin" style="left:78%;top:28%" data-place="Pool cottages" data-text="Seven cottages, each with its own private swimming pool and infinity terrace."><i></i><span>Pool cottages</span></button>
-        <button class="pin" style="left:50%;top:44%" data-place="Tea garden" data-text="The tea gardens of Sreemangal. A Tea Garden Tour can be added to your stay."><i></i><span>Tea garden</span></button>
-        <button class="pin" style="left:28%;top:48%" data-place="Orchard" data-text="Fruit trees and greenery around the cottages."><i></i><span>Orchard</span></button>
-        <button class="pin" style="left:62%;top:58%" data-place="Private pools" data-text="Every cottage has its own private swimming pool."><i></i><span>Private pools</span></button>
-        <button class="pin" style="left:44%;top:70%" data-place="RASOI" data-text="RASOI, the resort restaurant. Breakfast is included with every stay."><i></i><span>RASOI</span></button>
-        <button class="pin" style="left:12%;top:86%" data-place="Entrance" data-text="The gateway and reception, where every stay begins." aria-pressed="true"><i></i><span>Entrance</span></button>
-        <div class="map-card" id="mapCard" aria-live="polite"><span class="label">On the map</span><h3>Entrance</h3><p>The gateway and reception, where every stay begins.</p><button class="btn btn-gold btn-sm v360" type="button" data-tour="entrance">View in 360° ›</button></div>
+  <section id="estate" class="discover" data-nomotion>
+    <div class="wrap dc-head">
+      <div><span class="label">Location</span><h2>Discover Aranyaak</h2></div>
+      <p>On Lawachara Road, in the tea country of Sreemangal. Find us, see what is close by, and plan your journey.</p>
+    </div>
+    <div class="dc-stage">
+      <div class="dc-map"><iframe title="Map: Aranyaak Luxury Resort, Sreemangal" src="https://maps.google.com/maps?q=24.303153,91.786757&amp;z=12&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+      <div class="wrap dc-wrap">
+        <div class="dc-panel">
+          <div class="dc-tabs" role="tablist" aria-label="Discover Aranyaak">
+            <button type="button" role="tab" id="dcT1" aria-controls="dcP1" aria-selected="false" tabindex="-1">Our location</button>
+            <button type="button" role="tab" id="dcT2" aria-controls="dcP2" aria-selected="true">What’s nearby</button>
+            <button type="button" role="tab" id="dcT3" aria-controls="dcP3" aria-selected="false" tabindex="-1">How to get here</button>
+          </div>
+          <div class="dc-pane" role="tabpanel" id="dcP1" aria-labelledby="dcT1" hidden>
+            <h3>Aranyaak Luxury Resort</h3>
+            <p>Doluchora, Lawachara Road, Sreemangal, Moulvibazar 3210, Bangladesh</p>
+            <div class="dc-btns"><a class="btn btn-forest btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.303153,91.786757" target="_blank" rel="noopener">Get directions</a><a class="btn btn-ghost btn-sm dc-call" href="tel:+8801332546712">Call +880 1332-546712</a></div>
+          </div>
+          <div class="dc-pane" role="tabpanel" id="dcP2" aria-labelledby="dcT2">
+            <ul class="dc-list"><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Lawachara+National+Park%2C+Sreemangal" target="_blank" rel="noopener"><span class="dc-n">01</span><span class="dc-t">Lawachara National Park</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Tea+gardens%2C+Sreemangal" target="_blank" rel="noopener"><span class="dc-n">02</span><span class="dc-t">Sreemangal tea gardens</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Lawachara+Khasia+Punji%2C+Sreemangal" target="_blank" rel="noopener"><span class="dc-n">03</span><span class="dc-t">Lawachara Khasia village</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Madhabpur+Lake%2C+Kamalganj" target="_blank" rel="noopener"><span class="dc-n">04</span><span class="dc-t">Madhabpur Lake</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Nilkantha+Tea+Cabin%2C+Sreemangal" target="_blank" rel="noopener"><span class="dc-n">05</span><span class="dc-t">Nilkantha Tea Cabin</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Baikka+Beel%2C+Sreemangal" target="_blank" rel="noopener"><span class="dc-n">06</span><span class="dc-t">Baikka Beel</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Tea+Resort+and+Museum%2C+Sreemangal" target="_blank" rel="noopener"><span class="dc-n">07</span><span class="dc-t">Tea Resort &amp; Museum</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Noorjahan+Tea+Estate%2C+Sreemangal" target="_blank" rel="noopener"><span class="dc-n">08</span><span class="dc-t">Noorjahan Tea Garden</span><span class="dc-a" aria-hidden="true">↗</span></a></li><li><a href="https://www.google.com/maps/dir/?api=1&amp;origin=24.303153,91.786757&amp;destination=Hum+Hum+Waterfall%2C+Kamalganj" target="_blank" rel="noopener"><span class="dc-n">09</span><span class="dc-t">Hum Hum waterfall</span><span class="dc-a" aria-hidden="true">↗</span></a></li></ul>
+            <p class="dc-hint">Tap a place for directions from the resort.</p>
+          </div>
+          <div class="dc-pane" role="tabpanel" id="dcP3" aria-labelledby="dcT3" hidden>
+            <dl class="dc-dl"><div><dt>By road</dt><dd>Dhaka–Sylhet highway to Sreemangal, then Lawachara Road. About 4–5 hours.</dd></div>
+            <div><dt>By train</dt><dd>Intercity trains run from Dhaka and Sylhet to Sreemangal station. We can pick you up from the station.</dd></div>
+            <div><dt>By air</dt><dd>Airport pick-up and drop-off can be added when you book.</dd></div></dl>
+            <a class="btn btn-forest btn-sm" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.303153,91.786757" target="_blank" rel="noopener">Get directions</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -4143,6 +4197,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   Object.assign(BN, {"Pool cottages": "থাকার ব্যবস্থা", "Offers": "অফার", "Gallery": "গ্যালারি", "Events": "আয়োজন", "Dining": "খাবার", "Home": "হোম", "About": "আমাদের সম্পর্কে", "About Aranyaak": "আমাদের সম্পর্কে", "Contact": "যোগাযোগ", "Book": "বুকিং করুন", "Special offers": "বিশেষ আয়োজন", "Guest reviews": "অতিথিদের কথা", "Explore the resort": "চারপাশে যা আছে", "Book now": "বুকিং করুন", "Book Now": "রুম খুঁজুন", "Book your stay": "বুকিং করুন", "View details": "বিস্তারিত দেখুন", "WhatsApp us": "যোগাযোগ করুন", "Contact us": "যোগাযোগ করুন", "Reserve your stay": "তারিখ বেছে নিন", "Sreemangal · Bangladesh": "শ্রীমঙ্গল, মৌলভীবাজার", "Where the tea hills meet the clouds": "পাহাড়, সবুজ আর একটু নিজের মতো সময়", "Seven spacious private-pool cottages amid Sreemangal's natural surroundings, each with a king-size bed, infinity terrace and modern comforts.": "চা-বাগানের সবুজ, পাহাড়ের হাওয়া আর চারপাশের শান্ত পরিবেশ। ব্যস্ততা থেকে একটু দূরে, অরণ্যকে কাটুক আপনার কয়েকটা সুন্দর দিন।", "Check-in": "চেক-ইন", "Check-out": "চেক-আউট", "Guests": "অতিথি", "Breakfast included · 10% off when you book direct": "নাশতা অন্তর্ভুক্ত · সরাসরি বুকিংয়ে ১০% ছাড়", "Welcome to Aranyaak": "অরণ্যকের গল্প", "Private pools, green hills and time to yourself": "শহরের ব্যস্ততা পেরিয়ে, সবুজের আরও কাছে", "Seven private-pool cottages on Lawachara Road, in the heart of Sreemangal's tea country. Built for privacy and quiet.": "সকালে পাখির ডাকে ঘুম ভাঙা, বারান্দায় বসে এক কাপ চা, আর সামনে যত দূর চোখ যায় শুধু সবুজ। শ্রীমঙ্গলের এই শান্ত পরিবেশেই আমাদের অরণ্যক। ইচ্ছে হলে ঘুরে বেড়ান, নয়তো সময়টা কাটুক একেবারে নিজের মতো।", "7 private pools": "৭টি প্রাইভেট পুল", "Infinity terraces": "ইনফিনিটি টেরেস", "Breakfast included": "সকালের নাশতা অন্তর্ভুক্ত", "Front desk 24/7": "ফ্রন্ট ডেস্ক ২৪/৭", "Every corner of Aranyaak, from above": "অরণ্যকের আশপাশে, দেখার আছে অনেক কিছু", "Tap a place on the map, then step inside it in 360°: look around and walk from spot to spot.": "চা-বাগানের পথ, ছোট ছোট টিলা আর শ্রীমঙ্গলের পরিচিত সবুজ। ম্যাপে কোনো জায়গায় চাপ দিন, তারপর ৩৬০°-এ ঘুরে দেখুন।", "Tea garden": "চা-বাগান", "Orchard": "ফলের বাগান", "Private pools": "প্রাইভেট পুল", "Entrance": "প্রবেশপথ", "On the map": "ম্যাপে", "Our accommodation": "থাকার ব্যবস্থা", "Our private pool cottages": "আমাদের প্রাইভেট পুল কটেজ", "Seven cottages, built by us among the tea hills of Sreemangal. Each one is yours alone: your own pool, your own terrace and your own view.": "কেউ ভালোবাসেন পাহাড়ের দৃশ্য, কেউ চান চা-বাগানের পাশে নিরিবিলি একটা ঘর। সাতটি কটেজের প্রতিটিতেই নিজের পুল আর টেরেস, আপনি শুধু পছন্দের দৃশ্যটা বেছে নিন।", "From": "শুরু", "/ night": "/ প্রতি রাত", "Wake up to rows of tea right below your pool deck, with the pickers passing in the morning mist.": "পুল ডেকের ঠিক নিচেই চা-বাগান। সকালের কুয়াশায় পাশ দিয়ে হেঁটে যান চা-শ্রমিকেরা।", "Faces east over the hills, so the first light lands on the water of your pool.": "পূর্বমুখী এই কটেজে ভোরের প্রথম আলো এসে পড়ে আপনার পুলের পানিতে।", "Sits at the edge of the Lawachara forest, with birdsong and green all around the pool.": "লাউয়াছড়া বনের ধারে। পুলের চারপাশে শুধু সবুজ আর পাখির ডাক।", "On the western ridge, made for an evening swim as the sun goes down behind the hills.": "পশ্চিমের টিলার ওপর। পাহাড়ের পেছনে সূর্য ডোবার সময় একটু সাঁতার কাটার জন্যই যেন বানানো।", "Surrounded by fruit trees and fragrant gardenias, the most private of the seven.": "ফলের গাছ আর সুগন্ধি গার্ডেনিয়ায় ঘেরা। সাতটির মধ্যে সবচেয়ে নিরিবিলি।", "Looks down the valley across the tea slopes, with the widest open view.": "চা-বাগানের ঢাল পেরিয়ে নিচের উপত্যকা পর্যন্ত চোখ যায়। সবচেয়ে খোলা দৃশ্য এখানেই।", "Tucked into a bamboo grove, shaded, quiet and cool even in summer.": "বাঁশঝাড়ের ভেতরে, ছায়াঘেরা। গরমের দিনেও শান্ত আর ঠান্ডা।", "Reasons to stay a little longer": "ছুটিটা আরও সুন্দর হোক", "Offers apply when you book direct. The best offer for your dates is applied automatically: one offer per booking, no codes needed.": "সরাসরি বুকিং করলে অফার নিজে থেকেই যোগ হয়ে যায়, কোনো কোড লাগে না। আপনার তারিখে যেটা সবচেয়ে ভালো, সেটাই পাবেন। এক বুকিংয়ে একটি অফার।", "Book direct & save": "সরাসরি বুকিংয়ে ১০% কম", "10% off every cottage when you book on our website. Applied automatically.": "আমাদের ওয়েবসাইটে বুকিং করলে যেকোনো কটেজে ১০% ছাড়। ছাড়টা নিজে থেকেই যোগ হয়।", "Monsoon stay: 3 for 2": "বর্ষায় ৩ রাত থাকুন, দাম ২ রাতের", "Stay 3 nights, pay for 2. The lowest-priced night is free.": "৩ রাত থাকুন, দাম দিন ২ রাতের। সবচেয়ে কম দামের রাতটি ফ্রি।", "Honeymoon in the hills": "দুজনের একটু নিজের সময়", "Cottage decoration, a candlelight dinner, cake, breakfast by your private pool and late check-out.": "কটেজ সাজানো, ক্যান্ডেললাইট ডিনার, কেক, নিজের পুলের পাশে নাশতা আর একটু দেরিতে চেক-আউট।", "Book direct": "সরাসরি বুকিং করুন", "Ask about dates": "তারিখ জেনে নিন", "Call to arrange": "ফোন করে ঠিক করুন", "Postcards from the cottages": "অতিথিদের কথা", "What our guests say": "যাঁরা এসেছেন, তাঁদের অভিজ্ঞতা", "Your morning among the tea hills": "কয়েকটা দিন থাকুন সবুজের মাঝে", "Breakfast included, and 10% off automatically when you book direct.": "সকালের কুয়াশা, বিকেলের চা আর কাছের মানুষদের সঙ্গে নির্ভার কিছু সময়। সরাসরি বুকিংয়ে নাশতাসহ ১০% ছাড়।", "Stay": "থাকা ও বুকিং", "Discover": "ঘুরে দেখুন", "Get in touch": "যোগাযোগ", "Privacy policy": "গোপনীয়তা নীতি", "Booking & cancellation policy": "বুকিং ও বাতিল নীতিমালা", "Getting here": "কীভাবে আসবেন", "© 2026 Aranyaak Luxury Resort. All rights reserved.": "© ২০২৬ অরণ্যক লাক্সারি রিসোর্ট। সর্বস্বত্ব সংরক্ষিত।"});
   Object.assign(BN, {"TAP TO OPEN": "খুলতে চাপুন", "Breakfast and unlimited raw tea are included with every stay. Outside guests are welcome with a reservation.": "প্রতিটি বুকিংয়ের সঙ্গে সকালের নাশতা আর যত খুশি কাঁচা চা। বাইরের অতিথিরাও আগে থেকে জানিয়ে আসতে পারেন।", "See menu & reserve": "মেনু দেখুন ও টেবিল বুক করুন", "Call RASOI": "রসুইতে ফোন করুন", "RASOI, our restaurant": "রসুই, আমাদের রেস্টুরেন্ট", "Weddings, holud, retreats and celebrations for up to 200 guests.": "বিয়ে, হলুদ, অফিসের রিট্রিট কিংবা পারিবারিক উদযাপন, ২০০ জন পর্যন্ত অতিথির জন্য।", "Send an enquiry →": "জানতে চাইলে লিখুন →", "Celebrate and meet among the tea hills": "চা-পাহাড়ের মাঝে উদযাপন আর আয়োজন", "Retreats": "রিট্রিট", "Off-sites": "অফ-সাইট", "Birthdays": "জন্মদিন", "Anniversaries": "বিবাহবার্ষিকী", "“Waking up to our own pool with the tea garden right below was something else. Quiet, private and the staff remembered every little thing we asked for.”": "“নিজের পুলের পাশে ঘুম ভাঙা আর ঠিক নিচেই চা-বাগান, অন্যরকম অনুভূতি। শান্ত, নিরিবিলি, আর আমাদের ছোটখাটো সব অনুরোধও স্টাফরা মনে রেখেছিলেন।”", "“We came for the rainforest and stayed by the pool most of the day. The Lawachara walk in the morning and dinner by candlelight were the highlights.”": "“এসেছিলাম বনের টানে, কিন্তু দিনের বেশিরভাগ সময় কাটল পুলের পাশেই। সকালে লাউয়াছড়ায় হাঁটা আর রাতে ক্যান্ডেললাইট ডিনার ছিল সবচেয়ে ভালো লাগার।”", "“Perfect for a short break from the city. Clean cottage, a lovely private pool and fresh Sylheti breakfast served on the deck.”": "“শহর থেকে কয়েক দিনের বিরতির জন্য একদম ঠিকঠাক। পরিষ্কার কটেজ, সুন্দর প্রাইভেট পুল, আর ডেকে বসে সিলেটি নাশতা।”", "“The sunset from the ridge with a swim at the same time is hard to beat. We are already planning our next visit in the monsoon.”": "“টিলার ওপর থেকে সূর্যাস্ত দেখতে দেখতে সাঁতার, এর তুলনা হয় না। বর্ষায় আবার আসার পরিকল্পনা করছি।”", "Dhaka": "ঢাকা", "Chattogram": "চট্টগ্রাম", "Sylhet": "সিলেট", "London, UK": "লন্ডন, যুক্তরাজ্য", "Couple": "দম্পতি", "Anniversary": "বিবাহবার্ষিকী", "Weekend": "উইকেন্ড", "Family": "পরিবার"});
   Object.assign(BN, {"Around Aranyaak": "অরণ্যকের আশপাশে", "Nearby places to explore": "কাছাকাছি ঘুরে দেখার জায়গা", "Nearby places": "কাছাকাছি দর্শনীয় স্থান", "Rainforest, tea gardens, lakes and waterfalls around Sreemangal. Tap a place to open it in Google Maps.": "শ্রীমঙ্গলের আশপাশে বন, চা-বাগান, লেক আর ঝরনা। কোনো জায়গায় চাপ দিলে গুগল ম্যাপে খুলবে।", "Images are illustrations, not photographs of the places.": "ছবিগুলো আঁকা চিত্র, জায়গাগুলোর আসল ছবি নয়।", "Lawachara National Park": "লাউয়াছড়া জাতীয় উদ্যান", "Rainforest trails and hoolock gibbons": "বনের পথ আর উল্লুক", "Sreemangal tea gardens": "শ্রীমঙ্গলের চা-বাগান", "Walks through the rolling tea estates": "ঢেউখেলানো চা-বাগানে হাঁটা", "Nilkantha Tea Cabin": "নীলকণ্ঠ টি কেবিন", "The famous seven-layer tea": "বিখ্যাত সাত রঙের চা", "Khasia village": "খাসিয়া পুঞ্জি", "Betel-leaf village inside the forest": "বনের ভেতরে পান-চাষের গ্রাম", "Madhabpur Lake": "মাধবপুর লেক", "A quiet lake among the tea hills": "চা-পাহাড়ের মাঝে শান্ত লেক", "Baikka Beel": "বাইক্কা বিল", "Wetland birds, best in winter": "জলাভূমির পাখি, শীতে সবচেয়ে ভালো", "Tea Resort & Museum": "টি রিসোর্ট ও জাদুঘর", "Tools and stories of the tea industry": "চা-শিল্পের যন্ত্র আর গল্প", "Noorjahan Tea Garden": "নূরজাহান চা-বাগান", "A well-known Sreemangal tea estate": "শ্রীমঙ্গলের পরিচিত চা-বাগান", "Hum Hum waterfall": "হামহাম ঝরনা", "Forest trek, best in the monsoon": "বনের পথে ট্রেক, বর্ষায় সবচেয়ে সুন্দর"});
+  Object.assign(BN, {"Discover Aranyaak": "অরণ্যক ঘুরে দেখুন", "Location": "অবস্থান", "On Lawachara Road, in the tea country of Sreemangal. Find us, see what is close by, and plan your journey.": "শ্রীমঙ্গলের চা-বাগানের মাঝে, লাউয়াছড়া রোডে। আমাদের খুঁজে নিন, কাছের জায়গাগুলো দেখুন আর যাত্রা ঠিক করুন।", "Our location": "আমাদের ঠিকানা", "What’s nearby": "কাছে কী আছে", "How to get here": "কীভাবে আসবেন", "Get directions": "পথ দেখুন", "Call +880 1332-546712": "কল করুন +880 1332-546712", "Tap a place for directions from the resort.": "রিসোর্ট থেকে পথ দেখতে জায়গায় চাপ দিন।", "By road": "সড়কপথে", "By train": "ট্রেনে", "By air": "আকাশপথে", "Intercity trains run from Dhaka and Sylhet to Sreemangal station. We can pick you up from the station.": "ঢাকা ও সিলেট থেকে আন্তঃনগর ট্রেন শ্রীমঙ্গল স্টেশনে যায়। আমরা স্টেশন থেকে আপনাকে নিয়ে আসতে পারি।", "Airport pick-up and drop-off can be added when you book.": "বুকিংয়ের সময় এয়ারপোর্ট পিক-আপ ও ড্রপ যোগ করা যায়।", "Lawachara Khasia village": "লাউয়াছড়া খাসিয়া পুঞ্জি", "Aranyaak Luxury Resort": "অরণ্যক লাক্সারি রিসোর্ট"});
   const BN_RULES=[
     [/^(\d+) photos$/, m=>`${m[1]}টি ছবি`],
     [/^(\d+) nights?$/, m=>`${m[1]} রাত`],
@@ -4444,5 +4499,11 @@ document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="tel:"]
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ load(); v.play().catch(()=>{}); } else if(!v.paused) v.pause(); }),{rootMargin:'200px 0px'}).observe(v);
   ['touchstart','scroll'].forEach(ev=>addEventListener(ev,()=>{ if(loaded&&v.paused&&v.getBoundingClientRect().top<innerHeight) v.play().catch(()=>{}); },{passive:true}));
+})();
+
+/* Discover Aranyaak tabs */
+(()=>{ const tabs=[...document.querySelectorAll('.dc-tabs [role=tab]')]; if(!tabs.length) return;
+  const sel=t=>{ tabs.forEach(x=>{ const on=x===t; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; document.getElementById(x.getAttribute('aria-controls')).hidden=!on; }); };
+  tabs.forEach((t,i)=>{ t.addEventListener('click',()=>sel(t)); t.addEventListener('keydown',e=>{ const k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(k){ e.preventDefault(); const n=tabs[(i+k+tabs.length)%tabs.length]; sel(n); n.focus(); } }); });
 })();
 </script>
