@@ -2353,6 +2353,8 @@ html body section.dining.dn-f{background:var(--sand)!important}
 .pc.cur{transform:translateX(-50%) translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotate(-1.2deg) scale(1);cursor:grab}
 .pc.next{transform:translateX(-12%) translateX(0px) translateY(14px) translateZ(-140px) rotateX(0deg) rotateY(-22deg) rotate(4deg) scale(.92)}
 .pc.prev{transform:translateX(-88%) translateX(0px) translateY(14px) translateZ(-140px) rotateX(0deg) rotateY(22deg) rotate(-5deg) scale(.92)}
+.pc.away{transform:translateX(-50%) translateX(0px) translateY(24px) translateZ(-420px) rotateX(0deg) rotateY(0deg) rotate(0deg) scale(.8)}
+.pc{transition:transform .8s cubic-bezier(.22,.8,.24,1),opacity .6s ease,filter .6s}
 .pc-deck.dragging,.pc-deck.dragging .pc.cur{cursor:grabbing}
 .pc.pc-drag{transition:none!important}
 .pc.pc-tilt{transition:transform .18s ease-out!important;box-shadow:0 1px 0 rgba(0,0,0,.04),0 34px 60px -20px rgba(27,64,37,.42)}
@@ -3016,8 +3018,11 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   let tq=0, tqTimer=null, tqFly=null;
   const tqStars='<span class="testi-stars" aria-label="5 out of 5">'+'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4 6.5 20.3l1-6.2L3 9.7l6.2-.9z" fill="currentColor"/></svg>'.repeat(5)+'</span>';
   const PCIMG={Camellia:'img/room-tea-3.jpg',Orchid:'img/story-monsoon.jpg',Magnolia:'img/story-winter.jpg',Lavender:'img/offer-honeymoon.jpg'};
-  const tqDraw=()=>{ const N=REVIEWS.length;
-    $('#pcDeck').innerHTML=REVIEWS.map((r,i)=>{ const off=((i-tq)%N+N)%N, pos=off===0?'cur':off===1?'next':off===N-1?'prev':'away'; const cot=r.t.split(' ')[0];
+  const tqPos=i=>{ const N=REVIEWS.length, off=((i-tq)%N+N)%N; return off===0?'cur':off===1?'next':off===N-1?'prev':'away'; };
+  const tqDraw=()=>{ const N=REVIEWS.length, deckEl=$('#pcDeck');
+    /* infinite ring: after the first render only the slot classes rotate, so every card glides to its new place */
+    if(deckEl.children.length===N){ [...deckEl.children].forEach((el,i)=>{ const pos=tqPos(i); el.classList.remove('cur','next','prev','away','pc-drag','pc-fly','pc-tilt'); el.classList.add(pos); el.style.cssText=''; el.setAttribute('aria-hidden',pos!=='cur'); }); }
+    else deckEl.innerHTML=REVIEWS.map((r,i)=>{ const pos=tqPos(i); const cot=r.t.split(' ')[0];
       return `<figure class="pc ${pos}" aria-hidden="${pos!=='cur'}" data-tqi="${i}">
         <div class="pc-l">${tqStars}<blockquote>“${r.q}”</blockquote>
           <figcaption><span class="pc-sign">${r.n}</span> <em class="testi-tag">Sample</em><small>${r.c} · ${r.t}</small></figcaption></div>
@@ -3064,12 +3069,8 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     deck.addEventListener('dragstart',e=>e.preventDefault());
     /* arrow buttons + autoplay: same 3D fly-out */
     let busy=false;
-    tqFly=(d,auto)=>{ if(busy) return; const cur=deck.querySelector('.pc.cur'), inc=deck.querySelector(d>0?'.pc.next':'.pc.prev');
-      if(!cur||!inc||matchMedia('(prefers-reduced-motion: reduce)').matches){ if(auto){ tq=(tq+d+REVIEWS.length)%REVIEWS.length; tqDraw(); } else tqGo(tq+d); return; }
-      busy=true; const sg=d>0?-1:1;
-      cur.classList.remove('pc-tilt'); cur.classList.add('pc-fly'); cur.style.transform=tf({...P.cur,ry:sg*38,rz:sg*14},sg*Math.max(innerWidth*.9,700),80); cur.style.opacity='0';
-      inc.classList.add('pc-fly'); inc.style.zIndex='4'; inc.style.filter='none'; inc.style.transform=tf(P.cur,0,30); inc.style.opacity='1';
-      setTimeout(()=>{ busy=false; if(auto){ tq=(tq+d+REVIEWS.length)%REVIEWS.length; tqDraw(); } else tqGo(tq+d); },420); };
+    tqFly=(d,auto)=>{ if(busy) return; busy=true; setTimeout(()=>busy=false,650);
+      if(auto){ tq=(tq+d+REVIEWS.length)%REVIEWS.length; tqDraw(); } else tqGo(tq+d); };
   })();
   tqDraw(); tqAuto();
 
