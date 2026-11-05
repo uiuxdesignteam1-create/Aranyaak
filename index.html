@@ -2373,6 +2373,15 @@ html body .nav.expanded:not(.open) .book-panel{border-top:1px solid rgba(27,64,3
   .paystrip{margin-top:28px!important}
   .foot-body{padding-bottom:24px!important}
 }
+/* mobile hero: text sits higher, scroll arrow clear of the Book bar */
+@media (max-width:900px){
+  .hero-inner{padding-bottom:170px!important}
+  .scroll-chev{bottom:calc(138px + env(safe-area-inset-bottom,0px))!important}
+}
+@media (max-width:900px) and (max-height:620px){
+  .hero-inner{padding-bottom:200px!important}
+  .scroll-chev{bottom:calc(122px + env(safe-area-inset-bottom,0px))!important}
+}
 /* bigger top-bar links (Nov 2026) */
 .nav-links a{font-size:17px!important}
 html[lang="bn"] .nav-links a{font-size:19px!important}
