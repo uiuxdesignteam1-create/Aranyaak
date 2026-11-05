@@ -1645,12 +1645,12 @@ input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0;line-heig
 :root{--cta:#2F6B44;--cta-hover:#1B4025;--cta-press:#163620;--cta-shadow:none}
 html body .rs-btns .btn-gold,html body .v360,html body .tour-btn,html body .sr-mapbtn,html body .av-reserve .btn-gold,html body .btn-gold,html body .btn-forest,html body .hc-book,html body .bs-book,html body .mbar-book,html body .menu-book,html body .sr-go,html body .rb-go,html body #bkBarB,html body .btn-sel.on,
 .btn-gold,.btn-forest,.hc-book,.bs-book,.mbar-book,.menu-book,.book-form .btn-forest,.sr-go,.rb-go,.go,#bkBarB,.btn-sel.on,
-.founders .btn-gold,.talk .btn-gold,.hero-ctas .btn-forest,.umenu .um-feature,.cpop-act .btn-forest,.drp-ft .btn-forest{
+.founders .btn-gold,.talk .btn-gold,.hero-ctas .btn-forest,.cpop-act .btn-forest,.drp-ft .btn-forest{
   background:var(--cta)!important;background-image:none!important;color:#fff!important;border-color:var(--cta)!important;text-shadow:var(--cta-shadow)!important}
 html body .btn-gold:hover,html body .btn-forest:hover,html body .hc-book:hover,html body .bs-book:hover,html body .mbar-book:hover,html body .v360:hover,html body .tour-btn:hover,html body .rs-btns .btn-gold:hover,.btn-gold:hover,.btn-forest:hover,.hc-book:hover,.bs-book:hover,.mbar-book:hover,.menu-book:hover,.book-form .btn-forest:hover,.sr-go:hover,.rb-go:hover,.go:hover,#bkBarB:hover,
-.founders .btn-gold:hover,.talk .btn-gold:hover,.umenu .um-feature:hover{background:var(--cta-hover)!important;color:#fff!important}
+.founders .btn-gold:hover,.talk .btn-gold:hover{background:var(--cta-hover)!important;color:#fff!important}
 .btn-gold:active,.btn-forest:active,.hc-book:active,.bs-book:active,.mbar-book:active,.menu-book:active,.sr-go:active,.rb-go:active,#bkBarB:active{background:var(--cta-press)!important}
-.btn-gold *,.btn-forest *,.hc-book *,.mbar-book *,.umenu .um-feature b,.umenu .um-feature small{color:#fff!important}
+.btn-gold *,.btn-forest *,.hc-book *,.mbar-book *{color:#fff!important}
 .btn-gold:disabled,.btn-forest:disabled,#bkBarB:disabled,.go:disabled,.rb-go:disabled{background:#A9C2B0!important;text-shadow:none!important;cursor:not-allowed}
 .btn-sel:not(.on){background:#fff!important;color:#2F6B44!important;border:1.5px solid var(--cta)!important;text-shadow:none!important}
 .mbar-book{box-shadow:0 12px 28px -8px rgba(15,45,27,.55)!important}
@@ -2225,6 +2225,24 @@ html[lang="bn"] body :is(.rs-price,.price,.amt,.tot b,.pn-num,.reel-price,.pay-h
 
 /* menu: hide links already shown in the top bar */
 @media (min-width:1201px){.umenu .um-dup{display:none}}
+
+/* menu banner: soft card (Figma 12 · B) */
+.umenu .um-soft{margin:4px 12px;width:auto;padding:14px!important;border-radius:12px;background:#EEF4EF!important;justify-content:flex-start;gap:12px;text-shadow:none}
+.umenu .um-soft:hover,.umenu .um-soft:focus-visible{background:#E3EEE6!important}
+.um-soft .um-ic{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.umenu .um-soft .um-ic svg{width:24px;height:auto}
+.um-soft .um-tx{flex:1;min-width:0}
+.umenu .um-soft b{color:#1B4025!important;font-size:15px;font-weight:600}
+.umenu .um-soft small{color:#5F6A60!important;font-size:12.5px;margin-top:2px}
+.umenu .um-soft .um-ar{width:16px;height:16px;flex:none;color:#1B4025;transition:transform .2s}
+.umenu .um-soft:hover .um-ar{transform:translateX(3px)}
+@media (max-width:900px){
+  .umenu .um-soft{order:2;margin:24px 0 0;padding:14px 16px!important;background:rgba(246,242,234,.10)!important;border:1px solid rgba(246,242,234,.18);border-radius:12px}
+  .umenu .um-soft:hover{background:rgba(246,242,234,.16)!important}
+  .umenu .um-soft .um-ic{background:#F6F2EA}
+  .umenu .um-soft b{color:#F6F2EA!important}.umenu .um-soft small{color:rgba(246,242,234,.75)!important}
+  .umenu .um-soft .um-ar{color:#F7C56A}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -2282,7 +2300,7 @@ html[lang="bn"] body :is(.rs-price,.price,.amt,.tot b,.pn-num,.reel-price,.pay-h
         <button type="button" role="menuitem" data-um="lang"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span>Language · বাংলা / English</span></button>
         
         <hr>
-        <a role="menuitem" class="um-feature" href="#top" data-book><span><b>Book direct</b><small>10% off automatically, breakfast included.</small></span><svg viewBox="0 0 986 820" aria-hidden="true"><use href="#logo"/></svg></a>
+        <a role="menuitem" class="um-feature um-soft" href="#top" data-book><span class="um-ic" aria-hidden="true"><svg viewBox="0 0 986 820"><use href="#logo"/></svg></span><span class="um-tx"><b>Book a cottage</b><small>10% off + breakfast included</small></span><svg class="um-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <hr>
         <a role="menuitem" class="um-dup" href="#rooms">Pool cottages</a>
         <a role="menuitem" class="um-dup" href="#offers">Special offers</a>
