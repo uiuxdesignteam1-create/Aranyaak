@@ -3013,7 +3013,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     {q:'Perfect for a short break from the city. Clean cottage, a lovely private pool and fresh Sylheti breakfast served on the deck.',n:'Sample guest',c:'Sylhet',t:'Magnolia Cottage · Weekend'},
     {q:'The sunset from the ridge with a swim at the same time is hard to beat. We are already planning our next visit in the monsoon.',n:'Sample guest',c:'London, UK',t:'Lavender Cottage · Family'}
   ];
-  let tq=0, tqTimer=null;
+  let tq=0, tqTimer=null, tqFly=null;
   const tqStars='<span class="testi-stars" aria-label="5 out of 5">'+'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4 6.5 20.3l1-6.2L3 9.7l6.2-.9z" fill="currentColor"/></svg>'.repeat(5)+'</span>';
   const PCIMG={Camellia:'img/room-tea-3.jpg',Orchid:'img/story-monsoon.jpg',Magnolia:'img/story-winter.jpg',Lavender:'img/offer-honeymoon.jpg'};
   const tqDraw=()=>{ const N=REVIEWS.length;
@@ -3029,8 +3029,8 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     const pad=n=>String(n).padStart(2,'0'); $('#tqNow').textContent=pad(tq+1); $('#tqAll').textContent=pad(N);
     $('#reviews').classList.remove('tq-run'); void $('#reviews').offsetWidth; $('#reviews').classList.add('tq-run'); };
   const tqGo=i=>{ tq=(i+REVIEWS.length)%REVIEWS.length; tqDraw(); tqAuto(); };
-  const tqAuto=()=>{ clearInterval(tqTimer); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tqTimer=setInterval(()=>{ tq=(tq+1)%REVIEWS.length; tqDraw(); },7000); };
-  $('#reviews').addEventListener('click',e=>{ const a=e.target.closest('[data-tq]'); if(a) return tqGo(tq+ +a.dataset.tq); const d=e.target.closest('[data-tqi]'); if(d) tqGo(+d.dataset.tqi); });
+  const tqAuto=()=>{ clearInterval(tqTimer); if(!matchMedia('(prefers-reduced-motion: reduce)').matches) tqTimer=setInterval(()=>{ if(tqFly) tqFly(1,true); else { tq=(tq+1)%REVIEWS.length; tqDraw(); } },7000); };
+  $('#reviews').addEventListener('click',e=>{ const a=e.target.closest('[data-tq]'); if(a) return tqFly?tqFly(+a.dataset.tq):tqGo(tq+ +a.dataset.tq); const d=e.target.closest('[data-tqi]'); if(d) tqGo(+d.dataset.tqi); });
   $('#reviews').addEventListener('mouseenter',()=>{ clearInterval(tqTimer); $('#reviews').classList.add('tq-pause'); }); $('#reviews').addEventListener('mouseleave',()=>{ $('#reviews').classList.remove('tq-pause'); tqDraw(); tqAuto(); });
   /* drag / swipe with a 3D feel */
   (()=>{ const deck=$('#pcDeck'); if(!deck) return;
@@ -3062,6 +3062,14 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     deck.addEventListener('pointerleave',e=>{ if(!st){ const c=deck.querySelector('.pc.cur.pc-tilt'); if(c){ c.style.transform=''; c.classList.remove('pc-tilt'); } } });
     deck.addEventListener('click',e=>{ if(moved){ e.stopPropagation(); e.preventDefault(); moved=false; } },true);
     deck.addEventListener('dragstart',e=>e.preventDefault());
+    /* arrow buttons + autoplay: same 3D fly-out */
+    let busy=false;
+    tqFly=(d,auto)=>{ if(busy) return; const cur=deck.querySelector('.pc.cur'), inc=deck.querySelector(d>0?'.pc.next':'.pc.prev');
+      if(!cur||!inc||matchMedia('(prefers-reduced-motion: reduce)').matches){ if(auto){ tq=(tq+d+REVIEWS.length)%REVIEWS.length; tqDraw(); } else tqGo(tq+d); return; }
+      busy=true; const sg=d>0?-1:1;
+      cur.classList.remove('pc-tilt'); cur.classList.add('pc-fly'); cur.style.transform=tf({...P.cur,ry:sg*38,rz:sg*14},sg*Math.max(innerWidth*.9,700),80); cur.style.opacity='0';
+      inc.classList.add('pc-fly'); inc.style.zIndex='4'; inc.style.filter='none'; inc.style.transform=tf(P.cur,0,30); inc.style.opacity='1';
+      setTimeout(()=>{ busy=false; if(auto){ tq=(tq+d+REVIEWS.length)%REVIEWS.length; tqDraw(); } else tqGo(tq+d); },420); };
   })();
   tqDraw(); tqAuto();
 
