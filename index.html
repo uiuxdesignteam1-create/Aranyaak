@@ -6,16 +6,16 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=Montserrat:wght@600;700&family=Hind+Siliguri:wght@400;500;600&family=Noto+Serif+Bengali:wght@500;600;700&family=Tiro+Bangla:ital@0;1&family=Inter:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&family=Noto+Serif+Bengali:wght@500;600&display=swap">
 <style>
 /* Layout: a fixed glass navbar over a full-bleed tea-hill hero, then calm ivory sections on a 1200px / 12-column grid; booking drops down from the navbar, the menu slides in from the left. */
 :root{
   --forest:#1B4025; --pine:#22482F; --leaf:#789568; --gold:#F69B31; --gold-deep:#DB8016; --gold-grad:#F69B31; --gold-ink:#9A5A0C; --gold-soft:#FCEBCF;
   --ivory:#F6F2EA; --sand:#E8DFCF; --white:#FFFFFF; --charcoal:#1E2420; --muted:#5F6A60;
   --line:#E3DACA; --scrim:rgba(19,31,23,.42); --glass:rgba(255,255,255,.62);
-  --f-display:"Fraunces", Georgia, "Times New Roman", serif;
-  --f-body:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mark:"Montserrat", "DM Sans", system-ui, sans-serif;
+  --f-display:"Cormorant Garamond", "Fraunces", Georgia, "Times New Roman", serif;
+  --f-body:"Inter", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mark:"Montserrat", "Inter", system-ui, sans-serif;
   --gutter:max(16px, env(safe-area-inset-left, 0px));
   --gutter-r:max(16px, env(safe-area-inset-right, 0px));
   --wrap:1200px; --nav-h:80px;
@@ -2448,13 +2448,6 @@ html body .nav.expanded:not(.open) .book-panel{border-top:1px solid rgba(27,64,3
 @media (max-width:900px){.ps-card{padding:24px 20px}.ps-center{padding:32px 20px}.ps-acts{flex-direction:column}.ps-acts .btn{flex:none;width:100%}.ps-find{grid-template-columns:1fr}.ps-gw-bd{padding:18px}.ps-gw-amt{flex-direction:column;align-items:flex-start;gap:6px}.ps-tabs span{font-size:12px}.ps-wrap .cp-grid{flex-direction:column!important}.ps-wrap .cp-r .ab-pill{display:none}}
 @media (prefers-reduced-motion:reduce){.ps-spin{animation-duration:2.5s}}
 @media print{body.booking .nav,body.booking .mbar,body.booking .bk-bar,.cp-back,.ps-acts,.ps-copy,.wa-float,.cp-r{display:none!important}}
-/* Bangla headings in Tiro Bangla (single weight 400, so no faux bold) */
-html[lang="bn"] body :is(h1,h2,h3,blockquote,q,.bt-name,.ofl-tag,.of-sub,.ps-h){font-weight:400!important;font-synthesis:none}
-html[lang="bn"] body :is(h1,h2,h3){line-height:1.3}
-/* bigger top-bar links (Nov 2026) */
-.nav-links a{font-size:17px!important}
-html[lang="bn"] .nav-links a{font-size:19px!important}
-@media (min-width:901px) and (max-width:1200px){.nav-links a{font-size:15.5px!important}html[lang="bn"] .nav-links a{font-size:17px!important}}
 
 /* Dining · RASOI — photo mosaic (Figma 18 · F) */
 html body section.dining.dn-f{background:#F2ECE4!important}
@@ -2496,6 +2489,66 @@ html body section.dining.dn-f{background:#F2ECE4!important}
 .tq-hintp{text-align:center;margin:18px 0 0}
 .tq-hint{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
 @media (prefers-reduced-motion:reduce){.pc.pc-tilt{transform:none!important}}
+
+/* =====================================================================
+   TYPOGRAPHY SYSTEM (Nov 2026)
+   Bangla : headings Tiro Bangla · body/UI Hind Siliguri
+   English: headings Cormorant Garamond · body/UI Inter
+   Tiro Bangla ships one weight (400). Headings get a hairline stroke so they
+   read like 600 without the browser's blurry faux-bold.
+   ===================================================================== */
+:root{
+  --t-h1:clamp(42px,4.6vw,64px); --t-h2:clamp(32px,3.2vw,46px); --t-h3:clamp(26px,2.5vw,34px); --t-card:clamp(22px,2vw,28px);
+  --t-h1-bn:clamp(34px,3.9vw,56px); --t-h2-bn:clamp(28px,2.8vw,40px); --t-h3-bn:clamp(24px,2.3vw,32px); --t-card-bn:clamp(20px,1.8vw,26px);
+  --bn-head:"Tiro Bangla","Noto Serif Bengali",Georgia,serif; --bn-body:"Hind Siliguri","Inter",system-ui,sans-serif;
+}
+/* -- English headings: Cormorant Garamond 600 -- */
+html body .hero h1{font-family:var(--f-display)!important;font-size:var(--t-h1)!important;font-weight:600!important;line-height:1.06!important;letter-spacing:-.005em!important}
+html body :is(section h2.mx-h,#estate h2,.foot-band h2,#mm h2,.xpg h1,.cp-top h1,#bkTitle){font-family:var(--f-display)!important;font-size:var(--t-h2)!important;font-weight:600!important;line-height:1.12!important;letter-spacing:0!important}
+html body :is(.rs-info h3,.bt-1 .bt-name,.ps-h,#vt h3,.mm-view h3){font-family:var(--f-display)!important;font-size:var(--t-h3)!important;font-weight:600!important;line-height:1.14!important;letter-spacing:0!important}
+html body :is(.offer h3,.bt-name,.ofl-tag,.dc-pane h3,.rs-nm,.rc-name){font-family:var(--f-display)!important;font-size:var(--t-card)!important;font-weight:600!important;line-height:1.18!important;letter-spacing:0!important}
+html body .bt-1 .bt-name{font-size:var(--t-h3)!important}
+html body :is(.of-sub,.pc-sign){font-family:var(--f-display)!important;font-weight:500!important}
+html body .pc blockquote{font-family:var(--f-display)!important;font-weight:500!important;font-style:italic;font-size:clamp(19px,1.8vw,24px)!important;line-height:1.45!important}
+/* -- English body & UI: Inter -- */
+html body{font-family:var(--f-body)}
+html body .hero-copy>p{font-size:clamp(16px,1.3vw,18px)!important;line-height:1.65!important}
+html body .nav-links a{font-family:var(--f-body)!important;font-size:16px!important;font-weight:500!important}
+@media (min-width:901px) and (max-width:1200px){html body .nav-links a{font-size:15px!important}}
+html body :is(.btn,.hc-book,.bs-book,.mbar-book,.menu-book,.ft-b,.cp-pay){font-family:var(--f-body)!important;font-weight:600!important}
+html body .btn{font-size:15px!important}
+html body :is(.hc-book,.mbar-book,.cp-pay){font-size:16px!important}
+html body :is(.label,.rs-kind,.bt-kick,.badge,.foot h4,.ps-k){font-family:var(--f-body)!important;font-size:13px!important;font-weight:600!important}
+html body :is(.hc-row label,.bf label,.field label){font-family:var(--f-body)!important;font-size:14px!important;font-weight:500!important}
+html body :is(.legal,.hc-note,.testi-note,.ps-help,.dc-hint,.book-note,.ps-by){font-size:14px!important;line-height:1.55}
+/* -- Bangla: Tiro Bangla headings -- */
+html[lang="bn"] body :is(h1,h2,h3,blockquote,q,.bt-name,.ofl-tag,.of-sub,.pc-sign,.ps-h,.rs-nm,.rc-name){font-family:var(--bn-head)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important;font-synthesis:none}
+html[lang="bn"] body .hero h1{font-family:var(--bn-head)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important;font-size:var(--t-h1-bn)!important;line-height:1.3!important;-webkit-text-stroke:.6px currentColor}
+html[lang="bn"] body :is(section h2.mx-h,#estate h2,.foot-band h2,#mm h2,.xpg h1,.cp-top h1,#bkTitle){font-family:var(--bn-head)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important;font-size:var(--t-h2-bn)!important;line-height:1.32!important;-webkit-text-stroke:.45px currentColor}
+html[lang="bn"] body :is(.rs-info h3,.bt-1 .bt-name,.ps-h,#vt h3,.mm-view h3){font-family:var(--bn-head)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important;font-size:var(--t-h3-bn)!important;line-height:1.34!important;-webkit-text-stroke:.4px currentColor}
+html[lang="bn"] body :is(.offer h3,.bt-name,.ofl-tag,.dc-pane h3,.rs-nm,.rc-name){font-family:var(--bn-head)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important;font-size:var(--t-card-bn)!important;line-height:1.36!important;-webkit-text-stroke:.35px currentColor}
+html[lang="bn"] body .bt-1 .bt-name{font-family:var(--bn-head)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important;font-size:var(--t-h3-bn)!important}
+html[lang="bn"] body .pc blockquote{font-family:var(--bn-head)!important;font-weight:400!important;font-style:normal!important;letter-spacing:0!important;font-size:clamp(17px,1.6vw,21px)!important;line-height:1.6!important}
+/* -- Bangla: Hind Siliguri body & UI -- */
+html[lang="bn"] body{font-family:var(--bn-body);font-size:17px}
+html[lang="bn"] body :is(p,li,dd,dt,label,input,select,textarea,button,a,small,span:not(.bt-name):not(.ofl-tag):not(.rs-nm):not(.rc-name):not(.pc-sign)){font-family:var(--bn-body)}
+html[lang="bn"] body .hero-copy>p{font-size:clamp(16px,1.3vw,18px)!important;line-height:1.75!important}
+html[lang="bn"] body :is(p,li){line-height:1.75}
+html[lang="bn"] body .nav-links a{font-family:var(--bn-body)!important;font-size:16px!important;font-weight:600!important}
+html[lang="bn"] body :is(.btn,.hc-book,.bs-book,.mbar-book,.menu-book,.ft-b,.cp-pay){font-family:var(--bn-body)!important;font-weight:600!important;letter-spacing:0!important}
+html[lang="bn"] body .btn{font-size:16px!important}
+html[lang="bn"] body :is(.label,.rs-kind,.bt-kick,.badge,.foot h4,.ps-k){font-family:var(--bn-body)!important;font-size:14px!important;font-weight:500!important;letter-spacing:.02em!important;text-transform:none!important}
+html[lang="bn"] body :is(.hc-row label,.bf label,.field label){font-family:var(--bn-body)!important;font-size:14px!important;font-weight:500!important}
+html[lang="bn"] body :is(.of-sub,.pc-sign){font-family:var(--bn-head)!important;font-weight:400!important}
+html[lang="bn"] body :is(.legal,.hc-note,.testi-note,.ps-help,.dc-hint,.book-note,.ps-by,.rs-desc){font-size:15px!important;line-height:1.65}
+/* numbers & prices stay in Inter in both languages (clean tabular digits) */
+html body :is(.rs-price,.price,.amt,.tot b,.rb-tot,.ps-gw-amt strong,.cp-due b,.cp-tot b,.ps-ref b){font-family:"Inter",var(--bn-body)!important}
+html body .ps-gw-amt strong{font-weight:600!important}
+@media (max-width:600px){
+  html body .nav-links a{font-size:16px!important}
+  html body .pc blockquote{font-size:18px!important}
+  html[lang="bn"] body .pc blockquote{font-size:17px!important}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
