@@ -29,7 +29,7 @@ const PAYMENT={mode:'live', initUrl:'https://YOUR-BACKEND/pay/init'};
   "amount": 13050,
   "currency": "BDT",
   "total": 26100,
-  "method": "card | bkash | nagad | netbank",
+  "method": "card | bkash | nagad | rocket | netbank",
   "cottage": "Camellia Cottage",
   "checkin": "2026-12-19",
   "checkout": "2026-12-21",

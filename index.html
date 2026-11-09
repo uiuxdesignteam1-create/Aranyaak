@@ -3676,6 +3676,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     {id:'card',ic:'card',name:'Card',sub:'Visa · Mastercard · Amex',how:'After you complete the booking you go to the secure SSLCOMMERZ page to pay {amt} by debit or credit card.',done:'A secure SSLCOMMERZ payment link for your card payment has been sent by email and SMS.'},
     {id:'bkash',ic:'mobile',name:'bKash',sub:'Mobile banking',how:'Pay {amt} from your bKash account on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay with bKash has been sent by email and SMS.'},
     {id:'nagad',ic:'mobile',name:'Nagad',sub:'Mobile banking',how:'Pay {amt} from your Nagad account on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay with Nagad has been sent by email and SMS.'},
+    {id:'rocket',ic:'mobile',name:'Rocket',sub:'Mobile banking',how:'Pay {amt} from your Rocket account on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay with Rocket has been sent by email and SMS.'},
     {id:'netbank',ic:'net',name:'Internet banking',sub:'City · Bank Asia · AB · IBBL · MTB',how:'Pay {amt} through your bank\'s internet banking on the secure SSLCOMMERZ page.',done:'A secure SSLCOMMERZ link to pay through internet banking has been sent by email and SMS.'},
     {id:'bank',ic:'bank',name:'Bank transfer',sub:'Deposit or transfer',how:'Our reservations team sends you the resort\'s bank account details by email and SMS. Transfer {amt} and send us the receipt.',done:'Our reservations team will send the bank account details by email and SMS.'}
   ];
@@ -3966,7 +3967,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
   const HOLD=20*60*1000;
   const LG=(f,a)=>`<img src="img/pay/${f}" alt="${a}" loading="lazy">`;
   const PAYLOGO={card:LG('visa.svg','Visa')+LG('mastercard.svg','Mastercard')+LG('amex.png','American Express')+LG('nexus.svg','DBBL Nexus'),
-    bkash:LG('bkash.svg','bKash'), nagad:LG('nagad.svg','Nagad'), netbank:'<span class="pml-chip">IBBL · MTB +3</span>', bank:`<span class="pml-ic">${PAYIC.bank}</span>`};
+    bkash:LG('bkash.svg','bKash'), nagad:LG('nagad.svg','Nagad'), rocket:LG('rocket.svg','Rocket'), netbank:'<span class="pml-chip">IBBL · MTB +3</span>', bank:`<span class="pml-ic">${PAYIC.bank}</span>`};
   const saveLast=()=>{ last={...S,extras:new Set(S.extras),guest:{...S.guest}}; };
   const holdLeft=()=>S.holdUntil?Math.max(0,S.holdUntil-Date.now()):HOLD;
   const mmss=ms=>{ const t=Math.ceil(ms/1000); return `${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`; };
@@ -3996,7 +3997,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       <p class="ps-p">Please keep this window open. You will come back here automatically when the payment is done.</p><span class="ps-pill">${m.name} · ${adv} advance</span>${secured}</div>`;
     if(st==='gateway') return `<div class="ps-card ps-gw"><div class="ps-gw-hd"><b>Secure payment</b><span class="ps-demo">DEMO</span></div>
       <div class="ps-gw-bd"><div class="ps-gw-amt"><div><small>Paying</small><b>Aranyaak Luxury Resort</b><small>Booking ${S.ref}</small></div><strong>${adv}</strong></div>
-      <div class="ps-tabs" aria-hidden="true">${['card','mobile','net'].map(k=>{ const lbl={card:'Card',mobile:'Mobile banking',net:'Internet banking'}[k]; const on=(k==='card'&&S.pay==='card')||(k==='mobile'&&(S.pay==='bkash'||S.pay==='nagad'))||(k==='net'&&S.pay==='netbank'); return `<span class="${on?'on':''}">${lbl}</span>`; }).join('')}</div>
+      <div class="ps-tabs" aria-hidden="true">${['card','mobile','net'].map(k=>{ const lbl={card:'Card',mobile:'Mobile banking',net:'Internet banking'}[k]; const on=(k==='card'&&S.pay==='card')||(k==='mobile'&&(S.pay==='bkash'||S.pay==='nagad'||S.pay==='rocket'))||(k==='net'&&S.pay==='netbank'); return `<span class="${on?'on':''}">${lbl}</span>`; }).join('')}</div>
       <p class="ps-note warn">Demo only: no real money is charged. Choose how this test payment should end.</p>
       <button type="button" class="btn btn-forest ps-b" data-ps="success">Simulate successful payment</button>
       <button type="button" class="btn ps-b ps-danger" data-ps="fail">Simulate failed payment</button>
@@ -4567,9 +4568,9 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     [/^Pay (৳ [\d,]+) now\. The other (৳ [\d,]+) is paid at check-in\.$/, m=>`এখন ${m[1]} দিন। বাকি ${m[2]} চেক-ইনের সময়।`],
     [/^Confirm and pay (৳ [\d,]+)$/, m=>`নিশ্চিত করুন ও ${m[1]} পরিশোধ করুন`],
     [/^Continue to secure payment · (৳ [\d,]+)$/, m=>`নিরাপদ পেমেন্টে এগিয়ে যান · ${m[1]}`],
-    [/^(Card|bKash|Nagad|Bank transfer) · (৳ [\d,]+) now$/, m=>`${BN[m[1]]} · এখন ${m[2]}`],
+    [/^(Card|bKash|Nagad|Rocket|Internet banking|Bank transfer) · (৳ [\d,]+) now$/, m=>`${BN[m[1]]} · এখন ${m[2]}`],
     [/^· After you complete the booking you go to the secure SSLCOMMERZ page to pay (৳ [\d,]+) by debit or credit card\.$/, m=>`· বুকিং শেষ হলে নিরাপদ SSLCOMMERZ পেজে ডেবিট বা ক্রেডিট কার্ডে ${m[1]} পরিশোধ করবেন।`],
-    [/^· Pay (৳ [\d,]+) from your (bKash|Nagad) account on the secure SSLCOMMERZ page\.$/, m=>`· নিরাপদ SSLCOMMERZ পেজে আপনার ${BN[m[2]]} অ্যাকাউন্ট থেকে ${m[1]} পরিশোধ করুন।`],
+    [/^· Pay (৳ [\d,]+) from your (bKash|Nagad|Rocket) account on the secure SSLCOMMERZ page\.$/, m=>`· নিরাপদ SSLCOMMERZ পেজে আপনার ${BN[m[2]]} অ্যাকাউন্ট থেকে ${m[1]} পরিশোধ করুন।`],
     [/^· Our reservations team sends you the resort's bank account details by email and SMS\. Transfer (৳ [\d,]+) and send us the receipt\.$/, m=>`· আমাদের রিজার্ভেশন টিম ইমেইল ও এসএমএসে রিসোর্টের ব্যাংক অ্যাকাউন্টের তথ্য পাঠাবে। ${m[1]} ট্রান্সফার করে রসিদটি পাঠিয়ে দিন।`],
     [/^(.+\.) Breakfast and unlimited raw tea are included with every stay\.$/, m=>BN[m[1]]?`${BN[m[1]]} প্রতিটি বুকিংয়ে সকালের নাশতা আর যত খুশি রং চা।`:null],
     [/^(\d+) photos$/, m=>`${m[1]}টি ছবি`],
