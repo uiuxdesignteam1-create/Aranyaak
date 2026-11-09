@@ -4136,7 +4136,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
       <button type="button" class="btn btn-forest ab-go" data-act="abreserve" ${av&&fits?'':'disabled'}>${av?'Reserve':'Not available'}</button>
       <p class="ab-small">${c?`Free cancellation until ${c}`:'Free cancellation 14+ days before arrival'}</p>`;
   }
-  const HL=r=>[['pool','Your own pool and infinity terrace',`The pool is only for this cottage, with a ${r.view.toLowerCase()}.`],['tea','Breakfast included','Served every morning, with unlimited raw tea.'],['tag','10% off when you book here','Applied automatically, no code needed.']];
+  const HL=r=>[['pool','Your own pool and infinity terrace',`The pool is only for this cottage, with ${/^[aeiou]/i.test(r.view)?'an':'a'} ${r.view.toLowerCase()}.`],['tea','Breakfast included','Served every morning, with unlimited raw tea.'],['tag','10% off when you book here','Applied automatically, no code needed.']];
   const ABI={pool:'<path d="M3 17c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M3 21c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M8 13V5a2 2 0 0 1 4 0M16 13V5a2 2 0 0 0-4 0M8 9h8"/>',tea:'<path d="M4 10h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/>',tag:'<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',host:'<path d="M3 21h18M5 21V10l7-5 7 5v11M10 21v-6h4v6"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',list:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',back:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/>'};
   const AMI={pool:ABI.pool,view:'<path d="M3 18l5-7 4 5 3-3 6 5M3 18h18"/><circle cx="16" cy="7" r="2"/>',terrace:'<path d="M3 20h18M5 20v-6h14v6M4 14l8-6 8 6"/>',ac:'<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9 4l3 2 3-2M9 20l3-2 3 2"/>',tv:'<rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8"/>',wifi:'<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/>',tea:ABI.tea,scale:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9a3 3 0 0 1 6 0"/>',fridge:'<rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 10h12M9 6v2M9 13v3"/>',check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>'};
   const amK=a=>/pool/i.test(a)?'pool':/view/i.test(a)?'view':/terrace/i.test(a)?'terrace':/air/i.test(a)?'ac':/tv/i.test(a)?'tv':/wifi/i.test(a)?'wifi':/tea|breakfast/i.test(a)?'tea':/scale/i.test(a)?'scale':/minibar/i.test(a)?'fridge':'check';
@@ -4562,7 +4562,7 @@ document.querySelectorAll('img').forEach(i=>{ if(i.complete&&!i.naturalWidth) i.
     [/^Show all (\d+) amenities$/, m=>`সব ${m[1]}টি সুবিধা দেখুন`],
     [/^Up to (\d+) guests · 1 king-size bed · 70 m² · (.+)$/, m=>`সর্বোচ্চ ${m[1]} জন · ১টি কিং-সাইজ বেড · ৭০ বর্গমিটার · ${bnView(m[2])}`],
     [/^Private swimming pool • (.+) • Infinity terrace$/, m=>`প্রাইভেট সুইমিং পুল • ${bnView(m[1])} • ইনফিনিটি টেরেস`],
-    [/^The pool is only for this cottage, with a (.+)\.$/, m=>`পুলটি শুধু এই কটেজের, সামনে ${bnView(m[1])}।`],
+    [/^The pool is only for this cottage, with an? (.+)\.$/, m=>`পুলটি শুধু এই কটেজের, সামনে ${bnView(m[1])}।`],
     [/^(৳ [\d,]+) today · balance at check-in$/, m=>`আজ ${m[1]} · বাকিটা চেক-ইনে`],
     [/^Cancel before (.+) for a full refund\.$/, m=>`${bnDate(m[1])}-এর আগে বাতিল করলে পুরো টাকা ফেরত।`],
     [/^Pay (৳ [\d,]+) now\. The other (৳ [\d,]+) is paid at check-in\.$/, m=>`এখন ${m[1]} দিন। বাকি ${m[2]} চেক-ইনের সময়।`],
